@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "noImplicitAny": true,
+        "target": "ES2023",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "allowJs": false,
+        "resolvePackageJsonExports": true,
+        "resolvePackageJsonImports": true,
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "declaration": false,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "lib": [
+            "es2023",
+            "dom"
+        ],
+        "paths": {
+            "@/utils/*": ["./src/utils/*"],
+            "@/features/*": ["./src/features/*"],
+            "@/middleware/*": ["./src/middleware/*"],
+            "@/schemas/*": ["./src/schemas/*"],
+            "@/lib/*": ["./src/lib/*"],
+            "@/prisma/client": ["./src/lib/prisma/generated/client.ts"]
+        }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,11 @@
+model Post {
+    id             String   @id @default(cuid())
+    title          String
+    body           String
+    coverImageUrl  String?
+    published      Boolean  @default(false)
+    author         User     @relation(fields: [authorId], references: [id])
+    authorId       String
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+}

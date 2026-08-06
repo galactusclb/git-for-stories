@@ -1,0 +1,28 @@
+FROM node:24-slim AS builder
+
+ARG NEXT_PUBLIC_API_BASE_URL
+ARG API_BASE_URL
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+ENV API_BASE_URL=$API_BASE_URL 
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+FROM node:24-slim AS runner
+
+WORKDIR /app
+
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
+EXPOSE 3000
+
+ENV PORT=3000
+
+CMD ["node", "server.js"]

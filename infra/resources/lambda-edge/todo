@@ -1,0 +1,95 @@
+provider "aws" {
+  alias   = "us_east_1"
+  profile = "bit"
+  region  = "us-east-1"
+
+  default_tags {
+    tags = var.common_tags
+  }
+}
+
+module "lambda_edge" {
+  source = "./resources/lambda-edge"
+
+  providers = {
+    aws = aws.us_east_1
+  }
+}
+
+module "cloudfront" {
+  source = "./resources/cloudfront"
+
+  bucket_regional_domain_name = module.s3.s3_bucket_regional_domain_name
+  bucket_id                   = module.s3.s3_bucket_id
+  bucket_arn                  = module.s3.s3_bucket_arn
+  image_resize_lambda_arn     = module.lambda_edge.lambda_qualified_arn  # ← new
+}
+infra/resources/lambda-edge/main.tf:
+
+
+resource "aws_iam_role" "this" {
+  name = "image-resize-edge-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect    = "Allow"
+      Principal = {
+        Service = [
+          "lambda.amazonaws.com",
+          "edgelambda.amazonaws.com"
+        ]
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_lambda_function" "image_resize" {
+  filename      = "${path.module}/files/image-resize.zip"
+  function_name = "image-resize"
+  role          = aws_iam_role.this.arn
+  handler       = "index.handler"
+  runtime       = "nodejs20.x"
+  publish       = true   # required — CloudFront needs a versioned ARN
+  memory_size   = 1024
+  timeout       = 30
+}
+infra/resources/lambda-edge/outputs.tf:
+
+
+output "lambda_qualified_arn" {
+  value = aws_lambda_function.image_resize.qualified_arn  # versioned ARN
+}
+infra/resources/cloudfront/main.tf — add below the existing default_cache_behavior:
+
+
+resource "aws_cloudfront_cache_policy" "image_resize" {
+  name = "image-resize-policy"
+
+  parameters_in_cache_key_and_forwarded_to_origin {
+    query_strings_config {
+      query_string_behavior = "whitelist"
+      query_strings {
+        items = ["w", "q"]
+      }
+    }
+    headers_config { header_behavior = "none" }
+    cookies_config { cookie_behavior = "none" }
+  }
+}
+
+# inside aws_cloudfront_distribution.this, after default_cache_behavior:
+ordered_cache_behavior {
+  path_pattern           = "/screenshots/*"
+  allowed_methods        = ["GET", "HEAD"]
+  cached_methods         = ["GET", "HEAD"]
+  target_origin_id       = "s3-origin"
+  cache_policy_id        = aws_cloudfront_cache_policy.image_resize.id
+  viewer_protocol_policy = "redirect-to-https"
+
+  lambda_function_association {
+    event_type = "origin-response"
+    lambda_arn = var.image_resize_lambda_arn
+  }
+}

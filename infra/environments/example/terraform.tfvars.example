@@ -1,0 +1,37 @@
+environment = "dev"
+region = "us-east-1"
+
+common_tags = {
+    ManagedBy   = "Terraform"
+    Project     = "LaunchZap"
+    Environment = "dev"
+}
+
+availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
+
+name_prefix = "launchzap-dev"
+vpc_name    = "LaunchZap-vpc"
+vpc_cidr    = "10.0.0.0/16"
+subnets = {
+  "public"          = ["10.0.10.0/24", "10.0.20.0/24", "10.0.30.0/24"]
+  "private-compute" = ["10.0.11.0/24", "10.0.21.0/24", "10.0.31.0/24"]
+  "private-data"    = ["10.0.12.0/24", "10.0.22.0/24", "10.0.32.0/24"]
+}
+
+# Secret Manager
+secret_manager_name = "launchzap/app-config/dev"
+
+# S3
+s3_bucket_name = <bucket-name>
+
+# RDS
+postgresql_version = "17.7"
+db_name            = "postgres"
+db_user            = "launchzap_user"
+
+#ECR
+access_secret        = "<access_secret>"
+google_client_id     = "<google_client_id>"
+google_client_secret = "<google_client_secret>"
+ecr_web_repository_name=
+ecr_api_repository_name=
