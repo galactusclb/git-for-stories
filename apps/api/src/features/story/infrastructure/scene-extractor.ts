@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import z from 'zod';
 
 import { LLMProvider } from '@/lib/llm/llm-provider.interface';
+import { LLMProviderError } from '@/utils/errors/http-error';
 
 import { SceneExtractor } from '../application/ports/scene-extractor.port';
 import { Scene } from '../domain/entities/scene';
@@ -37,8 +38,12 @@ export class LLMSceneExtractor implements SceneExtractor {
             responseSchema: z.toJSONSchema(ExtractionResponseSchema, { target: 'openapi-3.0' }),
         });
 
-        const { scenes } = ExtractionResponseSchema.parse(JSON.parse(response));
+        const result = ExtractionResponseSchema.safeParse(JSON.parse(response));
 
-        return scenes.map((scene) => ({ id: randomUUID(), ...scene }));
+        if (!result.success) {
+            throw new LLMProviderError('Failed to extract valid scenes', result.error);
+        }
+
+        return result.data.scenes.map((scene) => ({ id: randomUUID(), ...scene }));
     }
 }

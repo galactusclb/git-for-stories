@@ -1,19 +1,21 @@
 import { NextFunction, Request, Response } from 'express';
+import { ZodError } from 'zod';
 
+import { logger } from '@/lib/logger/index.ts';
 import { Prisma } from '@/prisma/client';
 
 import { AppError, IsAuthMiddlewareMissingError } from '../utils/errors/app-errors.ts';
-import { HttpError } from '../utils/errors/http-error.ts';
+import { HttpError, LLMProviderError } from '../utils/errors/http-error.ts';
 
 export function errorHandler(err: unknown, req: Request, res: Response, _next: NextFunction) {
-    console.error('[Error]', err);
+    logger.error('[Error]', { err });
 
     let statusCode = 500;
     let message = 'Internal server error';
     let details: unknown;
 
     if (err instanceof IsAuthMiddlewareMissingError) {
-        console.error('[Implementation Bug]', err.message);
+        logger.error('[Implementation Bug]', { message: err.message });
         return res.status(500).json({ success: false, error: 'Something went wrong' });
     }
 
@@ -28,9 +30,13 @@ export function errorHandler(err: unknown, req: Request, res: Response, _next: N
     }
 
     if (err instanceof HttpError) {
+        if (err instanceof LLMProviderError) {
+            logger.error('[LLM Provider Failure]', { details: err.details });
+        }
+
         statusCode = err.statusCode;
         message = err.message;
-        details = err.details;
+        details = sanitizeDetails(err.details);
 
         return res.status(statusCode).json({ success: false, error: message, details });
     }
@@ -63,4 +69,14 @@ function isPrismaError(err: unknown): err is Prisma.PrismaClientKnownRequestErro
         err instanceof Prisma.PrismaClientInitializationError ||
         err instanceof Prisma.PrismaClientValidationError
     );
+}
+
+function sanitizeDetails(details: unknown): unknown {
+    if (details instanceof ZodError) {
+        return details.issues.map((issue) => ({
+            path: issue.path.join('.'),
+            message: issue.message,
+        }));
+    }
+    return details;
 }

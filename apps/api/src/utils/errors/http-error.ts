@@ -41,6 +41,12 @@ class ConflictError extends HttpError {
     }
 }
 
+class LLMProviderError extends HttpError {
+    constructor(message: string = 'LLM provider error', details?: unknown) {
+        super(502, message, details);
+    }
+}
+
 class InternalServerError extends HttpError {
     constructor(message = 'Internal server error', details?: unknown) {
         super(500, message);
@@ -64,4 +70,5 @@ export {
     ConflictError,
     InternalServerError,
     ServiceUnavailableError,
+    LLMProviderError,
 };
