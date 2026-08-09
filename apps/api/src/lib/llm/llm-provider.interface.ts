@@ -1,8 +1,9 @@
-export interface Generate {
+export interface GenerateParams {
     instructions: string;
     input: string;
+    responseSchema: Record<string, unknown>;
 }
 
 export interface LLMProvider {
-    generate(params: Generate): Promise<string>;
+    generate(params: GenerateParams): Promise<string>;
 }

@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 
-import { Generate, LLMProvider } from '../llm-provider.interface';
+import { GenerateParams, LLMProvider } from '../llm-provider.interface';
 
 export class GeminiProvider implements LLMProvider {
     private client: GoogleGenAI;
@@ -14,15 +14,19 @@ export class GeminiProvider implements LLMProvider {
         });
     }
 
-    async generate({ input, instructions }: Generate): Promise<string> {
+    async generate({ input, instructions, responseSchema }: GenerateParams): Promise<string> {
         const response = await this.client.models.generateContent({
             model: this.model,
             contents: input,
-            config: { systemInstruction: instructions },
+            config: {
+                systemInstruction: instructions,
+                responseMimeType: 'application/json',
+                responseSchema,
+            },
         });
 
         if (!response.text) {
-            throw new Error('Gemini returned an empty response');
+            throw new Error('Agent returned an empty response');
         }
 
         console.log(response.text);
