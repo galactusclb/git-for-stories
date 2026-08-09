@@ -3,6 +3,7 @@ import { RoleList } from './role';
 
 export const constants = {
     NODE_ENV: process.env.NODE_ENV === 'production',
+    PORT: process.env.WEB_APP_URL || 4000,
     auth: {
         ACCESS_SECRET: process.env.ACCESS_SECRET,
         REFRESH_SECRET: process.env.REFRESH_SECRET,

@@ -5,14 +5,17 @@ import rateLimit from 'express-rate-limit';
 
 import { routes as authRoutes } from '@/features/auth';
 import { routes as postRoutes } from '@/features/post';
-import { routes as stroyRoutes } from '@/features/story';
+import { createStoryModule } from '@/features/story';
 import { configureXray, xrayClose, xrayOpen } from '@/lib/aws/xray';
 import { errorHandler } from '@/middleware/error.middleware.ts';
+import { constants } from '@/utils/constant';
+
+import { createLLMProvider } from './lib/llm/llm-provider.factory';
 
 const app = express();
 const apiRouter = express.Router();
 
-const allowedOrigins = ['http://localhost:3000', process.env.WEB_APP_URL];
+const allowedOrigins = ['http://localhost:3000', constants.PORT];
 
 configureXray();
 app.use(xrayOpen);
@@ -58,7 +61,10 @@ apiRouter.get('/', handleRoot);
 apiRouter.get('/health', (_req, res) => res.sendStatus(200));
 apiRouter.use('/auth', authRoutes);
 apiRouter.use('/posts', postRoutes);
-apiRouter.use('/story', stroyRoutes);
+
+const llmProvider = createLLMProvider('gemini');
+
+apiRouter.use('/stories', createStoryModule({ llmProvider }));
 
 app.use('/api', apiRouter);
 

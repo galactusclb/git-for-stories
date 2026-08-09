@@ -1,1 +1,1 @@
-export { default as routes } from './story.route.ts';
+export { createStoryModule } from './story.module';
