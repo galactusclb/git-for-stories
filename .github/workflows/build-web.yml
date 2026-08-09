@@ -1,11 +1,12 @@
 name: Build & Push to ECR (WEB)
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'apps/web/**'
+  workflow_dispatch: 
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'apps/web/**'
 
 jobs:
   build-web:
