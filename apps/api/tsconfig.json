@@ -30,7 +30,8 @@
             "@/schemas/*": ["./src/schemas/*"],
             "@/lib/*": ["./src/lib/*"],
             "@/prisma/client": ["./src/lib/prisma/generated/client.ts"]
-        }
+        },
+        "skipLibCheck": true,
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist"]

@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "@aws-sdk/rds-signer": "^3.1047.0",
+        "@google/genai": "^2.16.0",
         "@prisma/adapter-pg": "^7.5.0",
         "@prisma/client": "^7.5.0",
         "@prisma/extension-read-replicas": "^0.5.0",
@@ -46,6 +47,7 @@
         "ioredis": "^5.10.1",
         "jsonwebtoken": "^9.0.2",
         "lru-cache": "^11.5.1",
+        "openai": "^7.4.0",
         "openid-client": "^6.8.2",
         "pg": "^8.20.0",
         "pino": "^10.3.1",

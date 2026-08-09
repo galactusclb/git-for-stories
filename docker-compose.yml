@@ -23,26 +23,26 @@ services:
       timeout: 5s
       retries: 5
 
-  db-replica:  
-    image: bitnami/postgresql:latest
-    container_name: db-replica
-    environment:
-      POSTGRESQL_USERNAME: postgres
-      POSTGRESQL_PASSWORD: postgres
-      POSTGRESQL_REPLICATION_MODE: slave
-      POSTGRESQL_REPLICATION_USER: repl_user
-      POSTGRESQL_REPLICATION_PASSWORD: repl_password
-      POSTGRESQL_MASTER_HOST: db
-      POSTGRESQL_MASTER_PORT_NUMBER: 5432
-    ports:
-      - "5433:5432"
-    networks:
-      - inner-net
-    volumes:
-      - db_replica_data:/bitnami/postgresql
-    depends_on:
-      db:
-        condition: service_healthy
+  # db-replica:  
+  #   image: bitnami/postgresql:latest
+  #   container_name: db-replica
+  #   environment:
+  #     POSTGRESQL_USERNAME: postgres
+  #     POSTGRESQL_PASSWORD: postgres
+  #     POSTGRESQL_REPLICATION_MODE: slave
+  #     POSTGRESQL_REPLICATION_USER: repl_user
+  #     POSTGRESQL_REPLICATION_PASSWORD: repl_password
+  #     POSTGRESQL_MASTER_HOST: db
+  #     POSTGRESQL_MASTER_PORT_NUMBER: 5432
+  #   ports:
+  #     - "5433:5432"
+  #   networks:
+  #     - inner-net
+  #   volumes:
+  #     - db_replica_data:/bitnami/postgresql
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
 
   redis-client:
     image: redis:7-alpine
@@ -98,34 +98,34 @@ services:
       start_period: 10s
     # command: sh -c "npx prisma migrate dev && npm run dev"
 
-  web:
-    build: 
-      context: ./apps/web
-      dockerfile: Dockerfile.dev
-    container_name: web
-    ports:
-      - "3000:3000"
-    environment:
-      API_BASE_URL: http://api:4000/api
-      NEXT_PUBLIC_API_BASE_URL: http://localhost:4000/api
-      REDIS_URL: redis://redis-client:6379
-      AWS_REGION: 'us-east-1'
-      AWS_SECRET_MANAGER_SECRET_NAME: 'sampleapp/app-config/dev'
-      AWS_CLOUDFRONT_DOMAIN: 'https://sample.com'
-    env_file:
-      - .env.infra
-      - ./apps/web/.env.infra
-    volumes:
-      - ./apps/web/src:/app/src
-      - ./apps/web/public:/app/public
-      - ./apps/web/.env.local:/app/.env.local
-      - /app/.next
-      - /app/node_modules
-    networks:
-      - inner-net
-    depends_on:
-      api:
-        condition: service_healthy
+  # web:
+  #   build: 
+  #     context: ./apps/web
+  #     dockerfile: Dockerfile.dev
+  #   container_name: web
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     API_BASE_URL: http://api:4000/api
+  #     NEXT_PUBLIC_API_BASE_URL: http://localhost:4000/api
+  #     REDIS_URL: redis://redis-client:6379
+  #     AWS_REGION: 'us-east-1'
+  #     AWS_SECRET_MANAGER_SECRET_NAME: 'sampleapp/app-config/dev'
+  #     AWS_CLOUDFRONT_DOMAIN: 'https://sample.com'
+  #   env_file:
+  #     - .env.infra
+  #     - ./apps/web/.env.infra
+  #   volumes:
+  #     - ./apps/web/src:/app/src
+  #     - ./apps/web/public:/app/public
+  #     - ./apps/web/.env.local:/app/.env.local
+  #     - /app/.next
+  #     - /app/node_modules
+  #   networks:
+  #     - inner-net
+  #   depends_on:
+  #     api:
+  #       condition: service_healthy
 
 networks:
   inner-net:

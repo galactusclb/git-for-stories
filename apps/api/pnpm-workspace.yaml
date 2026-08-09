@@ -1,13 +1,15 @@
 onlyBuiltDependencies:
-    - '@prisma/engines'
-    - bcrypt
-    - esbuild
-    - prisma
-    - unrs-resolver
+  - '@prisma/engines'
+  - bcrypt
+  - esbuild
+  - prisma
+  - unrs-resolver
 
 allowBuilds:
-    '@prisma/engines': true
-    bcrypt: true
-    esbuild: true
-    prisma: true
-    unrs-resolver: true
+  '@google/genai': true
+  '@prisma/engines': true
+  bcrypt: true
+  esbuild: true
+  prisma: true
+  protobufjs: false
+  unrs-resolver: true
