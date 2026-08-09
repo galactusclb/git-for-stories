@@ -1,50 +1,55 @@
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
-import boundaries from "eslint-plugin-boundaries";
+import boundaries from 'eslint-plugin-boundaries';
 import importX from 'eslint-plugin-import-x';
 
-export default tseslint.config(tseslint.configs.recommended, {
+export default defineConfig(tseslint.configs.recommended, {
     files: ['src/**/*.ts'],
     plugins: {
         boundaries,
         'import-x': importX,
     },
     settings: {
-        "boundaries/elements": [
+        'boundaries/elements': [
             {
-                type: "feature",
-                pattern: "src/features/*",
-                mode: "folder",
-                capture: ["elementName"],
+                type: 'feature',
+                pattern: 'src/features/*',
+                mode: 'folder',
+                capture: ['elementName'],
             },
-        ]
+        ],
     },
     rules: {
         'boundaries/dependencies': [
             'error',
             {
                 // disallow all cross-element imports by default
-                default: "disallow",
+                default: 'disallow',
                 rules: [
                     {
                         // ✅ features can import their local files
-                        from: { type: "feature" },
+                        from: { type: 'feature' },
                         allow: {
-                            to: { type: "feature", captured: { elementName: "{{ elementName }}" } },
+                            to: { type: 'feature', captured: { elementName: '{{ elementName }}' } },
                         },
                     },
-                ]
-            }
+                ],
+            },
         ],
-        "no-restricted-imports": ["error", {
-            patterns: [
-                {
-                    // Force feature access through the barrel (@/features/<name>),
-                    // block deep paths like @/features/post/post.service
-                    group: ["@/features/*/**"],
-                    message: "Import features through their barrel (@/features/<name>), not deep paths.",
-                },
-            ],
-        }],
+        'no-restricted-imports': [
+            'error',
+            {
+                patterns: [
+                    {
+                        // Force feature access through the barrel (@/features/<name>),
+                        // block deep paths like @/features/post/post.service
+                        group: ['@/features/*/**'],
+                        message:
+                            'Import features through their barrel (@/features/<name>), not deep paths.',
+                    },
+                ],
+            },
+        ],
         'import-x/order': [
             'warn',
             {
@@ -128,6 +133,34 @@ export default tseslint.config(tseslint.configs.recommended, {
                 varsIgnorePattern: '^_',
             },
         ],
+        'no-restricted-properties': [
+            'warn',
+            {
+                object: 'console',
+                property: 'log',
+                message: "Use 'logger.info()' instead of 'console.log()'.",
+            },
+            {
+                object: 'console',
+                property: 'info',
+                message: "Use 'logger.info()' instead of 'console.info()'.",
+            },
+            {
+                object: 'console',
+                property: 'debug',
+                message: "Use 'logger.debug()' instead of 'console.debug()'.",
+            },
+            {
+                object: 'console',
+                property: 'warn',
+                message: "Use 'logger.warn()' instead of 'console.warn()'.",
+            },
+            {
+                object: 'console',
+                property: 'error',
+                message: "Use 'logger.error()' instead of 'console.error()'.",
+            },
+        ],
     },
-    ignores : ['dist/**']
+    ignores: ['dist/**'],
 });
