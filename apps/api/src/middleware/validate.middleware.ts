@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
-import { AnyZodObject, ZodError } from 'zod';
+import { ZodObject, ZodError } from 'zod';
 
 import { BadRequestError } from '../utils/errors/http-error.ts';
 
 type Schemas = {
-    headers?: AnyZodObject;
-    body?: AnyZodObject;
-    params?: AnyZodObject;
-    query?: AnyZodObject;
+    headers?: ZodObject;
+    body?: ZodObject;
+    params?: ZodObject;
+    query?: ZodObject;
 };
 
 export const validate =
@@ -20,7 +20,7 @@ export const validate =
             return next();
         } catch (err) {
             if (err instanceof ZodError) {
-                const formatted = err.errors.map((e) => ({
+                const formatted = err.issues.map((e) => ({
                     path: e.path.join('.'),
                     message: e.message,
                 }));
