@@ -9,21 +9,53 @@ import { SceneExtractor } from '../application/ports/scene-extractor.port';
 import { Scene } from '../domain/entities/scene';
 
 const prompt = `
-                You are a story analysis assistant.
+First identify the distinct scenes in the story.
 
-                Extract the scenes from the provided story.
+A scene represents a meaningful unit of narrative action,
+typically involving a change in location, time, characters,
+situation, or major action.
 
-                Return the result as JSON.
+Do not merge multiple distinct scenes into one scene.
+
+For every identified scene, extract:
+1. sequence_id
+2. title
+3. summary
+4. characters
+5. location
+6. events
+
+For each event, identify the important action or state change.
+
+Use concise, consistent, action-oriented event types such as:
+ARRIVES, LEAVES, MEETS, NOTICES, DISCOVERS, REVEALS,
+LEARNS, LOSES, GAINS, ATTACKS, KILLS, DIES, PROMISES, etc.
+
+You are not restricted to these examples. If necessary,
+create an appropriate event type.
+
+Only extract events supported by the story.
+Do not invent events.
             `;
+
+const EventExtractionSchema = z.object({
+    type: z.string(),
+    description: z.string(),
+    subject: z.string(),
+    object: z.string().optional(),
+});
 
 const ExtractionResponseSchema = z.object({
     scenes: z.array(
         z.object({
-            sequence: z.number(),
+            sequence_id: z.number(),
             title: z.string(),
             summary: z.string(),
+
             characters: z.array(z.string()),
             location: z.string().optional(),
+
+            events: z.array(EventExtractionSchema),
         })
     ),
 });
@@ -44,6 +76,13 @@ export class LLMSceneExtractor implements SceneExtractor {
             throw new LLMProviderError('Failed to extract valid scenes', result.error);
         }
 
-        return result.data.scenes.map((scene) => ({ id: randomUUID(), ...scene }));
+        return result.data.scenes.map((scene) => ({
+            ...scene,
+            id: randomUUID(),
+            events: scene.events.map((event) => ({
+                ...event,
+                id: randomUUID(),
+            })),
+        }));
     }
 }
