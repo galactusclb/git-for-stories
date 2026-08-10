@@ -9,11 +9,11 @@ import { SceneExtractor } from '../application/ports/scene-extractor.port';
 import { Scene } from '../domain/entities/scene';
 
 const prompt = `
-First identify the distinct scenes in the story.
+You are a story analysis assistant. First identify the distinct scenes in the story.
 
 A scene represents a meaningful unit of narrative action,
 typically involving a change in location, time, characters,
-situation, or major action.
+situation, or major action or some objects belong to someone.
 
 Do not merge multiple distinct scenes into one scene.
 
