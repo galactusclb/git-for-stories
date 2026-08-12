@@ -10,7 +10,7 @@ import { configureXray, xrayClose, xrayOpen } from '@/lib/aws/xray';
 import { errorHandler } from '@/middleware/error.middleware.ts';
 import { constants } from '@/utils/constant';
 
-import { createLLMProvider } from './lib/llm/llm-provider.factory';
+import { createEmbeddingProvider, createLLMProvider } from './lib/llm/llm-provider.factory';
 
 const app = express();
 const apiRouter = express.Router();
@@ -63,8 +63,9 @@ apiRouter.use('/auth', authRoutes);
 apiRouter.use('/posts', postRoutes);
 
 const llmProvider = createLLMProvider('gemini');
+const embeddingProvider = createEmbeddingProvider('gemini');
 
-apiRouter.use('/stories', createStoryModule({ llmProvider }));
+apiRouter.use('/stories', createStoryModule({ llmProvider, embeddingProvider }));
 
 app.use('/api', apiRouter);
 
