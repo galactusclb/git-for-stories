@@ -1,8 +1,13 @@
 import { GoogleGenAI } from '@google/genai';
 
+import {
+    EmbeddingProvider,
+    GenerateProps as EmbeddingGenerateParams,
+    EmbeddingVectorResponse,
+} from '../embedding-provider.interface';
 import { GenerateParams, LLMProvider } from '../llm-provider.interface';
 
-export class GeminiProvider implements LLMProvider {
+export class GeminiProvider implements LLMProvider, EmbeddingProvider {
     private client: GoogleGenAI;
 
     constructor(
@@ -34,5 +39,19 @@ export class GeminiProvider implements LLMProvider {
         console.log('cachedContentTokenCount', response.usageMetadata?.cachedContentTokenCount);
 
         return response.text;
+    }
+
+    async generateEmbedding({
+        input,
+    }: EmbeddingGenerateParams): Promise<EmbeddingVectorResponse[]> {
+        const response = await this.client.models.embedContent({
+            model: this.model,
+            contents: input,
+            config: {},
+        });
+
+        return (response.embeddings ?? [])?.map((item) => ({
+            values: item.values ?? [],
+        }));
     }
 }

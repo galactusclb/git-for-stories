@@ -1,8 +1,13 @@
 import OpenAI from 'openai';
 
+import {
+    EmbeddingProvider,
+    EmbeddingVectorResponse,
+    GenerateProps,
+} from '../embedding-provider.interface';
 import { GenerateParams, LLMProvider } from '../llm-provider.interface';
 
-export class OpenAIProvider implements LLMProvider {
+export class OpenAIProvider implements LLMProvider, EmbeddingProvider {
     private client: OpenAI;
 
     constructor(
@@ -36,5 +41,17 @@ export class OpenAIProvider implements LLMProvider {
         console.log(response.text);
 
         return response.output_text;
+    }
+
+    async generateEmbedding({ input }: GenerateProps): Promise<EmbeddingVectorResponse[]> {
+        const response = await this.client.embeddings.create({
+            model: this.model,
+            input,
+            user: 'test-user',
+        });
+
+        return response.data?.map((item) => ({
+            values: item.embedding ?? [],
+        }));
     }
 }
