@@ -7,6 +7,7 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/SceneEmbedding.ts';
 export type * from './models/Post.ts';
 export type * from './models/Story.ts';
 export type * from './models/Scene.ts';

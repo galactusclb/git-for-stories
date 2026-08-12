@@ -30,8 +30,8 @@ export * from './enums.ts';
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Posts
- * const posts = await prisma.post.findMany()
+ * // Fetch zero or more SceneEmbeddings
+ * const sceneEmbeddings = await prisma.sceneEmbedding.findMany()
  * ```
  *
  * Read more in our [docs](https://pris.ly/d/client).
@@ -44,6 +44,11 @@ export type PrismaClient<
 > = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>;
 export { Prisma };
 
+/**
+ * Model SceneEmbedding
+ *
+ */
+export type SceneEmbedding = Prisma.SceneEmbeddingModel;
 /**
  * Model Post
  *

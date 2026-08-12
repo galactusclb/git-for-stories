@@ -234,6 +234,7 @@ export type SceneWhereInput = {
     createdAt?: Prisma.DateTimeFilter<'Scene'> | Date | string;
     story?: Prisma.XOR<Prisma.StoryScalarRelationFilter, Prisma.StoryWhereInput>;
     events?: Prisma.EventListRelationFilter;
+    embeddings?: Prisma.SceneEmbeddingListRelationFilter;
 };
 
 export type SceneOrderByWithRelationInput = {
@@ -247,6 +248,7 @@ export type SceneOrderByWithRelationInput = {
     createdAt?: Prisma.SortOrder;
     story?: Prisma.StoryOrderByWithRelationInput;
     events?: Prisma.EventOrderByRelationAggregateInput;
+    embeddings?: Prisma.SceneEmbeddingOrderByRelationAggregateInput;
 };
 
 export type SceneWhereUniqueInput = Prisma.AtLeast<
@@ -265,6 +267,7 @@ export type SceneWhereUniqueInput = Prisma.AtLeast<
         createdAt?: Prisma.DateTimeFilter<'Scene'> | Date | string;
         story?: Prisma.XOR<Prisma.StoryScalarRelationFilter, Prisma.StoryWhereInput>;
         events?: Prisma.EventListRelationFilter;
+        embeddings?: Prisma.SceneEmbeddingListRelationFilter;
     },
     'id' | 'storyId_id'
 >;
@@ -309,6 +312,7 @@ export type SceneCreateInput = {
     createdAt?: Date | string;
     story: Prisma.StoryCreateNestedOneWithoutScenesInput;
     events?: Prisma.EventCreateNestedManyWithoutSceneInput;
+    embeddings?: Prisma.SceneEmbeddingCreateNestedManyWithoutScenesInput;
 };
 
 export type SceneUncheckedCreateInput = {
@@ -321,6 +325,7 @@ export type SceneUncheckedCreateInput = {
     characters?: Prisma.SceneCreatecharactersInput | string[];
     createdAt?: Date | string;
     events?: Prisma.EventUncheckedCreateNestedManyWithoutSceneInput;
+    embeddings?: Prisma.SceneEmbeddingUncheckedCreateNestedManyWithoutScenesInput;
 };
 
 export type SceneUpdateInput = {
@@ -333,6 +338,7 @@ export type SceneUpdateInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     story?: Prisma.StoryUpdateOneRequiredWithoutScenesNestedInput;
     events?: Prisma.EventUpdateManyWithoutSceneNestedInput;
+    embeddings?: Prisma.SceneEmbeddingUpdateManyWithoutScenesNestedInput;
 };
 
 export type SceneUncheckedUpdateInput = {
@@ -345,6 +351,7 @@ export type SceneUncheckedUpdateInput = {
     characters?: Prisma.SceneUpdatecharactersInput | string[];
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     events?: Prisma.EventUncheckedUpdateManyWithoutSceneNestedInput;
+    embeddings?: Prisma.SceneEmbeddingUncheckedUpdateManyWithoutScenesNestedInput;
 };
 
 export type SceneCreateManyInput = {
@@ -377,6 +384,11 @@ export type SceneUncheckedUpdateManyInput = {
     location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     characters?: Prisma.SceneUpdatecharactersInput | string[];
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type SceneScalarRelationFilter = {
+    is?: Prisma.SceneWhereInput;
+    isNot?: Prisma.SceneWhereInput;
 };
 
 export type SceneListRelationFilter = {
@@ -441,9 +453,21 @@ export type SceneSumOrderByAggregateInput = {
     sequenceId?: Prisma.SortOrder;
 };
 
-export type SceneScalarRelationFilter = {
-    is?: Prisma.SceneWhereInput;
-    isNot?: Prisma.SceneWhereInput;
+export type SceneUpdateOneRequiredWithoutEmbeddingsNestedInput = {
+    create?: Prisma.XOR<
+        Prisma.SceneCreateWithoutEmbeddingsInput,
+        Prisma.SceneUncheckedCreateWithoutEmbeddingsInput
+    >;
+    connectOrCreate?: Prisma.SceneCreateOrConnectWithoutEmbeddingsInput;
+    upsert?: Prisma.SceneUpsertWithoutEmbeddingsInput;
+    connect?: Prisma.SceneWhereUniqueInput;
+    update?: Prisma.XOR<
+        Prisma.XOR<
+            Prisma.SceneUpdateToOneWithWhereWithoutEmbeddingsInput,
+            Prisma.SceneUpdateWithoutEmbeddingsInput
+        >,
+        Prisma.SceneUncheckedUpdateWithoutEmbeddingsInput
+    >;
 };
 
 export type SceneCreateNestedManyWithoutStoryInput = {
@@ -575,6 +599,82 @@ export type SceneUpdateOneRequiredWithoutEventsNestedInput = {
     >;
 };
 
+export type SceneCreateWithoutEmbeddingsInput = {
+    id: string;
+    sequenceId: number;
+    title: string;
+    summary: string;
+    location?: string | null;
+    characters?: Prisma.SceneCreatecharactersInput | string[];
+    createdAt?: Date | string;
+    story: Prisma.StoryCreateNestedOneWithoutScenesInput;
+    events?: Prisma.EventCreateNestedManyWithoutSceneInput;
+};
+
+export type SceneUncheckedCreateWithoutEmbeddingsInput = {
+    id: string;
+    storyId: string;
+    sequenceId: number;
+    title: string;
+    summary: string;
+    location?: string | null;
+    characters?: Prisma.SceneCreatecharactersInput | string[];
+    createdAt?: Date | string;
+    events?: Prisma.EventUncheckedCreateNestedManyWithoutSceneInput;
+};
+
+export type SceneCreateOrConnectWithoutEmbeddingsInput = {
+    where: Prisma.SceneWhereUniqueInput;
+    create: Prisma.XOR<
+        Prisma.SceneCreateWithoutEmbeddingsInput,
+        Prisma.SceneUncheckedCreateWithoutEmbeddingsInput
+    >;
+};
+
+export type SceneUpsertWithoutEmbeddingsInput = {
+    update: Prisma.XOR<
+        Prisma.SceneUpdateWithoutEmbeddingsInput,
+        Prisma.SceneUncheckedUpdateWithoutEmbeddingsInput
+    >;
+    create: Prisma.XOR<
+        Prisma.SceneCreateWithoutEmbeddingsInput,
+        Prisma.SceneUncheckedCreateWithoutEmbeddingsInput
+    >;
+    where?: Prisma.SceneWhereInput;
+};
+
+export type SceneUpdateToOneWithWhereWithoutEmbeddingsInput = {
+    where?: Prisma.SceneWhereInput;
+    data: Prisma.XOR<
+        Prisma.SceneUpdateWithoutEmbeddingsInput,
+        Prisma.SceneUncheckedUpdateWithoutEmbeddingsInput
+    >;
+};
+
+export type SceneUpdateWithoutEmbeddingsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
+    title?: Prisma.StringFieldUpdateOperationsInput | string;
+    summary?: Prisma.StringFieldUpdateOperationsInput | string;
+    location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    characters?: Prisma.SceneUpdatecharactersInput | string[];
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    story?: Prisma.StoryUpdateOneRequiredWithoutScenesNestedInput;
+    events?: Prisma.EventUpdateManyWithoutSceneNestedInput;
+};
+
+export type SceneUncheckedUpdateWithoutEmbeddingsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    storyId?: Prisma.StringFieldUpdateOperationsInput | string;
+    sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
+    title?: Prisma.StringFieldUpdateOperationsInput | string;
+    summary?: Prisma.StringFieldUpdateOperationsInput | string;
+    location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    characters?: Prisma.SceneUpdatecharactersInput | string[];
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    events?: Prisma.EventUncheckedUpdateManyWithoutSceneNestedInput;
+};
+
 export type SceneCreateWithoutStoryInput = {
     id: string;
     sequenceId: number;
@@ -584,6 +684,7 @@ export type SceneCreateWithoutStoryInput = {
     characters?: Prisma.SceneCreatecharactersInput | string[];
     createdAt?: Date | string;
     events?: Prisma.EventCreateNestedManyWithoutSceneInput;
+    embeddings?: Prisma.SceneEmbeddingCreateNestedManyWithoutScenesInput;
 };
 
 export type SceneUncheckedCreateWithoutStoryInput = {
@@ -595,6 +696,7 @@ export type SceneUncheckedCreateWithoutStoryInput = {
     characters?: Prisma.SceneCreatecharactersInput | string[];
     createdAt?: Date | string;
     events?: Prisma.EventUncheckedCreateNestedManyWithoutSceneInput;
+    embeddings?: Prisma.SceneEmbeddingUncheckedCreateNestedManyWithoutScenesInput;
 };
 
 export type SceneCreateOrConnectWithoutStoryInput = {
@@ -661,6 +763,7 @@ export type SceneCreateWithoutEventsInput = {
     characters?: Prisma.SceneCreatecharactersInput | string[];
     createdAt?: Date | string;
     story: Prisma.StoryCreateNestedOneWithoutScenesInput;
+    embeddings?: Prisma.SceneEmbeddingCreateNestedManyWithoutScenesInput;
 };
 
 export type SceneUncheckedCreateWithoutEventsInput = {
@@ -672,6 +775,7 @@ export type SceneUncheckedCreateWithoutEventsInput = {
     location?: string | null;
     characters?: Prisma.SceneCreatecharactersInput | string[];
     createdAt?: Date | string;
+    embeddings?: Prisma.SceneEmbeddingUncheckedCreateNestedManyWithoutScenesInput;
 };
 
 export type SceneCreateOrConnectWithoutEventsInput = {
@@ -711,6 +815,7 @@ export type SceneUpdateWithoutEventsInput = {
     characters?: Prisma.SceneUpdatecharactersInput | string[];
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     story?: Prisma.StoryUpdateOneRequiredWithoutScenesNestedInput;
+    embeddings?: Prisma.SceneEmbeddingUpdateManyWithoutScenesNestedInput;
 };
 
 export type SceneUncheckedUpdateWithoutEventsInput = {
@@ -722,6 +827,7 @@ export type SceneUncheckedUpdateWithoutEventsInput = {
     location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     characters?: Prisma.SceneUpdatecharactersInput | string[];
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    embeddings?: Prisma.SceneEmbeddingUncheckedUpdateManyWithoutScenesNestedInput;
 };
 
 export type SceneCreateManyStoryInput = {
@@ -743,6 +849,7 @@ export type SceneUpdateWithoutStoryInput = {
     characters?: Prisma.SceneUpdatecharactersInput | string[];
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     events?: Prisma.EventUpdateManyWithoutSceneNestedInput;
+    embeddings?: Prisma.SceneEmbeddingUpdateManyWithoutScenesNestedInput;
 };
 
 export type SceneUncheckedUpdateWithoutStoryInput = {
@@ -754,6 +861,7 @@ export type SceneUncheckedUpdateWithoutStoryInput = {
     characters?: Prisma.SceneUpdatecharactersInput | string[];
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     events?: Prisma.EventUncheckedUpdateManyWithoutSceneNestedInput;
+    embeddings?: Prisma.SceneEmbeddingUncheckedUpdateManyWithoutScenesNestedInput;
 };
 
 export type SceneUncheckedUpdateManyWithoutStoryInput = {
@@ -772,12 +880,14 @@ export type SceneUncheckedUpdateManyWithoutStoryInput = {
 
 export type SceneCountOutputType = {
     events: number;
+    embeddings: number;
 };
 
 export type SceneCountOutputTypeSelect<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
     events?: boolean | SceneCountOutputTypeCountEventsArgs;
+    embeddings?: boolean | SceneCountOutputTypeCountEmbeddingsArgs;
 };
 
 /**
@@ -801,6 +911,15 @@ export type SceneCountOutputTypeCountEventsArgs<
     where?: Prisma.EventWhereInput;
 };
 
+/**
+ * SceneCountOutputType without action
+ */
+export type SceneCountOutputTypeCountEmbeddingsArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    where?: Prisma.SceneEmbeddingWhereInput;
+};
+
 export type SceneSelect<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -815,6 +934,7 @@ export type SceneSelect<
         createdAt?: boolean;
         story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
         events?: boolean | Prisma.Scene$eventsArgs<ExtArgs>;
+        embeddings?: boolean | Prisma.Scene$embeddingsArgs<ExtArgs>;
         _count?: boolean | Prisma.SceneCountOutputTypeDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['scene']
@@ -876,6 +996,7 @@ export type SceneInclude<
 > = {
     story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
     events?: boolean | Prisma.Scene$eventsArgs<ExtArgs>;
+    embeddings?: boolean | Prisma.Scene$embeddingsArgs<ExtArgs>;
     _count?: boolean | Prisma.SceneCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type SceneIncludeCreateManyAndReturn<
@@ -896,6 +1017,7 @@ export type $ScenePayload<
     objects: {
         story: Prisma.$StoryPayload<ExtArgs>;
         events: Prisma.$EventPayload<ExtArgs>[];
+        embeddings: Prisma.$SceneEmbeddingPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<
         {
@@ -1467,6 +1589,17 @@ export interface Prisma__SceneClient<
           >
         | Null
     >;
+    embeddings<T extends Prisma.Scene$embeddingsArgs<ExtArgs> = {}>(
+        args?: Prisma.Subset<T, Prisma.Scene$embeddingsArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+        | runtime.Types.Result.GetResult<
+              Prisma.$SceneEmbeddingPayload<ExtArgs>,
+              T,
+              'findMany',
+              GlobalOmitOptions
+          >
+        | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1957,6 +2090,34 @@ export type Scene$eventsArgs<
     take?: number;
     skip?: number;
     distinct?: Prisma.EventScalarFieldEnum | Prisma.EventScalarFieldEnum[];
+};
+
+/**
+ * Scene.embeddings
+ */
+export type Scene$embeddingsArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    /**
+     * Select specific fields to fetch from the SceneEmbedding
+     */
+    select?: Prisma.SceneEmbeddingSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the SceneEmbedding
+     */
+    omit?: Prisma.SceneEmbeddingOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.SceneEmbeddingInclude<ExtArgs> | null;
+    where?: Prisma.SceneEmbeddingWhereInput;
+    orderBy?:
+        | Prisma.SceneEmbeddingOrderByWithRelationInput
+        | Prisma.SceneEmbeddingOrderByWithRelationInput[];
+    cursor?: Prisma.SceneEmbeddingWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.SceneEmbeddingScalarFieldEnum | Prisma.SceneEmbeddingScalarFieldEnum[];
 };
 
 /**

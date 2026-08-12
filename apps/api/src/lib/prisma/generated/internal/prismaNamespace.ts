@@ -375,6 +375,7 @@ export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 
 export const ModelName = {
+    SceneEmbedding: 'SceneEmbedding',
     Post: 'Post',
     Story: 'Story',
     Scene: 'Scene',
@@ -399,10 +400,70 @@ export type TypeMap<
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: 'post' | 'story' | 'scene' | 'event' | 'user';
+        modelProps: 'sceneEmbedding' | 'post' | 'story' | 'scene' | 'event' | 'user';
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
+        SceneEmbedding: {
+            payload: Prisma.$SceneEmbeddingPayload<ExtArgs>;
+            fields: Prisma.SceneEmbeddingFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.SceneEmbeddingFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$SceneEmbeddingPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.SceneEmbeddingFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$SceneEmbeddingPayload>;
+                };
+                findFirst: {
+                    args: Prisma.SceneEmbeddingFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$SceneEmbeddingPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.SceneEmbeddingFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$SceneEmbeddingPayload>;
+                };
+                findMany: {
+                    args: Prisma.SceneEmbeddingFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$SceneEmbeddingPayload>[];
+                };
+                delete: {
+                    args: Prisma.SceneEmbeddingDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$SceneEmbeddingPayload>;
+                };
+                update: {
+                    args: Prisma.SceneEmbeddingUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$SceneEmbeddingPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.SceneEmbeddingDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.SceneEmbeddingUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.SceneEmbeddingUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$SceneEmbeddingPayload>[];
+                };
+                aggregate: {
+                    args: Prisma.SceneEmbeddingAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateSceneEmbedding>;
+                };
+                groupBy: {
+                    args: Prisma.SceneEmbeddingGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.SceneEmbeddingGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.SceneEmbeddingCountArgs<ExtArgs>;
+                    result:
+                        | runtime.Types.Utils.Optional<Prisma.SceneEmbeddingCountAggregateOutputType>
+                        | number;
+                };
+            };
+        };
         Post: {
             payload: Prisma.$PostPayload<ExtArgs>;
             fields: Prisma.PostFieldRefs;
@@ -822,6 +883,16 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel =
     (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
+export const SceneEmbeddingScalarFieldEnum = {
+    id: 'id',
+    sceneId: 'sceneId',
+    model: 'model',
+    createdAt: 'createdAt',
+} as const;
+
+export type SceneEmbeddingScalarFieldEnum =
+    (typeof SceneEmbeddingScalarFieldEnum)[keyof typeof SceneEmbeddingScalarFieldEnum];
+
 export const PostScalarFieldEnum = {
     id: 'id',
     title: 'title',
@@ -915,11 +986,6 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>;
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>;
-
-/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>;
@@ -928,6 +994,11 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>;
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>;
 
 /**
  * Reference to a field of type 'Int'
@@ -1077,6 +1148,7 @@ export type PrismaClientOptions = (
     queryPlanCacheMaxSize?: number;
 };
 export type GlobalOmitConfig = {
+    sceneEmbedding?: Prisma.SceneEmbeddingOmit;
     post?: Prisma.PostOmit;
     story?: Prisma.StoryOmit;
     scene?: Prisma.SceneOmit;

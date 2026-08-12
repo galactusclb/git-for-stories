@@ -1,0 +1,11 @@
+model SceneEmbedding {
+    id          String   @id
+    sceneId     String
+    embedding   Unsupported("vector(1536)")
+    model       String
+    createdAt   DateTime @default(now())
+
+    scenes      Scene @relation(fields: [sceneId], references: [id])
+
+    @@index([sceneId])
+}

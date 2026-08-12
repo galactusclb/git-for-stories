@@ -48,6 +48,7 @@ export const JsonNull = runtime.JsonNull;
 export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
+    SceneEmbedding: 'SceneEmbedding',
     Post: 'Post',
     Story: 'Story',
     Scene: 'Scene',
@@ -70,6 +71,16 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 
 export type TransactionIsolationLevel =
     (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
+
+export const SceneEmbeddingScalarFieldEnum = {
+    id: 'id',
+    sceneId: 'sceneId',
+    model: 'model',
+    createdAt: 'createdAt',
+} as const;
+
+export type SceneEmbeddingScalarFieldEnum =
+    (typeof SceneEmbeddingScalarFieldEnum)[keyof typeof SceneEmbeddingScalarFieldEnum];
 
 export const PostScalarFieldEnum = {
     id: 'id',

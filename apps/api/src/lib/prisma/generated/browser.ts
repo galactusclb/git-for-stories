@@ -17,6 +17,11 @@ export { Prisma };
 export * as $Enums from './enums.ts';
 export * from './enums.ts';
 /**
+ * Model SceneEmbedding
+ *
+ */
+export type SceneEmbedding = Prisma.SceneEmbeddingModel;
+/**
  * Model Post
  *
  */

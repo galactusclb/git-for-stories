@@ -17,6 +17,7 @@ model Scene {
 
     story       Story   @relation(fields: [storyId], references: [id])
     events      Event[]
+    embeddings  SceneEmbedding[]
     
     @@unique([storyId, id])
 }

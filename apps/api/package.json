@@ -8,6 +8,7 @@
         "clean": "rm -rf dist",
         "build": "tsc --noEmit && tsup",
         "start": "node dist/server.js",
+        "test": "vitest",
         "lint": "eslint src/",
         "generate": "prisma generate",
         "migrate": "prisma migrate dev",
@@ -29,13 +30,15 @@
         "tsup": "^8.5.1",
         "tsx": "^4.21.0",
         "typescript": "^5.8.3",
-        "typescript-eslint": "^8.58.2"
+        "typescript-eslint": "^8.58.2",
+        "vitest": "^4.1.10"
     },
     "dependencies": {
         "@aws-sdk/rds-signer": "^3.1047.0",
         "@google/genai": "^2.16.0",
-        "@prisma/adapter-pg": "^7.5.0",
-        "@prisma/client": "^7.5.0",
+        "@prisma-next/extension-pgvector": "^0.16.0",
+        "@prisma/adapter-pg": "^7.9.1",
+        "@prisma/client": "^7.9.1",
         "@prisma/extension-read-replicas": "^0.5.0",
         "aws-xray-sdk": "^3.12.0",
         "bcrypt": "^6.0.0",
