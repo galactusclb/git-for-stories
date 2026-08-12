@@ -4,8 +4,8 @@ import {
     EmbeddingProvider,
     EmbeddingVectorResponse,
     GenerateProps,
-} from '../embedding-provider.interface';
-import { GenerateParams, LLMProvider } from '../llm-provider.interface';
+} from '../interfaces/embedding-provider.interface';
+import { GenerateParams, LLMProvider } from '../interfaces/llm-provider.interface';
 
 export class OpenAIProvider implements LLMProvider, EmbeddingProvider {
     private client: OpenAI;

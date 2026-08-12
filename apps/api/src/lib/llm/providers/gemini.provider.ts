@@ -4,8 +4,8 @@ import {
     EmbeddingProvider,
     GenerateProps as EmbeddingGenerateParams,
     EmbeddingVectorResponse,
-} from '../embedding-provider.interface';
-import { GenerateParams, LLMProvider } from '../llm-provider.interface';
+} from '../interfaces/embedding-provider.interface';
+import { GenerateParams, LLMProvider } from '../interfaces/llm-provider.interface';
 
 export class GeminiProvider implements LLMProvider, EmbeddingProvider {
     private client: GoogleGenAI;

@@ -1,5 +1,5 @@
-import { EmbeddingProvider } from './embedding-provider.interface';
-import { LLMProvider } from './llm-provider.interface';
+import { EmbeddingProvider } from './interfaces/embedding-provider.interface';
+import { LLMProvider } from './interfaces/llm-provider.interface';
 import { GeminiProvider } from './providers/gemini.provider';
 import { OpenAIProvider } from './providers/openai.provider';
 
