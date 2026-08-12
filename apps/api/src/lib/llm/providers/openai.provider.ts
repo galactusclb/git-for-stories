@@ -19,7 +19,7 @@ export class OpenAIProvider implements LLMProvider, EmbeddingProvider {
         });
     }
 
-    async generate({ input, instructions, responseSchema }: GenerateParams): Promise<string> {
+    async generateText({ input, instructions, responseSchema }: GenerateParams): Promise<string> {
         const response = await this.client.responses.create({
             model: this.model,
             instructions,

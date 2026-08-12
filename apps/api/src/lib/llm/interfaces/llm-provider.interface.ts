@@ -5,5 +5,5 @@ export interface GenerateParams {
 }
 
 export interface LLMProvider {
-    generate(params: GenerateParams): Promise<string>;
+    generateText(params: GenerateParams): Promise<string>;
 }

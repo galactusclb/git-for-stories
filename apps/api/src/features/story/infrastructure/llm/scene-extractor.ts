@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 
 import z from 'zod';
 
-import { LLMProvider } from '@/lib/llm/llm-provider.interface';
+import { LLMProvider } from '@/lib/llm/interfaces/llm-provider.interface';
 import { LLMProviderError } from '@/utils/errors/http-error';
 
 import { SceneExtractor } from '../../application/ports/scene-extractor.port';
@@ -64,7 +64,7 @@ export class LLMSceneExtractor implements SceneExtractor {
     constructor(private readonly provider: LLMProvider) {}
 
     async extract(story: string): Promise<Scene[]> {
-        const response = await this.provider.generate({
+        const response = await this.provider.generateText({
             instructions: prompt,
             input: story,
             responseSchema: z.toJSONSchema(ExtractionResponseSchema, { target: 'openapi-3.0' }),
