@@ -1,0 +1,36 @@
+model Story {
+    id String @id
+    title String
+    scenes Scene[]
+    createdAt DateTime @default(now())
+}
+
+model Scene {
+    id String @id
+    storyId     String
+    sequenceId  Int
+    title       String
+    summary     String
+    location    String?
+    characters  String[]
+    createdAt DateTime @default(now())
+
+    story       Story   @relation(fields: [storyId], references: [id])
+    events      Event[]
+    
+    @@unique([storyId, id])
+}
+
+model Event {
+    id          String @id
+    sceneId     String
+    type        String
+    description String
+    subject     String
+    object      String?
+    createdAt DateTime @default(now())
+
+    scene       Scene @relation(fields: [sceneId], references: [id])
+
+    @@unique([sceneId, id])
+}

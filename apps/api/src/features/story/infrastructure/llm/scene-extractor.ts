@@ -5,8 +5,8 @@ import z from 'zod';
 import { LLMProvider } from '@/lib/llm/llm-provider.interface';
 import { LLMProviderError } from '@/utils/errors/http-error';
 
-import { SceneExtractor } from '../application/ports/scene-extractor.port';
-import { Scene } from '../domain/entities/scene';
+import { SceneExtractor } from '../../application/ports/scene-extractor.port';
+import { Scene } from '../../domain/entities/scene';
 
 const prompt = `
 You are a story analysis assistant. First identify the distinct scenes in the story.

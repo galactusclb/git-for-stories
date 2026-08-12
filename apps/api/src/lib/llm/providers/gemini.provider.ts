@@ -29,7 +29,9 @@ export class GeminiProvider implements LLMProvider {
             throw new Error('Agent returned an empty response');
         }
 
-        console.log(response.text);
+        console.log(response.usageMetadata);
+        console.log(response.usageMetadata?.cacheTokensDetails);
+        console.log('cachedContentTokenCount', response.usageMetadata?.cachedContentTokenCount);
 
         return response.text;
     }
