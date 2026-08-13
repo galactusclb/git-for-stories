@@ -1,5 +1,5 @@
 model SceneEmbedding {
-    id          String   @id
+    id          String   @id @default(uuid())
     sceneId     String
     embedding   Unsupported("vector(1536)")
     model       String

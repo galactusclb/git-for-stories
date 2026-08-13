@@ -253,7 +253,7 @@ export type EventScalarWhereWithAggregatesInput = {
 };
 
 export type EventCreateInput = {
-    id: string;
+    id?: string;
     type: string;
     description: string;
     subject: string;
@@ -263,7 +263,7 @@ export type EventCreateInput = {
 };
 
 export type EventUncheckedCreateInput = {
-    id: string;
+    id?: string;
     sceneId: string;
     type: string;
     description: string;
@@ -293,7 +293,7 @@ export type EventUncheckedUpdateInput = {
 };
 
 export type EventCreateManyInput = {
-    id: string;
+    id?: string;
     sceneId: string;
     type: string;
     description: string;
@@ -453,7 +453,7 @@ export type EventUncheckedUpdateManyWithoutSceneNestedInput = {
 };
 
 export type EventCreateWithoutSceneInput = {
-    id: string;
+    id?: string;
     type: string;
     description: string;
     subject: string;
@@ -462,7 +462,7 @@ export type EventCreateWithoutSceneInput = {
 };
 
 export type EventUncheckedCreateWithoutSceneInput = {
-    id: string;
+    id?: string;
     type: string;
     description: string;
     subject: string;
@@ -525,7 +525,7 @@ export type EventScalarWhereInput = {
 };
 
 export type EventCreateManySceneInput = {
-    id: string;
+    id?: string;
     type: string;
     description: string;
     subject: string;

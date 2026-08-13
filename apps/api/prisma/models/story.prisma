@@ -1,12 +1,12 @@
 model Story {
-    id String @id
+    id String @id @default(uuid()) @unique
     title String
     scenes Scene[]
     createdAt DateTime @default(now())
 }
 
 model Scene {
-    id String @id
+    id String @id @default(uuid())
     storyId     String
     sequenceId  Int
     title       String
@@ -23,7 +23,7 @@ model Scene {
 }
 
 model Event {
-    id          String @id
+    id          String @id @default(uuid())
     sceneId     String
     type        String
     description String

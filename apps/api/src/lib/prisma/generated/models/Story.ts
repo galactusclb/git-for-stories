@@ -182,7 +182,7 @@ export type StoryWhereUniqueInput = Prisma.AtLeast<
         createdAt?: Prisma.DateTimeFilter<'Story'> | Date | string;
         scenes?: Prisma.SceneListRelationFilter;
     },
-    'id'
+    'id' | 'id'
 >;
 
 export type StoryOrderByWithAggregationInput = {
@@ -204,14 +204,14 @@ export type StoryScalarWhereWithAggregatesInput = {
 };
 
 export type StoryCreateInput = {
-    id: string;
+    id?: string;
     title: string;
     createdAt?: Date | string;
     scenes?: Prisma.SceneCreateNestedManyWithoutStoryInput;
 };
 
 export type StoryUncheckedCreateInput = {
-    id: string;
+    id?: string;
     title: string;
     createdAt?: Date | string;
     scenes?: Prisma.SceneUncheckedCreateNestedManyWithoutStoryInput;
@@ -232,7 +232,7 @@ export type StoryUncheckedUpdateInput = {
 };
 
 export type StoryCreateManyInput = {
-    id: string;
+    id?: string;
     title: string;
     createdAt?: Date | string;
 };
@@ -299,13 +299,13 @@ export type StoryUpdateOneRequiredWithoutScenesNestedInput = {
 };
 
 export type StoryCreateWithoutScenesInput = {
-    id: string;
+    id?: string;
     title: string;
     createdAt?: Date | string;
 };
 
 export type StoryUncheckedCreateWithoutScenesInput = {
-    id: string;
+    id?: string;
     title: string;
     createdAt?: Date | string;
 };

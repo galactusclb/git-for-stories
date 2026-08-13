@@ -303,7 +303,7 @@ export type SceneScalarWhereWithAggregatesInput = {
 };
 
 export type SceneCreateInput = {
-    id: string;
+    id?: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -316,7 +316,7 @@ export type SceneCreateInput = {
 };
 
 export type SceneUncheckedCreateInput = {
-    id: string;
+    id?: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -355,7 +355,7 @@ export type SceneUncheckedUpdateInput = {
 };
 
 export type SceneCreateManyInput = {
-    id: string;
+    id?: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -600,7 +600,7 @@ export type SceneUpdateOneRequiredWithoutEventsNestedInput = {
 };
 
 export type SceneCreateWithoutEmbeddingsInput = {
-    id: string;
+    id?: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -612,7 +612,7 @@ export type SceneCreateWithoutEmbeddingsInput = {
 };
 
 export type SceneUncheckedCreateWithoutEmbeddingsInput = {
-    id: string;
+    id?: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -676,7 +676,7 @@ export type SceneUncheckedUpdateWithoutEmbeddingsInput = {
 };
 
 export type SceneCreateWithoutStoryInput = {
-    id: string;
+    id?: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -688,7 +688,7 @@ export type SceneCreateWithoutStoryInput = {
 };
 
 export type SceneUncheckedCreateWithoutStoryInput = {
-    id: string;
+    id?: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -755,7 +755,7 @@ export type SceneScalarWhereInput = {
 };
 
 export type SceneCreateWithoutEventsInput = {
-    id: string;
+    id?: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -767,7 +767,7 @@ export type SceneCreateWithoutEventsInput = {
 };
 
 export type SceneUncheckedCreateWithoutEventsInput = {
-    id: string;
+    id?: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -831,7 +831,7 @@ export type SceneUncheckedUpdateWithoutEventsInput = {
 };
 
 export type SceneCreateManyStoryInput = {
-    id: string;
+    id?: string;
     sequenceId: number;
     title: string;
     summary: string;
