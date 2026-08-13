@@ -4,13 +4,15 @@ import { Request, Response } from 'express';
 
 import { CreateSceneEmbeddingUseCase } from '../application/use-cases/create-scene-embedding.use-case';
 import { ExtractStoryScenesUseCase } from '../application/use-cases/extract-story-scenes.use-case';
+import { SaveSceneEmbeddingUseCase } from '../application/use-cases/save-scene-embedding.use-case';
 import { SaveStoryScenesUseCase } from '../application/use-cases/save-story-scene.use-case';
 
 export class StoryController {
     constructor(
         private readonly extractStoryScenes: ExtractStoryScenesUseCase,
         private readonly saveStoryScene: SaveStoryScenesUseCase,
-        private readonly createSceneEmbedding: CreateSceneEmbeddingUseCase
+        private readonly createSceneEmbedding: CreateSceneEmbeddingUseCase,
+        private readonly saveSceneEmbeddingUseCase: SaveSceneEmbeddingUseCase
     ) {}
 
     extractScenes = async (req: Request, res: Response) => {
@@ -26,7 +28,10 @@ export class StoryController {
 
         // async background logc temporally without await;
         // later refactor to somekind of background process
-        this.createSceneEmbedding.execute(scenes);
+        const embedding = await this.createSceneEmbedding.execute(scenes);
+        console.log('embedding', embedding);
+
+        this.saveSceneEmbeddingUseCase.execute(scenes[0].id, embedding[0], 'gemini-embedding-2');
 
         res.json({
             title,

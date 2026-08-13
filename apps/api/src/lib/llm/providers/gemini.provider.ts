@@ -47,7 +47,9 @@ export class GeminiProvider implements LLMProvider, EmbeddingProvider {
         const response = await this.client.models.embedContent({
             model: this.model,
             contents: input,
-            config: {},
+            config: {
+                outputDimensionality: 1536,
+            },
         });
 
         return (response.embeddings ?? [])?.map((item) => ({
