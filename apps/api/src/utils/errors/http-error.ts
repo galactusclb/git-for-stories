@@ -47,6 +47,13 @@ class LLMProviderError extends HttpError {
     }
 }
 
+class LLMUnavailableError extends HttpError {
+    readonly retryable = true;
+    constructor(message = 'LLM temporarily unavailable', details?: unknown) {
+        super(503, message, details);
+    }
+}
+
 class InternalServerError extends HttpError {
     constructor(message = 'Internal server error', details?: unknown) {
         super(500, message);
@@ -71,4 +78,5 @@ export {
     InternalServerError,
     ServiceUnavailableError,
     LLMProviderError,
+    LLMUnavailableError,
 };
