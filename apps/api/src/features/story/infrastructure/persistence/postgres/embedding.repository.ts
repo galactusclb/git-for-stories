@@ -20,7 +20,7 @@ export class PostgresEmbeddingRepository implements EmbeddingRespository {
     async searchSimilarScenes(
         storyId: string,
         queryEmbedding: Embedding,
-        limit?: number
+        limit: number
     ): Promise<SceneSearchResult[]> {
         const vector = `[${queryEmbedding.values.join(',')}]`;
 
@@ -30,13 +30,13 @@ export class PostgresEmbeddingRepository implements EmbeddingRespository {
                 s."sequenceId"  AS "sequenceId",
                 s."title"       AS "title",
                 s."summary"     AS "summary",
-                1 - (embedding <=> ${vector}::vector) AS "similarity"
+                1 - (se."embedding" <=> ${vector}::vector) AS "similarity"
             FROM "SceneEmbedding" se
             JOIN "Scene" s
                 ON s.id = se."sceneId"
             WHERE s."storyId" = ${storyId}
-            ORDER BY embedding <=> ${`${vector}`}::vector
-            LIMIT ${limit ?? 3}
+            ORDER BY se."embedding" <=> ${vector}::vector
+            LIMIT ${limit}
         `;
         // AND se.model = ${embeddingModel}
 

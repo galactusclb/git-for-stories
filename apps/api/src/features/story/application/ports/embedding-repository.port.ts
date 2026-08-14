@@ -7,6 +7,6 @@ export interface EmbeddingRespository {
     searchSimilarScenes(
         storyId: string,
         queryEmbedding: Embedding,
-        limit?: number
+        limit: number
     ): Promise<SceneSearchResult[]>;
 }

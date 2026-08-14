@@ -2,12 +2,11 @@ import { randomUUID } from 'node:crypto';
 
 import { Request, Response } from 'express';
 
+import { AnswerStoryQuestionUseCase } from '../application/use-cases/answer-story-question.use-case';
 import { CreateSceneEmbeddingUseCase } from '../application/use-cases/create-scene-embedding.use-case';
-import { CreateSceneSementicSearchUseCase } from '../application/use-cases/create-scene-sementic-search-embedding.use-case';
 import { ExtractStoryScenesUseCase } from '../application/use-cases/extract-story-scenes.use-case';
 import { SaveSceneEmbeddingUseCase } from '../application/use-cases/save-scene-embedding.use-case';
 import { SaveStoryScenesUseCase } from '../application/use-cases/save-story-scene.use-case';
-import { SceneSimiliratySearchUseCase } from '../application/use-cases/scene-similiraty-search.use-case';
 
 import { SementicSearchParams, SementicSearchQuery } from './story.schema';
 
@@ -17,8 +16,7 @@ export class StoryController {
         private readonly saveStoryScene: SaveStoryScenesUseCase,
         private readonly createSceneEmbedding: CreateSceneEmbeddingUseCase,
         private readonly saveSceneEmbeddingUseCase: SaveSceneEmbeddingUseCase,
-        private readonly createSceneSementicSearchUseCase: CreateSceneSementicSearchUseCase,
-        private readonly sceneSimiliratySearchUseCase: SceneSimiliratySearchUseCase
+        private readonly answerStoryQuestionUseCase: AnswerStoryQuestionUseCase
     ) {}
 
     extractScenes = async (req: Request, res: Response) => {
@@ -47,17 +45,14 @@ export class StoryController {
 
     sementicSearch = async (req: Request, res: Response) => {
         const { storyId } = req.validatedParams as SementicSearchParams;
-        const { q } = req.validatedQuery as SementicSearchQuery;
-        console.log('q', q);
+        const { q: question, limit } = req.validatedQuery as SementicSearchQuery;
+        console.log('q', question);
 
-        const embedding = await this.createSceneSementicSearchUseCase.generateEmbedding(q);
-        console.log('got embedding', embedding);
-
-        const response = await this.sceneSimiliratySearchUseCase.search(storyId, embedding[0]);
-        console.log('response', response);
+        const result = await this.answerStoryQuestionUseCase.execute(storyId, question, limit);
 
         res.status(200).json({
-            message: 'success',
+            success: true,
+            data: result,
         });
     };
 }
