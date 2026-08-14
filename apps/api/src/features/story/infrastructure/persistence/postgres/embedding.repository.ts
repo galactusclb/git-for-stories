@@ -1,26 +1,36 @@
 import { randomUUID } from 'node:crypto';
 
+import { Prisma } from '@/lib/prisma/generated/client';
 import prisma from '@/lib/prisma/prisma';
 
 import { EmbeddingRespository } from '../../../application/ports/embedding-repository.port';
+import { SceneEmbedding } from '../../../application/use-cases/create-scene-embedding.use-case';
 import { Embedding } from '../../../domain/entities/embedding';
 import { SceneSearchResult } from '../../../domain/entities/scene-search-result';
 
 export class PostgresEmbeddingRepository implements EmbeddingRespository {
     constructor() {}
 
-    async save(sceneId: string, embedding: Embedding, embeddingModel: string): Promise<void> {
-        const vector = `[${embedding.values.join(',')}]`;
+    async saveMany(sceneEmbeddings: SceneEmbedding[], embeddingModel: string): Promise<void> {
+        if (sceneEmbeddings.length === 0) {
+            return;
+        }
+
+        const values = sceneEmbeddings.map(
+            ({ sceneId, embedding }) =>
+                Prisma.sql`(${randomUUID()}, ${sceneId}, ${`[${embedding.values.join(',')}]`}::vector, ${embeddingModel})`
+        );
 
         await prisma.$executeRaw`
-            INSERT INTO "SceneEmbedding" ("id", "sceneId", embedding, model) VALUES (${randomUUID()}, ${sceneId}, ${vector}::vector, ${embeddingModel})
+            INSERT INTO "SceneEmbedding" ("id", "sceneId", embedding, model) VALUES ${Prisma.join(values)};
         `;
     }
 
     async searchSimilarScenes(
         storyId: string,
         queryEmbedding: Embedding,
-        limit: number
+        limit: number,
+        embeddingModel: string
     ): Promise<SceneSearchResult[]> {
         const vector = `[${queryEmbedding.values.join(',')}]`;
 
@@ -35,10 +45,10 @@ export class PostgresEmbeddingRepository implements EmbeddingRespository {
             JOIN "Scene" s
                 ON s.id = se."sceneId"
             WHERE s."storyId" = ${storyId}
+                AND se."model" = ${embeddingModel}
             ORDER BY se."embedding" <=> ${vector}::vector
             LIMIT ${limit}
         `;
-        // AND se.model = ${embeddingModel}
 
         console.log('searchSimilarScenes response', response);
 

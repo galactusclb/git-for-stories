@@ -1,27 +1,40 @@
+import { LLMProviderError } from '@/utils/errors/http-error';
+
 import { Embedding } from '../../domain/entities/embedding';
 import { Scene } from '../../domain/entities/scene';
 import { EmbeddingGenerator } from '../ports/embedding-generator.port';
 
+export interface SceneEmbedding {
+    sceneId: string;
+    embedding: Embedding;
+}
 export class CreateSceneEmbeddingUseCase {
     constructor(private readonly embeddingGenerator: EmbeddingGenerator) {}
 
-    async execute(input: Scene[]): Promise<Embedding[]> {
-        // Need to create embedding for each scene. But for now, only create one
-        const parsedScene = `
-            ${input?.[0]['title']}
+    async execute(scenes: Scene[]): Promise<SceneEmbedding[]> {
+        if (scenes.length === 0) {
+            return [];
+        }
 
-            ${input?.[0]['summary']}
+        const embeddings = await this.embeddingGenerator.generate(scenes.map(toEmbeddingInput));
 
-            Events:
-            ${input?.[0]?.events?.map((event) => `${event.description} \n`)}
-        `;
+        if (embeddings.length !== scenes.length) {
+            throw new LLMProviderError(
+                `Embedding count mismatch: expected ${scenes.length}, received ${embeddings.length}`
+            );
+        }
 
-        console.log('parsedScene');
-        console.log(parsedScene);
-
-        const res = await this.embeddingGenerator.generate(parsedScene);
-        console.log('res embeddingGenerator', res);
-
-        return res;
+        return scenes.map((scene, index) => ({
+            sceneId: scene.id,
+            embedding: embeddings[index],
+        }));
     }
+}
+
+function toEmbeddingInput(scene: Scene): string {
+    const events = scene.events?.map((event) => event.description).join('\n');
+
+    return [scene.title, scene.summary, events && `Events: \n${events}`]
+        .filter(Boolean)
+        .join('\n\n');
 }

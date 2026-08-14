@@ -6,7 +6,7 @@ import { Embedding } from '../../domain/entities/embedding';
 export class LLMEmbeddingGenerator implements EmbeddingGenerator {
     constructor(private readonly provider: EmbeddingProvider) {}
 
-    async generate(input: string): Promise<Embedding[]> {
+    async generate(input: string[]): Promise<Embedding[]> {
         const embeddings = await this.provider.generateEmbedding({
             input: input,
         });

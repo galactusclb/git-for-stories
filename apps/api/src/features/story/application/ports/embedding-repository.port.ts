@@ -1,12 +1,14 @@
 import { Embedding } from '../../domain/entities/embedding';
 import { SceneSearchResult } from '../../domain/entities/scene-search-result';
+import { SceneEmbedding } from '../use-cases/create-scene-embedding.use-case';
 
 export interface EmbeddingRespository {
-    save(sceneId: string, embedding: Embedding, embeddingModel: string): Promise<void>;
+    saveMany(sceneEmbeddings: SceneEmbedding[], embeddingModel: string): Promise<void>;
 
     searchSimilarScenes(
         storyId: string,
         queryEmbedding: Embedding,
-        limit: number
+        limit: number,
+        embeddingModel: string
     ): Promise<SceneSearchResult[]>;
 }

@@ -1,5 +1,5 @@
 export interface GenerateProps {
-    input: string;
+    input: string | string[];
 }
 
 export interface EmbeddingVectorResponse {

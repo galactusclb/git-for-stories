@@ -10,6 +10,8 @@ import { SaveStoryScenesUseCase } from '../application/use-cases/save-story-scen
 
 import { SementicSearchParams, SementicSearchQuery } from './story.schema';
 
+const EmbeddingModel = 'gemini-embedding-2';
+
 export class StoryController {
     constructor(
         private readonly extractStoryScenes: ExtractStoryScenesUseCase,
@@ -32,10 +34,10 @@ export class StoryController {
 
         // async background logc temporally without await;
         // later refactor to somekind of background process
-        const embedding = await this.createSceneEmbedding.execute(scenes);
-        console.log('embedding', embedding);
+        const sceneEmbeddings = await this.createSceneEmbedding.execute(scenes);
+        console.log('embedding', sceneEmbeddings);
 
-        this.saveSceneEmbeddingUseCase.execute(scenes[0].id, embedding[0], 'gemini-embedding-2');
+        this.saveSceneEmbeddingUseCase.execute(sceneEmbeddings, EmbeddingModel);
 
         res.json({
             title,
@@ -48,7 +50,12 @@ export class StoryController {
         const { q: question, limit } = req.validatedQuery as SementicSearchQuery;
         console.log('q', question);
 
-        const result = await this.answerStoryQuestionUseCase.execute(storyId, question, limit);
+        const result = await this.answerStoryQuestionUseCase.execute(
+            storyId,
+            question,
+            limit,
+            EmbeddingModel
+        );
 
         res.status(200).json({
             success: true,

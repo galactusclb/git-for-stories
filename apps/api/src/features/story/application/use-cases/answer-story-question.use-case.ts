@@ -19,9 +19,10 @@ export class AnswerStoryQuestionUseCase {
     async execute(
         storyId: string,
         question: string,
-        limit: number
+        limit: number,
+        embeddingModel: string
     ): Promise<AnswerStoryQuestionResult> {
-        const [queryEmbedding] = await this.embeddingGenerator.generate(question);
+        const [queryEmbedding] = await this.embeddingGenerator.generate([question]);
 
         if (!queryEmbedding) {
             throw new LLMProviderError('Embedding provider returned no vector for the query');
@@ -30,7 +31,8 @@ export class AnswerStoryQuestionUseCase {
         const scenes = await this.embeddingRespository.searchSimilarScenes(
             storyId,
             queryEmbedding,
-            limit
+            limit,
+            embeddingModel
         );
 
         if (!scenes.length) {

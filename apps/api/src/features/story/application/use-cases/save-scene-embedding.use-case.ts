@@ -1,11 +1,12 @@
-import { Embedding } from '../../domain/entities/embedding';
 import { EmbeddingRespository } from '../ports/embedding-repository.port';
+
+import { SceneEmbedding } from './create-scene-embedding.use-case';
 
 export class SaveSceneEmbeddingUseCase {
     constructor(private readonly embeddingRepository: EmbeddingRespository) {}
 
-    async execute(sceneId: string, embedding: Embedding, embeddingModel: string): Promise<void> {
-        await this.embeddingRepository.save(sceneId, embedding, embeddingModel);
+    async execute(sceneEmbeddings: SceneEmbedding[], embeddingModel: string): Promise<void> {
+        await this.embeddingRepository.saveMany(sceneEmbeddings, embeddingModel);
         console.log('done');
     }
 }
