@@ -4,6 +4,7 @@ import prisma from '@/lib/prisma/prisma';
 
 import { EmbeddingRespository } from '../../../application/ports/embedding-repository.port';
 import { Embedding } from '../../../domain/entities/embedding';
+import { SceneSearchResult } from '../../../domain/entities/scene-search-result';
 
 export class PostgresEmbeddingRepository implements EmbeddingRespository {
     constructor() {}
@@ -14,5 +15,33 @@ export class PostgresEmbeddingRepository implements EmbeddingRespository {
         await prisma.$executeRaw`
             INSERT INTO "SceneEmbedding" ("id", "sceneId", embedding, model) VALUES (${randomUUID()}, ${sceneId}, ${vector}::vector, ${embeddingModel})
         `;
+    }
+
+    async searchSimilarScenes(
+        storyId: string,
+        queryEmbedding: Embedding,
+        limit?: number
+    ): Promise<SceneSearchResult[]> {
+        const vector = `[${queryEmbedding.values.join(',')}]`;
+
+        const response = await prisma.$queryRaw<SceneSearchResult[]>`
+            SELECT
+                s."id"          AS "sceneId",
+                s."sequenceId"  AS "sequenceId",
+                s."title"       AS "title",
+                s."summary"     AS "summary",
+                1 - (embedding <=> ${vector}::vector) AS "similarity"
+            FROM "SceneEmbedding" se
+            JOIN "Scene" s
+                ON s.id = se."sceneId"
+            WHERE s."storyId" = ${storyId}
+            ORDER BY embedding <=> ${`${vector}`}::vector
+            LIMIT ${limit ?? 3}
+        `;
+        // AND se.model = ${embeddingModel}
+
+        console.log('searchSimilarScenes response', response);
+
+        return response;
     }
 }
