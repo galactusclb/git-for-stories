@@ -1,11 +1,17 @@
-import { LLMProviderError } from '@/utils/errors/http-error';
+import { logger } from '@/lib/logger';
+import { LLMProviderError, LLMUnavailableError } from '@/utils/errors/http-error';
 
 import { SceneSearchResult } from '../../domain/entities/scene-search-result';
 import { EmbeddingGenerator } from '../ports/embedding-generator.port';
 import { EmbeddingRespository } from '../ports/embedding-repository.port';
-import { SceneAnswer, SceneReasoner } from '../ports/scene-reasoner.port';
+import { SceneReasoner } from '../ports/scene-reasoner.port';
 
-export interface AnswerStoryQuestionResult extends SceneAnswer {
+export type AnswerStatus = 'answered' | 'no_scenes' | 'reasoning_unavailable';
+
+export interface AnswerStoryQuestionResult {
+    status: AnswerStatus;
+    answer: string | null;
+    usedSceneIds: string[];
     scenes: SceneSearchResult[];
 }
 
@@ -37,14 +43,28 @@ export class AnswerStoryQuestionUseCase {
 
         if (!scenes.length) {
             return {
-                answer: 'No indexed scenes were found f or this story',
+                status: 'no_scenes',
+                answer: null,
                 usedSceneIds: [],
                 scenes: [],
             };
         }
 
-        const { answer, usedSceneIds } = await this.sceneReasoner.reason(question, scenes);
+        try {
+            const { answer, usedSceneIds } = await this.sceneReasoner.reason(question, scenes);
+            return { status: 'answered', answer, usedSceneIds, scenes };
+        } catch (error) {
+            if (error instanceof LLMUnavailableError) {
+                logger.warn('[Reasoning degraded]', { storyId, sceneCount: scenes.length });
+                return {
+                    status: 'reasoning_unavailable',
+                    answer: null,
+                    usedSceneIds: [],
+                    scenes,
+                };
+            }
 
-        return { answer, usedSceneIds, scenes };
+            throw error;
+        }
     }
 }

@@ -48,7 +48,7 @@ export class StoryController {
     sementicSearch = async (req: Request, res: Response) => {
         const { storyId } = req.validatedParams as SementicSearchParams;
         const { q: question, limit } = req.validatedQuery as SementicSearchQuery;
-        console.log('q', question);
+        console.log('question', question);
 
         const result = await this.answerStoryQuestionUseCase.execute(
             storyId,
@@ -56,6 +56,10 @@ export class StoryController {
             limit,
             EmbeddingModel
         );
+
+        if (result.status === 'reasoning_unavailable') {
+            res.set('Retry-After', '5');
+        }
 
         res.status(200).json({
             success: true,
