@@ -12,8 +12,8 @@ export const sementicSearchSchema = {
         storyId: z.uuid(),
     }),
     query: z.object({
-        q: z.string().min(1),
-        limit: z.coerce.number().int().min(1).max(50).default(10),
+        q: z.string().min(1).max(500),
+        limit: z.coerce.number().int().min(1).max(10).default(5),
     }),
 };
 
