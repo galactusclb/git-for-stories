@@ -1,13 +1,15 @@
 import { EmbeddingProvider } from './interfaces/embedding-provider.interface';
 import { LLMProvider } from './interfaces/llm-provider.interface';
+import { DeepSeekProvider } from './providers/deepseek.provider';
 import { GeminiProvider } from './providers/gemini.provider';
 import { OpenAIProvider } from './providers/openai.provider';
 import { RetryLLmProvider } from './providers/retrying-llm.provider';
 
 const LLM_OPENAI_API_KEY = process.env.LLM_OPENAI_API_KEY;
 const LLM_GEMINI_API_KEY = process.env.LLM_GEMINI_API_KEY;
+const LLM_DEEPSEEK_API_KEY = process.env.LLM_DEEPSEEK_API_KEY;
 
-type LLMProviderName = 'openai' | 'gemini';
+type LLMProviderName = 'openai' | 'gemini' | 'deepseek';
 type EmbeddingProviderName = 'openai' | 'gemini';
 
 export function createLLMProvider(name: LLMProviderName): LLMProvider {
@@ -18,6 +20,11 @@ export function createLLMProvider(name: LLMProviderName): LLMProvider {
         case 'gemini':
             return new RetryLLmProvider(
                 new GeminiProvider(LLM_GEMINI_API_KEY!, 'gemini-flash-latest')
+            );
+
+        case 'deepseek':
+            return new RetryLLmProvider(
+                new DeepSeekProvider(LLM_DEEPSEEK_API_KEY!, 'deepseek-v4-flash')
             );
 
         default:
