@@ -62,7 +62,7 @@ apiRouter.get('/health', (_req, res) => res.sendStatus(200));
 apiRouter.use('/auth', authRoutes);
 apiRouter.use('/posts', postRoutes);
 
-const llmProvider = createLLMProvider('gemini');
+const llmProvider = createLLMProvider('deepseek');
 const embeddingProvider = createEmbeddingProvider('gemini');
 
 apiRouter.use('/stories', createStoryModule({ llmProvider, embeddingProvider }));

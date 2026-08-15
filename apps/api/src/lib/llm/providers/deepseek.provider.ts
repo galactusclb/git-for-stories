@@ -21,25 +21,25 @@ export class DeepSeekProvider implements LLMProvider {
 
     async generateText({ input, instructions, responseSchema }: GenerateParams): Promise<string> {
         try {
-            const response = await this.client.responses.create({
+            const response = await this.client.chat.completions.create({
                 model: this.model,
-                instructions,
-                input,
-                text: {
-                    format: {
-                        type: 'json_schema',
-                        name: 'response',
-                        schema: responseSchema,
-                        strict: true,
+                messages: [
+                    {
+                        role: 'system',
+                        content: `${instructions}\n\nRespond only with JSON matching this schema:\n${JSON.stringify(responseSchema)}`,
                     },
-                },
+                    { role: 'user', content: input },
+                ],
+                response_format: { type: 'json_object' },
             });
 
-            if (!response.output_text) {
+            const content = response.choices[0]?.message?.content;
+
+            if (!content) {
                 throw new Error('Agent returned an empty response');
             }
 
-            return response.output_text;
+            return content;
         } catch (err) {
             if (err instanceof HttpError) throw err;
             throw toLLMError(err);
