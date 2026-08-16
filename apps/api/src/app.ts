@@ -84,3 +84,9 @@ app.use(xrayClose);
 app.use(errorHandler);
 
 export default app;
+
+export async function closeInfrastructure(): Promise<void> {
+    await storyModule.close();
+    await jobConsumer.close();
+    await jobProducer.close();
+}
