@@ -87,5 +87,7 @@ export class BullMQJobConsumer implements JobConsumer {
     async close(): Promise<void> {
         await Promise.all(this.workers.map((worker) => worker.close()));
         this.workers.length = 0;
+
+        await this.connection.quit();
     }
 }
