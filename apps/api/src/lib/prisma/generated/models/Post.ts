@@ -731,7 +731,7 @@ export interface PostDelegate<
      * })
      */
     findUnique<T extends PostFindUniqueArgs>(
-        args: Prisma.SelectSubset<T, PostFindUniqueArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, PostFindUniqueArgs<ExtArgs>>,
     ): Prisma.Prisma__PostClient<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -757,7 +757,7 @@ export interface PostDelegate<
      * })
      */
     findUniqueOrThrow<T extends PostFindUniqueOrThrowArgs>(
-        args: Prisma.SelectSubset<T, PostFindUniqueOrThrowArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, PostFindUniqueOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__PostClient<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -784,7 +784,7 @@ export interface PostDelegate<
      * })
      */
     findFirst<T extends PostFindFirstArgs>(
-        args?: Prisma.SelectSubset<T, PostFindFirstArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, PostFindFirstArgs<ExtArgs>>,
     ): Prisma.Prisma__PostClient<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -812,7 +812,7 @@ export interface PostDelegate<
      * })
      */
     findFirstOrThrow<T extends PostFindFirstOrThrowArgs>(
-        args?: Prisma.SelectSubset<T, PostFindFirstOrThrowArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, PostFindFirstOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__PostClient<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -842,7 +842,7 @@ export interface PostDelegate<
      *
      */
     findMany<T extends PostFindManyArgs>(
-        args?: Prisma.SelectSubset<T, PostFindManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, PostFindManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -865,7 +865,7 @@ export interface PostDelegate<
      *
      */
     create<T extends PostCreateArgs>(
-        args: Prisma.SelectSubset<T, PostCreateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, PostCreateArgs<ExtArgs>>,
     ): Prisma.Prisma__PostClient<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -891,7 +891,7 @@ export interface PostDelegate<
      *
      */
     createMany<T extends PostCreateManyArgs>(
-        args?: Prisma.SelectSubset<T, PostCreateManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, PostCreateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -917,7 +917,7 @@ export interface PostDelegate<
      *
      */
     createManyAndReturn<T extends PostCreateManyAndReturnArgs>(
-        args?: Prisma.SelectSubset<T, PostCreateManyAndReturnArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, PostCreateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -940,7 +940,7 @@ export interface PostDelegate<
      *
      */
     delete<T extends PostDeleteArgs>(
-        args: Prisma.SelectSubset<T, PostDeleteArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, PostDeleteArgs<ExtArgs>>,
     ): Prisma.Prisma__PostClient<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -969,7 +969,7 @@ export interface PostDelegate<
      *
      */
     update<T extends PostUpdateArgs>(
-        args: Prisma.SelectSubset<T, PostUpdateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, PostUpdateArgs<ExtArgs>>,
     ): Prisma.Prisma__PostClient<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -995,7 +995,7 @@ export interface PostDelegate<
      *
      */
     deleteMany<T extends PostDeleteManyArgs>(
-        args?: Prisma.SelectSubset<T, PostDeleteManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, PostDeleteManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -1016,7 +1016,7 @@ export interface PostDelegate<
      *
      */
     updateMany<T extends PostUpdateManyArgs>(
-        args: Prisma.SelectSubset<T, PostUpdateManyArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, PostUpdateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -1048,7 +1048,7 @@ export interface PostDelegate<
      *
      */
     updateManyAndReturn<T extends PostUpdateManyAndReturnArgs>(
-        args: Prisma.SelectSubset<T, PostUpdateManyAndReturnArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, PostUpdateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -1076,7 +1076,7 @@ export interface PostDelegate<
      * })
      */
     upsert<T extends PostUpsertArgs>(
-        args: Prisma.SelectSubset<T, PostUpsertArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, PostUpsertArgs<ExtArgs>>,
     ): Prisma.Prisma__PostClient<
         runtime.Types.Result.GetResult<
             Prisma.$PostPayload<ExtArgs>,
@@ -1103,7 +1103,7 @@ export interface PostDelegate<
      * })
      **/
     count<T extends PostCountArgs>(
-        args?: Prisma.Subset<T, PostCountArgs>
+        args?: Prisma.Subset<T, PostCountArgs>,
     ): Prisma.PrismaPromise<
         T extends runtime.Types.Utils.Record<'select', any>
             ? T['select'] extends true
@@ -1137,7 +1137,7 @@ export interface PostDelegate<
      * })
      **/
     aggregate<T extends PostAggregateArgs>(
-        args: Prisma.Subset<T, PostAggregateArgs>
+        args: Prisma.Subset<T, PostAggregateArgs>,
     ): Prisma.PrismaPromise<GetPostAggregateType<T>>;
 
     /**
@@ -1213,7 +1213,7 @@ export interface PostDelegate<
                               : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                       }[OrderFields],
     >(
-        args: Prisma.SubsetIntersection<T, PostGroupByArgs, OrderByArg> & InputErrors
+        args: Prisma.SubsetIntersection<T, PostGroupByArgs, OrderByArg> & InputErrors,
     ): {} extends InputErrors ? GetPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
     /**
      * Fields of the Post model
@@ -1235,7 +1235,7 @@ export interface Prisma__PostClient<
 > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(
-        args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>
+        args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>,
     ): Prisma.Prisma__UserClient<
         | runtime.Types.Result.GetResult<
               Prisma.$UserPayload<ExtArgs>,
@@ -1256,7 +1256,7 @@ export interface Prisma__PostClient<
      */
     then<TResult1 = T, TResult2 = never>(
         onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
-        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null
+        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
@@ -1264,7 +1264,7 @@ export interface Prisma__PostClient<
      * @returns A Promise for the completion of the callback.
      */
     catch<TResult = never>(
-        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null
+        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The

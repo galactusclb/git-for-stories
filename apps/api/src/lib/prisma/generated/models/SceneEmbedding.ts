@@ -190,6 +190,7 @@ export type SceneEmbeddingOrderByWithRelationInput = {
 export type SceneEmbeddingWhereUniqueInput = Prisma.AtLeast<
     {
         id?: string;
+        sceneId_model?: Prisma.SceneEmbeddingSceneIdModelCompoundUniqueInput;
         AND?: Prisma.SceneEmbeddingWhereInput | Prisma.SceneEmbeddingWhereInput[];
         OR?: Prisma.SceneEmbeddingWhereInput[];
         NOT?: Prisma.SceneEmbeddingWhereInput | Prisma.SceneEmbeddingWhereInput[];
@@ -198,7 +199,7 @@ export type SceneEmbeddingWhereUniqueInput = Prisma.AtLeast<
         createdAt?: Prisma.DateTimeFilter<'SceneEmbedding'> | Date | string;
         scenes?: Prisma.XOR<Prisma.SceneScalarRelationFilter, Prisma.SceneWhereInput>;
     },
-    'id'
+    'id' | 'sceneId_model'
 >;
 
 export type SceneEmbeddingOrderByWithAggregationInput = {
@@ -250,6 +251,11 @@ export type SceneEmbeddingUncheckedUpdateManyInput = {
     sceneId?: Prisma.StringFieldUpdateOperationsInput | string;
     model?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type SceneEmbeddingSceneIdModelCompoundUniqueInput = {
+    sceneId: string;
+    model: string;
 };
 
 export type SceneEmbeddingCountOrderByAggregateInput = {
@@ -470,7 +476,7 @@ export interface SceneEmbeddingDelegate<
      * })
      */
     findUnique<T extends SceneEmbeddingFindUniqueArgs>(
-        args: Prisma.SelectSubset<T, SceneEmbeddingFindUniqueArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneEmbeddingFindUniqueArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneEmbeddingClient<
         runtime.Types.Result.GetResult<
             Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -496,7 +502,7 @@ export interface SceneEmbeddingDelegate<
      * })
      */
     findUniqueOrThrow<T extends SceneEmbeddingFindUniqueOrThrowArgs>(
-        args: Prisma.SelectSubset<T, SceneEmbeddingFindUniqueOrThrowArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneEmbeddingFindUniqueOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneEmbeddingClient<
         runtime.Types.Result.GetResult<
             Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -523,7 +529,7 @@ export interface SceneEmbeddingDelegate<
      * })
      */
     findFirst<T extends SceneEmbeddingFindFirstArgs>(
-        args?: Prisma.SelectSubset<T, SceneEmbeddingFindFirstArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneEmbeddingFindFirstArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneEmbeddingClient<
         runtime.Types.Result.GetResult<
             Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -551,7 +557,7 @@ export interface SceneEmbeddingDelegate<
      * })
      */
     findFirstOrThrow<T extends SceneEmbeddingFindFirstOrThrowArgs>(
-        args?: Prisma.SelectSubset<T, SceneEmbeddingFindFirstOrThrowArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneEmbeddingFindFirstOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneEmbeddingClient<
         runtime.Types.Result.GetResult<
             Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -581,7 +587,7 @@ export interface SceneEmbeddingDelegate<
      *
      */
     findMany<T extends SceneEmbeddingFindManyArgs>(
-        args?: Prisma.SelectSubset<T, SceneEmbeddingFindManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneEmbeddingFindManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -604,7 +610,7 @@ export interface SceneEmbeddingDelegate<
      *
      */
     delete<T extends SceneEmbeddingDeleteArgs>(
-        args: Prisma.SelectSubset<T, SceneEmbeddingDeleteArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneEmbeddingDeleteArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneEmbeddingClient<
         runtime.Types.Result.GetResult<
             Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -633,7 +639,7 @@ export interface SceneEmbeddingDelegate<
      *
      */
     update<T extends SceneEmbeddingUpdateArgs>(
-        args: Prisma.SelectSubset<T, SceneEmbeddingUpdateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneEmbeddingUpdateArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneEmbeddingClient<
         runtime.Types.Result.GetResult<
             Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -659,7 +665,7 @@ export interface SceneEmbeddingDelegate<
      *
      */
     deleteMany<T extends SceneEmbeddingDeleteManyArgs>(
-        args?: Prisma.SelectSubset<T, SceneEmbeddingDeleteManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneEmbeddingDeleteManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -680,7 +686,7 @@ export interface SceneEmbeddingDelegate<
      *
      */
     updateMany<T extends SceneEmbeddingUpdateManyArgs>(
-        args: Prisma.SelectSubset<T, SceneEmbeddingUpdateManyArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneEmbeddingUpdateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -712,7 +718,7 @@ export interface SceneEmbeddingDelegate<
      *
      */
     updateManyAndReturn<T extends SceneEmbeddingUpdateManyAndReturnArgs>(
-        args: Prisma.SelectSubset<T, SceneEmbeddingUpdateManyAndReturnArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneEmbeddingUpdateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -736,7 +742,7 @@ export interface SceneEmbeddingDelegate<
      * })
      **/
     count<T extends SceneEmbeddingCountArgs>(
-        args?: Prisma.Subset<T, SceneEmbeddingCountArgs>
+        args?: Prisma.Subset<T, SceneEmbeddingCountArgs>,
     ): Prisma.PrismaPromise<
         T extends runtime.Types.Utils.Record<'select', any>
             ? T['select'] extends true
@@ -770,7 +776,7 @@ export interface SceneEmbeddingDelegate<
      * })
      **/
     aggregate<T extends SceneEmbeddingAggregateArgs>(
-        args: Prisma.Subset<T, SceneEmbeddingAggregateArgs>
+        args: Prisma.Subset<T, SceneEmbeddingAggregateArgs>,
     ): Prisma.PrismaPromise<GetSceneEmbeddingAggregateType<T>>;
 
     /**
@@ -846,7 +852,7 @@ export interface SceneEmbeddingDelegate<
                               : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                       }[OrderFields],
     >(
-        args: Prisma.SubsetIntersection<T, SceneEmbeddingGroupByArgs, OrderByArg> & InputErrors
+        args: Prisma.SubsetIntersection<T, SceneEmbeddingGroupByArgs, OrderByArg> & InputErrors,
     ): {} extends InputErrors
         ? GetSceneEmbeddingGroupByPayload<T>
         : Prisma.PrismaPromise<InputErrors>;
@@ -870,7 +876,7 @@ export interface Prisma__SceneEmbeddingClient<
 > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     scenes<T extends Prisma.SceneDefaultArgs<ExtArgs> = {}>(
-        args?: Prisma.Subset<T, Prisma.SceneDefaultArgs<ExtArgs>>
+        args?: Prisma.Subset<T, Prisma.SceneDefaultArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         | runtime.Types.Result.GetResult<
               Prisma.$ScenePayload<ExtArgs>,
@@ -891,7 +897,7 @@ export interface Prisma__SceneEmbeddingClient<
      */
     then<TResult1 = T, TResult2 = never>(
         onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
-        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null
+        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
@@ -899,7 +905,7 @@ export interface Prisma__SceneEmbeddingClient<
      * @returns A Promise for the completion of the callback.
      */
     catch<TResult = never>(
-        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null
+        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The

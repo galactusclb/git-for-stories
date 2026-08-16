@@ -1061,7 +1061,7 @@ export interface SceneDelegate<
      * })
      */
     findUnique<T extends SceneFindUniqueArgs>(
-        args: Prisma.SelectSubset<T, SceneFindUniqueArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneFindUniqueArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1087,7 +1087,7 @@ export interface SceneDelegate<
      * })
      */
     findUniqueOrThrow<T extends SceneFindUniqueOrThrowArgs>(
-        args: Prisma.SelectSubset<T, SceneFindUniqueOrThrowArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneFindUniqueOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1114,7 +1114,7 @@ export interface SceneDelegate<
      * })
      */
     findFirst<T extends SceneFindFirstArgs>(
-        args?: Prisma.SelectSubset<T, SceneFindFirstArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneFindFirstArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1142,7 +1142,7 @@ export interface SceneDelegate<
      * })
      */
     findFirstOrThrow<T extends SceneFindFirstOrThrowArgs>(
-        args?: Prisma.SelectSubset<T, SceneFindFirstOrThrowArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneFindFirstOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1172,7 +1172,7 @@ export interface SceneDelegate<
      *
      */
     findMany<T extends SceneFindManyArgs>(
-        args?: Prisma.SelectSubset<T, SceneFindManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneFindManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1195,7 +1195,7 @@ export interface SceneDelegate<
      *
      */
     create<T extends SceneCreateArgs>(
-        args: Prisma.SelectSubset<T, SceneCreateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneCreateArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1221,7 +1221,7 @@ export interface SceneDelegate<
      *
      */
     createMany<T extends SceneCreateManyArgs>(
-        args?: Prisma.SelectSubset<T, SceneCreateManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneCreateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -1247,7 +1247,7 @@ export interface SceneDelegate<
      *
      */
     createManyAndReturn<T extends SceneCreateManyAndReturnArgs>(
-        args?: Prisma.SelectSubset<T, SceneCreateManyAndReturnArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneCreateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1270,7 +1270,7 @@ export interface SceneDelegate<
      *
      */
     delete<T extends SceneDeleteArgs>(
-        args: Prisma.SelectSubset<T, SceneDeleteArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneDeleteArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1299,7 +1299,7 @@ export interface SceneDelegate<
      *
      */
     update<T extends SceneUpdateArgs>(
-        args: Prisma.SelectSubset<T, SceneUpdateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneUpdateArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1325,7 +1325,7 @@ export interface SceneDelegate<
      *
      */
     deleteMany<T extends SceneDeleteManyArgs>(
-        args?: Prisma.SelectSubset<T, SceneDeleteManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, SceneDeleteManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -1346,7 +1346,7 @@ export interface SceneDelegate<
      *
      */
     updateMany<T extends SceneUpdateManyArgs>(
-        args: Prisma.SelectSubset<T, SceneUpdateManyArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneUpdateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -1378,7 +1378,7 @@ export interface SceneDelegate<
      *
      */
     updateManyAndReturn<T extends SceneUpdateManyAndReturnArgs>(
-        args: Prisma.SelectSubset<T, SceneUpdateManyAndReturnArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneUpdateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1406,7 +1406,7 @@ export interface SceneDelegate<
      * })
      */
     upsert<T extends SceneUpsertArgs>(
-        args: Prisma.SelectSubset<T, SceneUpsertArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, SceneUpsertArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         runtime.Types.Result.GetResult<
             Prisma.$ScenePayload<ExtArgs>,
@@ -1433,7 +1433,7 @@ export interface SceneDelegate<
      * })
      **/
     count<T extends SceneCountArgs>(
-        args?: Prisma.Subset<T, SceneCountArgs>
+        args?: Prisma.Subset<T, SceneCountArgs>,
     ): Prisma.PrismaPromise<
         T extends runtime.Types.Utils.Record<'select', any>
             ? T['select'] extends true
@@ -1467,7 +1467,7 @@ export interface SceneDelegate<
      * })
      **/
     aggregate<T extends SceneAggregateArgs>(
-        args: Prisma.Subset<T, SceneAggregateArgs>
+        args: Prisma.Subset<T, SceneAggregateArgs>,
     ): Prisma.PrismaPromise<GetSceneAggregateType<T>>;
 
     /**
@@ -1543,7 +1543,7 @@ export interface SceneDelegate<
                               : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                       }[OrderFields],
     >(
-        args: Prisma.SubsetIntersection<T, SceneGroupByArgs, OrderByArg> & InputErrors
+        args: Prisma.SubsetIntersection<T, SceneGroupByArgs, OrderByArg> & InputErrors,
     ): {} extends InputErrors ? GetSceneGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
     /**
      * Fields of the Scene model
@@ -1565,7 +1565,7 @@ export interface Prisma__SceneClient<
 > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     story<T extends Prisma.StoryDefaultArgs<ExtArgs> = {}>(
-        args?: Prisma.Subset<T, Prisma.StoryDefaultArgs<ExtArgs>>
+        args?: Prisma.Subset<T, Prisma.StoryDefaultArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         | runtime.Types.Result.GetResult<
               Prisma.$StoryPayload<ExtArgs>,
@@ -1579,7 +1579,7 @@ export interface Prisma__SceneClient<
         GlobalOmitOptions
     >;
     events<T extends Prisma.Scene$eventsArgs<ExtArgs> = {}>(
-        args?: Prisma.Subset<T, Prisma.Scene$eventsArgs<ExtArgs>>
+        args?: Prisma.Subset<T, Prisma.Scene$eventsArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         | runtime.Types.Result.GetResult<
               Prisma.$EventPayload<ExtArgs>,
@@ -1590,7 +1590,7 @@ export interface Prisma__SceneClient<
         | Null
     >;
     embeddings<T extends Prisma.Scene$embeddingsArgs<ExtArgs> = {}>(
-        args?: Prisma.Subset<T, Prisma.Scene$embeddingsArgs<ExtArgs>>
+        args?: Prisma.Subset<T, Prisma.Scene$embeddingsArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         | runtime.Types.Result.GetResult<
               Prisma.$SceneEmbeddingPayload<ExtArgs>,
@@ -1608,7 +1608,7 @@ export interface Prisma__SceneClient<
      */
     then<TResult1 = T, TResult2 = never>(
         onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
-        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null
+        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
@@ -1616,7 +1616,7 @@ export interface Prisma__SceneClient<
      * @returns A Promise for the completion of the callback.
      */
     catch<TResult = never>(
-        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null
+        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The

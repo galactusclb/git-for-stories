@@ -688,7 +688,7 @@ export interface EventDelegate<
      * })
      */
     findUnique<T extends EventFindUniqueArgs>(
-        args: Prisma.SelectSubset<T, EventFindUniqueArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, EventFindUniqueArgs<ExtArgs>>,
     ): Prisma.Prisma__EventClient<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -714,7 +714,7 @@ export interface EventDelegate<
      * })
      */
     findUniqueOrThrow<T extends EventFindUniqueOrThrowArgs>(
-        args: Prisma.SelectSubset<T, EventFindUniqueOrThrowArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, EventFindUniqueOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__EventClient<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -741,7 +741,7 @@ export interface EventDelegate<
      * })
      */
     findFirst<T extends EventFindFirstArgs>(
-        args?: Prisma.SelectSubset<T, EventFindFirstArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, EventFindFirstArgs<ExtArgs>>,
     ): Prisma.Prisma__EventClient<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -769,7 +769,7 @@ export interface EventDelegate<
      * })
      */
     findFirstOrThrow<T extends EventFindFirstOrThrowArgs>(
-        args?: Prisma.SelectSubset<T, EventFindFirstOrThrowArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, EventFindFirstOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__EventClient<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -799,7 +799,7 @@ export interface EventDelegate<
      *
      */
     findMany<T extends EventFindManyArgs>(
-        args?: Prisma.SelectSubset<T, EventFindManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, EventFindManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -822,7 +822,7 @@ export interface EventDelegate<
      *
      */
     create<T extends EventCreateArgs>(
-        args: Prisma.SelectSubset<T, EventCreateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, EventCreateArgs<ExtArgs>>,
     ): Prisma.Prisma__EventClient<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -848,7 +848,7 @@ export interface EventDelegate<
      *
      */
     createMany<T extends EventCreateManyArgs>(
-        args?: Prisma.SelectSubset<T, EventCreateManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, EventCreateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -874,7 +874,7 @@ export interface EventDelegate<
      *
      */
     createManyAndReturn<T extends EventCreateManyAndReturnArgs>(
-        args?: Prisma.SelectSubset<T, EventCreateManyAndReturnArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, EventCreateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -897,7 +897,7 @@ export interface EventDelegate<
      *
      */
     delete<T extends EventDeleteArgs>(
-        args: Prisma.SelectSubset<T, EventDeleteArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, EventDeleteArgs<ExtArgs>>,
     ): Prisma.Prisma__EventClient<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -926,7 +926,7 @@ export interface EventDelegate<
      *
      */
     update<T extends EventUpdateArgs>(
-        args: Prisma.SelectSubset<T, EventUpdateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, EventUpdateArgs<ExtArgs>>,
     ): Prisma.Prisma__EventClient<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -952,7 +952,7 @@ export interface EventDelegate<
      *
      */
     deleteMany<T extends EventDeleteManyArgs>(
-        args?: Prisma.SelectSubset<T, EventDeleteManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, EventDeleteManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -973,7 +973,7 @@ export interface EventDelegate<
      *
      */
     updateMany<T extends EventUpdateManyArgs>(
-        args: Prisma.SelectSubset<T, EventUpdateManyArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, EventUpdateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -1005,7 +1005,7 @@ export interface EventDelegate<
      *
      */
     updateManyAndReturn<T extends EventUpdateManyAndReturnArgs>(
-        args: Prisma.SelectSubset<T, EventUpdateManyAndReturnArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, EventUpdateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -1033,7 +1033,7 @@ export interface EventDelegate<
      * })
      */
     upsert<T extends EventUpsertArgs>(
-        args: Prisma.SelectSubset<T, EventUpsertArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, EventUpsertArgs<ExtArgs>>,
     ): Prisma.Prisma__EventClient<
         runtime.Types.Result.GetResult<
             Prisma.$EventPayload<ExtArgs>,
@@ -1060,7 +1060,7 @@ export interface EventDelegate<
      * })
      **/
     count<T extends EventCountArgs>(
-        args?: Prisma.Subset<T, EventCountArgs>
+        args?: Prisma.Subset<T, EventCountArgs>,
     ): Prisma.PrismaPromise<
         T extends runtime.Types.Utils.Record<'select', any>
             ? T['select'] extends true
@@ -1094,7 +1094,7 @@ export interface EventDelegate<
      * })
      **/
     aggregate<T extends EventAggregateArgs>(
-        args: Prisma.Subset<T, EventAggregateArgs>
+        args: Prisma.Subset<T, EventAggregateArgs>,
     ): Prisma.PrismaPromise<GetEventAggregateType<T>>;
 
     /**
@@ -1170,7 +1170,7 @@ export interface EventDelegate<
                               : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                       }[OrderFields],
     >(
-        args: Prisma.SubsetIntersection<T, EventGroupByArgs, OrderByArg> & InputErrors
+        args: Prisma.SubsetIntersection<T, EventGroupByArgs, OrderByArg> & InputErrors,
     ): {} extends InputErrors ? GetEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
     /**
      * Fields of the Event model
@@ -1192,7 +1192,7 @@ export interface Prisma__EventClient<
 > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     scene<T extends Prisma.SceneDefaultArgs<ExtArgs> = {}>(
-        args?: Prisma.Subset<T, Prisma.SceneDefaultArgs<ExtArgs>>
+        args?: Prisma.Subset<T, Prisma.SceneDefaultArgs<ExtArgs>>,
     ): Prisma.Prisma__SceneClient<
         | runtime.Types.Result.GetResult<
               Prisma.$ScenePayload<ExtArgs>,
@@ -1213,7 +1213,7 @@ export interface Prisma__EventClient<
      */
     then<TResult1 = T, TResult2 = never>(
         onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
-        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null
+        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
@@ -1221,7 +1221,7 @@ export interface Prisma__EventClient<
      * @returns A Promise for the completion of the callback.
      */
     catch<TResult = never>(
-        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null
+        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
