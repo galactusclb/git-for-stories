@@ -1,0 +1,22 @@
+model Fact {
+  id               String  @id @default(uuid())
+  commitId         String
+  sequenceId       Int
+  subjectId        String
+  predicate        String
+  objectId         String?
+  value            Boolean
+  sourceEventId    String
+  extractorVersion Int
+
+  commit      Commit  @relation(fields: [commitId], references: [id], onDelete: Restrict)
+  subject     Entity  @relation("FactSubject", fields: [subjectId], references: [id], onDelete: Restrict)
+  object      Entity? @relation("FactObject", fields: [objectId], references: [id], onDelete: Restrict)
+  sourceEvent Event   @relation(fields: [sourceEventId], references: [id], onDelete: Restrict)
+
+  @@index([commitId])
+  @@index([subjectId])
+  @@index([objectId])
+  @@index([sourceEventId])
+  @@index([subjectId, predicate, objectId])
+}

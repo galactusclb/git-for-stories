@@ -1,8 +1,11 @@
 model Story {
-    id String @id @default(uuid()) @unique
+    id String @id @unique @default(uuid())
     title String
-    scenes Scene[]
     createdAt DateTime @default(now())
+
+  scenes    Scene[]
+  entities  Entity[]
+  Branch    Branch[]
 }
 
 model Scene {
@@ -18,8 +21,9 @@ model Scene {
     story       Story   @relation(fields: [storyId], references: [id])
     events      Event[]
     embeddings  SceneEmbedding[]
-    
-    @@unique([storyId, id])
+  commits    Commit[]
+
+  @@unique([storyId, id])
 }
 
 model Event {
@@ -27,11 +31,38 @@ model Event {
     sceneId     String
     type        String
     description String
-    subject     String
-    object      String?
+    subjectId   String
+    objectId    String?
     createdAt DateTime @default(now())
 
     scene       Scene @relation(fields: [sceneId], references: [id])
+    subject Entity  @relation("EventSubject", fields: [subjectId], references: [id])
+    object  Entity? @relation("EventObject", fields: [objectId], references: [id])
+
+    facts Fact[]
 
     @@unique([sceneId, id])
+}
+
+model Entity {
+  id        String     @id @default(uuid())
+  storyId   String
+  kind      EntityKind
+  name      String
+  aliases   String[]
+  createdAt DateTime   @default(now())
+
+  story           Story   @relation(fields: [storyId], references: [id])
+  subjectOfEvents Event[] @relation("EventSubject")
+  objectOfEvents  Event[] @relation("EventObject")
+
+  factsAsSubject Fact[] @relation("FactSubject")
+  factsAsObject  Fact[] @relation("FactObject")
+}
+
+enum EntityKind {
+  CHARACTER
+  OBJECT
+  LOCATION
+  FACTION
 }
