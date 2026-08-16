@@ -251,7 +251,7 @@ export type PatchUndefined<O extends object, O1 extends object> = {
 
 /** Helper Types for "Merge" **/
 export type IntersectOf<U extends Union> = (U extends unknown ? (k: U) => void : never) extends (
-    k: infer I
+    k: infer I,
 ) => void
     ? I
     : never;

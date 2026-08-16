@@ -486,7 +486,7 @@ export interface StoryDelegate<
      * })
      */
     findUnique<T extends StoryFindUniqueArgs>(
-        args: Prisma.SelectSubset<T, StoryFindUniqueArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, StoryFindUniqueArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -512,7 +512,7 @@ export interface StoryDelegate<
      * })
      */
     findUniqueOrThrow<T extends StoryFindUniqueOrThrowArgs>(
-        args: Prisma.SelectSubset<T, StoryFindUniqueOrThrowArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, StoryFindUniqueOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -539,7 +539,7 @@ export interface StoryDelegate<
      * })
      */
     findFirst<T extends StoryFindFirstArgs>(
-        args?: Prisma.SelectSubset<T, StoryFindFirstArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, StoryFindFirstArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -567,7 +567,7 @@ export interface StoryDelegate<
      * })
      */
     findFirstOrThrow<T extends StoryFindFirstOrThrowArgs>(
-        args?: Prisma.SelectSubset<T, StoryFindFirstOrThrowArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, StoryFindFirstOrThrowArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -597,7 +597,7 @@ export interface StoryDelegate<
      *
      */
     findMany<T extends StoryFindManyArgs>(
-        args?: Prisma.SelectSubset<T, StoryFindManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, StoryFindManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -620,7 +620,7 @@ export interface StoryDelegate<
      *
      */
     create<T extends StoryCreateArgs>(
-        args: Prisma.SelectSubset<T, StoryCreateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, StoryCreateArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -646,7 +646,7 @@ export interface StoryDelegate<
      *
      */
     createMany<T extends StoryCreateManyArgs>(
-        args?: Prisma.SelectSubset<T, StoryCreateManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, StoryCreateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -672,7 +672,7 @@ export interface StoryDelegate<
      *
      */
     createManyAndReturn<T extends StoryCreateManyAndReturnArgs>(
-        args?: Prisma.SelectSubset<T, StoryCreateManyAndReturnArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, StoryCreateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -695,7 +695,7 @@ export interface StoryDelegate<
      *
      */
     delete<T extends StoryDeleteArgs>(
-        args: Prisma.SelectSubset<T, StoryDeleteArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, StoryDeleteArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -724,7 +724,7 @@ export interface StoryDelegate<
      *
      */
     update<T extends StoryUpdateArgs>(
-        args: Prisma.SelectSubset<T, StoryUpdateArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, StoryUpdateArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -750,7 +750,7 @@ export interface StoryDelegate<
      *
      */
     deleteMany<T extends StoryDeleteManyArgs>(
-        args?: Prisma.SelectSubset<T, StoryDeleteManyArgs<ExtArgs>>
+        args?: Prisma.SelectSubset<T, StoryDeleteManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -771,7 +771,7 @@ export interface StoryDelegate<
      *
      */
     updateMany<T extends StoryUpdateManyArgs>(
-        args: Prisma.SelectSubset<T, StoryUpdateManyArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, StoryUpdateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
     /**
@@ -803,7 +803,7 @@ export interface StoryDelegate<
      *
      */
     updateManyAndReturn<T extends StoryUpdateManyAndReturnArgs>(
-        args: Prisma.SelectSubset<T, StoryUpdateManyAndReturnArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, StoryUpdateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -831,7 +831,7 @@ export interface StoryDelegate<
      * })
      */
     upsert<T extends StoryUpsertArgs>(
-        args: Prisma.SelectSubset<T, StoryUpsertArgs<ExtArgs>>
+        args: Prisma.SelectSubset<T, StoryUpsertArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         runtime.Types.Result.GetResult<
             Prisma.$StoryPayload<ExtArgs>,
@@ -858,7 +858,7 @@ export interface StoryDelegate<
      * })
      **/
     count<T extends StoryCountArgs>(
-        args?: Prisma.Subset<T, StoryCountArgs>
+        args?: Prisma.Subset<T, StoryCountArgs>,
     ): Prisma.PrismaPromise<
         T extends runtime.Types.Utils.Record<'select', any>
             ? T['select'] extends true
@@ -892,7 +892,7 @@ export interface StoryDelegate<
      * })
      **/
     aggregate<T extends StoryAggregateArgs>(
-        args: Prisma.Subset<T, StoryAggregateArgs>
+        args: Prisma.Subset<T, StoryAggregateArgs>,
     ): Prisma.PrismaPromise<GetStoryAggregateType<T>>;
 
     /**
@@ -968,7 +968,7 @@ export interface StoryDelegate<
                               : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                       }[OrderFields],
     >(
-        args: Prisma.SubsetIntersection<T, StoryGroupByArgs, OrderByArg> & InputErrors
+        args: Prisma.SubsetIntersection<T, StoryGroupByArgs, OrderByArg> & InputErrors,
     ): {} extends InputErrors ? GetStoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
     /**
      * Fields of the Story model
@@ -990,7 +990,7 @@ export interface Prisma__StoryClient<
 > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     scenes<T extends Prisma.Story$scenesArgs<ExtArgs> = {}>(
-        args?: Prisma.Subset<T, Prisma.Story$scenesArgs<ExtArgs>>
+        args?: Prisma.Subset<T, Prisma.Story$scenesArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
         | runtime.Types.Result.GetResult<
               Prisma.$ScenePayload<ExtArgs>,
@@ -1008,7 +1008,7 @@ export interface Prisma__StoryClient<
      */
     then<TResult1 = T, TResult2 = never>(
         onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
-        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null
+        onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
@@ -1016,7 +1016,7 @@ export interface Prisma__StoryClient<
      * @returns A Promise for the completion of the callback.
      */
     catch<TResult = never>(
-        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null
+        onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
     ): runtime.Types.Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
