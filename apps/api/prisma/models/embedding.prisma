@@ -7,5 +7,6 @@ model SceneEmbedding {
 
     scenes      Scene @relation(fields: [sceneId], references: [id])
 
+    @@unique([sceneId, model])
     @@index([sceneId])
 }
