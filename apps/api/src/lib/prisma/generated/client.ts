@@ -50,10 +50,25 @@ export { Prisma };
  */
 export type SceneEmbedding = Prisma.SceneEmbeddingModel;
 /**
+ * Model Fact
+ *
+ */
+export type Fact = Prisma.FactModel;
+/**
  * Model Post
  *
  */
 export type Post = Prisma.PostModel;
+/**
+ * Model Branch
+ *
+ */
+export type Branch = Prisma.BranchModel;
+/**
+ * Model Commit
+ *
+ */
+export type Commit = Prisma.CommitModel;
 /**
  * Model Story
  *
@@ -69,6 +84,11 @@ export type Scene = Prisma.SceneModel;
  *
  */
 export type Event = Prisma.EventModel;
+/**
+ * Model Entity
+ *
+ */
+export type Entity = Prisma.EntityModel;
 /**
  * Model User
  *

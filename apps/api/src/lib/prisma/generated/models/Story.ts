@@ -163,6 +163,8 @@ export type StoryWhereInput = {
     title?: Prisma.StringFilter<'Story'> | string;
     createdAt?: Prisma.DateTimeFilter<'Story'> | Date | string;
     scenes?: Prisma.SceneListRelationFilter;
+    entities?: Prisma.EntityListRelationFilter;
+    Branch?: Prisma.BranchListRelationFilter;
 };
 
 export type StoryOrderByWithRelationInput = {
@@ -170,6 +172,8 @@ export type StoryOrderByWithRelationInput = {
     title?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     scenes?: Prisma.SceneOrderByRelationAggregateInput;
+    entities?: Prisma.EntityOrderByRelationAggregateInput;
+    Branch?: Prisma.BranchOrderByRelationAggregateInput;
 };
 
 export type StoryWhereUniqueInput = Prisma.AtLeast<
@@ -181,6 +185,8 @@ export type StoryWhereUniqueInput = Prisma.AtLeast<
         title?: Prisma.StringFilter<'Story'> | string;
         createdAt?: Prisma.DateTimeFilter<'Story'> | Date | string;
         scenes?: Prisma.SceneListRelationFilter;
+        entities?: Prisma.EntityListRelationFilter;
+        Branch?: Prisma.BranchListRelationFilter;
     },
     'id' | 'id'
 >;
@@ -208,6 +214,8 @@ export type StoryCreateInput = {
     title: string;
     createdAt?: Date | string;
     scenes?: Prisma.SceneCreateNestedManyWithoutStoryInput;
+    entities?: Prisma.EntityCreateNestedManyWithoutStoryInput;
+    Branch?: Prisma.BranchCreateNestedManyWithoutStoryInput;
 };
 
 export type StoryUncheckedCreateInput = {
@@ -215,6 +223,8 @@ export type StoryUncheckedCreateInput = {
     title: string;
     createdAt?: Date | string;
     scenes?: Prisma.SceneUncheckedCreateNestedManyWithoutStoryInput;
+    entities?: Prisma.EntityUncheckedCreateNestedManyWithoutStoryInput;
+    Branch?: Prisma.BranchUncheckedCreateNestedManyWithoutStoryInput;
 };
 
 export type StoryUpdateInput = {
@@ -222,6 +232,8 @@ export type StoryUpdateInput = {
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     scenes?: Prisma.SceneUpdateManyWithoutStoryNestedInput;
+    entities?: Prisma.EntityUpdateManyWithoutStoryNestedInput;
+    Branch?: Prisma.BranchUpdateManyWithoutStoryNestedInput;
 };
 
 export type StoryUncheckedUpdateInput = {
@@ -229,6 +241,8 @@ export type StoryUncheckedUpdateInput = {
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     scenes?: Prisma.SceneUncheckedUpdateManyWithoutStoryNestedInput;
+    entities?: Prisma.EntityUncheckedUpdateManyWithoutStoryNestedInput;
+    Branch?: Prisma.BranchUncheckedUpdateManyWithoutStoryNestedInput;
 };
 
 export type StoryCreateManyInput = {
@@ -249,6 +263,11 @@ export type StoryUncheckedUpdateManyInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
+export type StoryScalarRelationFilter = {
+    is?: Prisma.StoryWhereInput;
+    isNot?: Prisma.StoryWhereInput;
+};
+
 export type StoryCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     title?: Prisma.SortOrder;
@@ -267,9 +286,30 @@ export type StoryMinOrderByAggregateInput = {
     createdAt?: Prisma.SortOrder;
 };
 
-export type StoryScalarRelationFilter = {
-    is?: Prisma.StoryWhereInput;
-    isNot?: Prisma.StoryWhereInput;
+export type StoryCreateNestedOneWithoutBranchInput = {
+    create?: Prisma.XOR<
+        Prisma.StoryCreateWithoutBranchInput,
+        Prisma.StoryUncheckedCreateWithoutBranchInput
+    >;
+    connectOrCreate?: Prisma.StoryCreateOrConnectWithoutBranchInput;
+    connect?: Prisma.StoryWhereUniqueInput;
+};
+
+export type StoryUpdateOneRequiredWithoutBranchNestedInput = {
+    create?: Prisma.XOR<
+        Prisma.StoryCreateWithoutBranchInput,
+        Prisma.StoryUncheckedCreateWithoutBranchInput
+    >;
+    connectOrCreate?: Prisma.StoryCreateOrConnectWithoutBranchInput;
+    upsert?: Prisma.StoryUpsertWithoutBranchInput;
+    connect?: Prisma.StoryWhereUniqueInput;
+    update?: Prisma.XOR<
+        Prisma.XOR<
+            Prisma.StoryUpdateToOneWithWhereWithoutBranchInput,
+            Prisma.StoryUpdateWithoutBranchInput
+        >,
+        Prisma.StoryUncheckedUpdateWithoutBranchInput
+    >;
 };
 
 export type StoryCreateNestedOneWithoutScenesInput = {
@@ -298,16 +338,106 @@ export type StoryUpdateOneRequiredWithoutScenesNestedInput = {
     >;
 };
 
+export type StoryCreateNestedOneWithoutEntitiesInput = {
+    create?: Prisma.XOR<
+        Prisma.StoryCreateWithoutEntitiesInput,
+        Prisma.StoryUncheckedCreateWithoutEntitiesInput
+    >;
+    connectOrCreate?: Prisma.StoryCreateOrConnectWithoutEntitiesInput;
+    connect?: Prisma.StoryWhereUniqueInput;
+};
+
+export type StoryUpdateOneRequiredWithoutEntitiesNestedInput = {
+    create?: Prisma.XOR<
+        Prisma.StoryCreateWithoutEntitiesInput,
+        Prisma.StoryUncheckedCreateWithoutEntitiesInput
+    >;
+    connectOrCreate?: Prisma.StoryCreateOrConnectWithoutEntitiesInput;
+    upsert?: Prisma.StoryUpsertWithoutEntitiesInput;
+    connect?: Prisma.StoryWhereUniqueInput;
+    update?: Prisma.XOR<
+        Prisma.XOR<
+            Prisma.StoryUpdateToOneWithWhereWithoutEntitiesInput,
+            Prisma.StoryUpdateWithoutEntitiesInput
+        >,
+        Prisma.StoryUncheckedUpdateWithoutEntitiesInput
+    >;
+};
+
+export type StoryCreateWithoutBranchInput = {
+    id?: string;
+    title: string;
+    createdAt?: Date | string;
+    scenes?: Prisma.SceneCreateNestedManyWithoutStoryInput;
+    entities?: Prisma.EntityCreateNestedManyWithoutStoryInput;
+};
+
+export type StoryUncheckedCreateWithoutBranchInput = {
+    id?: string;
+    title: string;
+    createdAt?: Date | string;
+    scenes?: Prisma.SceneUncheckedCreateNestedManyWithoutStoryInput;
+    entities?: Prisma.EntityUncheckedCreateNestedManyWithoutStoryInput;
+};
+
+export type StoryCreateOrConnectWithoutBranchInput = {
+    where: Prisma.StoryWhereUniqueInput;
+    create: Prisma.XOR<
+        Prisma.StoryCreateWithoutBranchInput,
+        Prisma.StoryUncheckedCreateWithoutBranchInput
+    >;
+};
+
+export type StoryUpsertWithoutBranchInput = {
+    update: Prisma.XOR<
+        Prisma.StoryUpdateWithoutBranchInput,
+        Prisma.StoryUncheckedUpdateWithoutBranchInput
+    >;
+    create: Prisma.XOR<
+        Prisma.StoryCreateWithoutBranchInput,
+        Prisma.StoryUncheckedCreateWithoutBranchInput
+    >;
+    where?: Prisma.StoryWhereInput;
+};
+
+export type StoryUpdateToOneWithWhereWithoutBranchInput = {
+    where?: Prisma.StoryWhereInput;
+    data: Prisma.XOR<
+        Prisma.StoryUpdateWithoutBranchInput,
+        Prisma.StoryUncheckedUpdateWithoutBranchInput
+    >;
+};
+
+export type StoryUpdateWithoutBranchInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    title?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    scenes?: Prisma.SceneUpdateManyWithoutStoryNestedInput;
+    entities?: Prisma.EntityUpdateManyWithoutStoryNestedInput;
+};
+
+export type StoryUncheckedUpdateWithoutBranchInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    title?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    scenes?: Prisma.SceneUncheckedUpdateManyWithoutStoryNestedInput;
+    entities?: Prisma.EntityUncheckedUpdateManyWithoutStoryNestedInput;
+};
+
 export type StoryCreateWithoutScenesInput = {
     id?: string;
     title: string;
     createdAt?: Date | string;
+    entities?: Prisma.EntityCreateNestedManyWithoutStoryInput;
+    Branch?: Prisma.BranchCreateNestedManyWithoutStoryInput;
 };
 
 export type StoryUncheckedCreateWithoutScenesInput = {
     id?: string;
     title: string;
     createdAt?: Date | string;
+    entities?: Prisma.EntityUncheckedCreateNestedManyWithoutStoryInput;
+    Branch?: Prisma.BranchUncheckedCreateNestedManyWithoutStoryInput;
 };
 
 export type StoryCreateOrConnectWithoutScenesInput = {
@@ -342,12 +472,76 @@ export type StoryUpdateWithoutScenesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    entities?: Prisma.EntityUpdateManyWithoutStoryNestedInput;
+    Branch?: Prisma.BranchUpdateManyWithoutStoryNestedInput;
 };
 
 export type StoryUncheckedUpdateWithoutScenesInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    entities?: Prisma.EntityUncheckedUpdateManyWithoutStoryNestedInput;
+    Branch?: Prisma.BranchUncheckedUpdateManyWithoutStoryNestedInput;
+};
+
+export type StoryCreateWithoutEntitiesInput = {
+    id?: string;
+    title: string;
+    createdAt?: Date | string;
+    scenes?: Prisma.SceneCreateNestedManyWithoutStoryInput;
+    Branch?: Prisma.BranchCreateNestedManyWithoutStoryInput;
+};
+
+export type StoryUncheckedCreateWithoutEntitiesInput = {
+    id?: string;
+    title: string;
+    createdAt?: Date | string;
+    scenes?: Prisma.SceneUncheckedCreateNestedManyWithoutStoryInput;
+    Branch?: Prisma.BranchUncheckedCreateNestedManyWithoutStoryInput;
+};
+
+export type StoryCreateOrConnectWithoutEntitiesInput = {
+    where: Prisma.StoryWhereUniqueInput;
+    create: Prisma.XOR<
+        Prisma.StoryCreateWithoutEntitiesInput,
+        Prisma.StoryUncheckedCreateWithoutEntitiesInput
+    >;
+};
+
+export type StoryUpsertWithoutEntitiesInput = {
+    update: Prisma.XOR<
+        Prisma.StoryUpdateWithoutEntitiesInput,
+        Prisma.StoryUncheckedUpdateWithoutEntitiesInput
+    >;
+    create: Prisma.XOR<
+        Prisma.StoryCreateWithoutEntitiesInput,
+        Prisma.StoryUncheckedCreateWithoutEntitiesInput
+    >;
+    where?: Prisma.StoryWhereInput;
+};
+
+export type StoryUpdateToOneWithWhereWithoutEntitiesInput = {
+    where?: Prisma.StoryWhereInput;
+    data: Prisma.XOR<
+        Prisma.StoryUpdateWithoutEntitiesInput,
+        Prisma.StoryUncheckedUpdateWithoutEntitiesInput
+    >;
+};
+
+export type StoryUpdateWithoutEntitiesInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    title?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    scenes?: Prisma.SceneUpdateManyWithoutStoryNestedInput;
+    Branch?: Prisma.BranchUpdateManyWithoutStoryNestedInput;
+};
+
+export type StoryUncheckedUpdateWithoutEntitiesInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    title?: Prisma.StringFieldUpdateOperationsInput | string;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    scenes?: Prisma.SceneUncheckedUpdateManyWithoutStoryNestedInput;
+    Branch?: Prisma.BranchUncheckedUpdateManyWithoutStoryNestedInput;
 };
 
 /**
@@ -356,12 +550,16 @@ export type StoryUncheckedUpdateWithoutScenesInput = {
 
 export type StoryCountOutputType = {
     scenes: number;
+    entities: number;
+    Branch: number;
 };
 
 export type StoryCountOutputTypeSelect<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
     scenes?: boolean | StoryCountOutputTypeCountScenesArgs;
+    entities?: boolean | StoryCountOutputTypeCountEntitiesArgs;
+    Branch?: boolean | StoryCountOutputTypeCountBranchArgs;
 };
 
 /**
@@ -385,6 +583,24 @@ export type StoryCountOutputTypeCountScenesArgs<
     where?: Prisma.SceneWhereInput;
 };
 
+/**
+ * StoryCountOutputType without action
+ */
+export type StoryCountOutputTypeCountEntitiesArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    where?: Prisma.EntityWhereInput;
+};
+
+/**
+ * StoryCountOutputType without action
+ */
+export type StoryCountOutputTypeCountBranchArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    where?: Prisma.BranchWhereInput;
+};
+
 export type StorySelect<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -393,6 +609,8 @@ export type StorySelect<
         title?: boolean;
         createdAt?: boolean;
         scenes?: boolean | Prisma.Story$scenesArgs<ExtArgs>;
+        entities?: boolean | Prisma.Story$entitiesArgs<ExtArgs>;
+        Branch?: boolean | Prisma.Story$BranchArgs<ExtArgs>;
         _count?: boolean | Prisma.StoryCountOutputTypeDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['story']
@@ -433,6 +651,8 @@ export type StoryInclude<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
     scenes?: boolean | Prisma.Story$scenesArgs<ExtArgs>;
+    entities?: boolean | Prisma.Story$entitiesArgs<ExtArgs>;
+    Branch?: boolean | Prisma.Story$BranchArgs<ExtArgs>;
     _count?: boolean | Prisma.StoryCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type StoryIncludeCreateManyAndReturn<
@@ -448,6 +668,8 @@ export type $StoryPayload<
     name: 'Story';
     objects: {
         scenes: Prisma.$ScenePayload<ExtArgs>[];
+        entities: Prisma.$EntityPayload<ExtArgs>[];
+        Branch: Prisma.$BranchPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<
         {
@@ -1000,6 +1222,28 @@ export interface Prisma__StoryClient<
           >
         | Null
     >;
+    entities<T extends Prisma.Story$entitiesArgs<ExtArgs> = {}>(
+        args?: Prisma.Subset<T, Prisma.Story$entitiesArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+        | runtime.Types.Result.GetResult<
+              Prisma.$EntityPayload<ExtArgs>,
+              T,
+              'findMany',
+              GlobalOmitOptions
+          >
+        | Null
+    >;
+    Branch<T extends Prisma.Story$BranchArgs<ExtArgs> = {}>(
+        args?: Prisma.Subset<T, Prisma.Story$BranchArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+        | runtime.Types.Result.GetResult<
+              Prisma.$BranchPayload<ExtArgs>,
+              T,
+              'findMany',
+              GlobalOmitOptions
+          >
+        | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1477,6 +1721,58 @@ export type Story$scenesArgs<
     take?: number;
     skip?: number;
     distinct?: Prisma.SceneScalarFieldEnum | Prisma.SceneScalarFieldEnum[];
+};
+
+/**
+ * Story.entities
+ */
+export type Story$entitiesArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    /**
+     * Select specific fields to fetch from the Entity
+     */
+    select?: Prisma.EntitySelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Entity
+     */
+    omit?: Prisma.EntityOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.EntityInclude<ExtArgs> | null;
+    where?: Prisma.EntityWhereInput;
+    orderBy?: Prisma.EntityOrderByWithRelationInput | Prisma.EntityOrderByWithRelationInput[];
+    cursor?: Prisma.EntityWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.EntityScalarFieldEnum | Prisma.EntityScalarFieldEnum[];
+};
+
+/**
+ * Story.Branch
+ */
+export type Story$BranchArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    /**
+     * Select specific fields to fetch from the Branch
+     */
+    select?: Prisma.BranchSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Branch
+     */
+    omit?: Prisma.BranchOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.BranchInclude<ExtArgs> | null;
+    where?: Prisma.BranchWhereInput;
+    orderBy?: Prisma.BranchOrderByWithRelationInput | Prisma.BranchOrderByWithRelationInput[];
+    cursor?: Prisma.BranchWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.BranchScalarFieldEnum | Prisma.BranchScalarFieldEnum[];
 };
 
 /**

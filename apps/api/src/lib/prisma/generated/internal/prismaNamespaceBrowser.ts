@@ -49,10 +49,14 @@ export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
     SceneEmbedding: 'SceneEmbedding',
+    Fact: 'Fact',
     Post: 'Post',
+    Branch: 'Branch',
+    Commit: 'Commit',
     Story: 'Story',
     Scene: 'Scene',
     Event: 'Event',
+    Entity: 'Entity',
     User: 'User',
 } as const;
 
@@ -82,6 +86,20 @@ export const SceneEmbeddingScalarFieldEnum = {
 export type SceneEmbeddingScalarFieldEnum =
     (typeof SceneEmbeddingScalarFieldEnum)[keyof typeof SceneEmbeddingScalarFieldEnum];
 
+export const FactScalarFieldEnum = {
+    id: 'id',
+    commitId: 'commitId',
+    sequenceId: 'sequenceId',
+    subjectId: 'subjectId',
+    predicate: 'predicate',
+    objectId: 'objectId',
+    value: 'value',
+    sourceEventId: 'sourceEventId',
+    extractorVersion: 'extractorVersion',
+} as const;
+
+export type FactScalarFieldEnum = (typeof FactScalarFieldEnum)[keyof typeof FactScalarFieldEnum];
+
 export const PostScalarFieldEnum = {
     id: 'id',
     title: 'title',
@@ -94,6 +112,28 @@ export const PostScalarFieldEnum = {
 } as const;
 
 export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum];
+
+export const BranchScalarFieldEnum = {
+    id: 'id',
+    storyId: 'storyId',
+    name: 'name',
+    headCommitId: 'headCommitId',
+    forkedFromCommitId: 'forkedFromCommitId',
+} as const;
+
+export type BranchScalarFieldEnum =
+    (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum];
+
+export const CommitScalarFieldEnum = {
+    id: 'id',
+    branchId: 'branchId',
+    parentId: 'parentId',
+    mergeParentId: 'mergeParentId',
+    sceneId: 'sceneId',
+} as const;
+
+export type CommitScalarFieldEnum =
+    (typeof CommitScalarFieldEnum)[keyof typeof CommitScalarFieldEnum];
 
 export const StoryScalarFieldEnum = {
     id: 'id',
@@ -121,12 +161,24 @@ export const EventScalarFieldEnum = {
     sceneId: 'sceneId',
     type: 'type',
     description: 'description',
-    subject: 'subject',
-    object: 'object',
+    subjectId: 'subjectId',
+    objectId: 'objectId',
     createdAt: 'createdAt',
 } as const;
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum];
+
+export const EntityScalarFieldEnum = {
+    id: 'id',
+    storyId: 'storyId',
+    kind: 'kind',
+    name: 'name',
+    aliases: 'aliases',
+    createdAt: 'createdAt',
+} as const;
+
+export type EntityScalarFieldEnum =
+    (typeof EntityScalarFieldEnum)[keyof typeof EntityScalarFieldEnum];
 
 export const UserScalarFieldEnum = {
     id: 'id',

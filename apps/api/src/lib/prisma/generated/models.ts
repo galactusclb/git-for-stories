@@ -8,9 +8,13 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/SceneEmbedding.ts';
+export type * from './models/Fact.ts';
 export type * from './models/Post.ts';
+export type * from './models/Branch.ts';
+export type * from './models/Commit.ts';
 export type * from './models/Story.ts';
 export type * from './models/Scene.ts';
 export type * from './models/Event.ts';
+export type * from './models/Entity.ts';
 export type * from './models/User.ts';
 export type * from './commonInputTypes.ts';
