@@ -11,6 +11,7 @@ import { errorHandler } from '@/middleware/error.middleware.ts';
 import { constants } from '@/utils/constant';
 
 import { createEmbeddingProvider, createLLMProvider } from './lib/llm/llm-provider.factory';
+import { createJobConsumer, createQueueJobProducer } from './lib/queue/queue-provider.factory';
 
 const app = express();
 const apiRouter = express.Router();
@@ -27,7 +28,7 @@ app.use(
             if (!allowedOrigins.includes(origin)) {
                 return callback(
                     new Error('CORS policy does not allow access from the specified origin'),
-                    false
+                    false,
                 );
             }
             return callback(null, true);
@@ -35,7 +36,7 @@ app.use(
         credentials: true,
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-    })
+    }),
 );
 
 app.use(cookieParser());
@@ -64,8 +65,18 @@ apiRouter.use('/posts', postRoutes);
 
 const llmProvider = createLLMProvider('deepseek');
 const embeddingProvider = createEmbeddingProvider('gemini');
+const jobProducer = createQueueJobProducer('bullmq');
+const jobConsumer = createJobConsumer('bullmq');
 
-apiRouter.use('/stories', createStoryModule({ llmProvider, embeddingProvider }));
+const storyModule = createStoryModule({
+    llmProvider,
+    embeddingProvider,
+    jobProducer,
+    jobConsumer,
+    embeddingModel: 'gemini-embedding-2',
+});
+
+apiRouter.use('/stories', storyModule.router);
 
 app.use('/api', apiRouter);
 

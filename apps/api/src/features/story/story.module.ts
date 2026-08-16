@@ -1,50 +1,76 @@
 import { EmbeddingProvider } from '@/lib/llm/interfaces/embedding-provider.interface';
 import { LLMProvider } from '@/lib/llm/interfaces/llm-provider.interface';
+import { JobConsumer, JobProducer } from '@/lib/queue/interfaces/queue-provider.interface';
 
 import { AnswerStoryQuestionUseCase } from './application/use-cases/answer-story-question.use-case';
-import { CreateSceneEmbeddingUseCase } from './application/use-cases/create-scene-embedding.use-case';
-import { ExtractStoryScenesUseCase } from './application/use-cases/extract-story-scenes.use-case';
-import { SaveSceneEmbeddingUseCase } from './application/use-cases/save-scene-embedding.use-case';
-import { SaveStoryScenesUseCase } from './application/use-cases/save-story-scene.use-case';
+import { IndexStoryScenesUseCase } from './application/use-cases/index-story-scenes.use-case';
+import { PullOutStoryUseCase } from './application/use-cases/pullout-story.use-case';
 import { LLMEmbeddingGenerator } from './infrastructure/llm/embedding-generator';
 import { LLMSceneExtractor } from './infrastructure/llm/scene-extractor';
 import { LLMSceneReasoner } from './infrastructure/llm/scene-reasoner';
 import { PostgresEmbeddingRepository } from './infrastructure/persistence/postgres/embedding.repository';
 import { PostgresStoryRepository } from './infrastructure/persistence/postgres/story.repository';
+import { QueuedSceneIndexing } from './infrastructure/queue/scene-indexing.queue';
+import { startSceneIndexingWorker } from './infrastructure/queue/scene-indexing.worker';
 import { StoryController } from './presentation/story.controller';
 import { createStoryRouter } from './presentation/story.route';
 
 interface StoryModuleDependencies {
     llmProvider: LLMProvider;
     embeddingProvider: EmbeddingProvider;
+    jobProducer: JobProducer;
+    jobConsumer?: JobConsumer;
+    embeddingModel: string;
 }
 
-export function createStoryModule({ llmProvider, embeddingProvider }: StoryModuleDependencies) {
+export function createStoryModule({
+    llmProvider,
+    embeddingProvider,
+    jobProducer,
+    jobConsumer,
+    embeddingModel,
+}: StoryModuleDependencies) {
+    //adapters
     const sceneExtractor = new LLMSceneExtractor(llmProvider);
     const embeddingGenerator = new LLMEmbeddingGenerator(embeddingProvider);
+    const sceneReasoner = new LLMSceneReasoner(llmProvider);
     const storyRepository = new PostgresStoryRepository();
     const embeddingRepository = new PostgresEmbeddingRepository();
-    const sceneReasoner = new LLMSceneReasoner(llmProvider);
+    const sceneIndexingQueue = new QueuedSceneIndexing(jobProducer);
 
-    const extractStoryScenes = new ExtractStoryScenesUseCase(sceneExtractor);
-    const saveStoryScenes = new SaveStoryScenesUseCase(storyRepository);
-    const createSceneEmbedding = new CreateSceneEmbeddingUseCase(embeddingGenerator);
-    const saveSceneEmbeddingUseCase = new SaveSceneEmbeddingUseCase(embeddingRepository);
-    const sceneReasoningUseCase = new AnswerStoryQuestionUseCase(
+    //use cases
+    const pullOutStoryUseCase = new PullOutStoryUseCase(
+        sceneExtractor,
+        storyRepository,
+        sceneIndexingQueue,
+        embeddingModel,
+    );
+
+    const answerStoryQuestionUseCase = new AnswerStoryQuestionUseCase(
         embeddingGenerator,
         embeddingRepository,
-        sceneReasoner
+        sceneReasoner,
+        embeddingModel,
     );
 
-    const controller = new StoryController(
-        extractStoryScenes,
-        saveStoryScenes,
-        createSceneEmbedding,
-        saveSceneEmbeddingUseCase,
-        sceneReasoningUseCase
+    const indexStoryScenesUseCase = new IndexStoryScenesUseCase(
+        storyRepository,
+        embeddingGenerator,
+        embeddingRepository,
     );
 
+    // driving adapters
+    const controller = new StoryController(pullOutStoryUseCase, answerStoryQuestionUseCase);
     const router = createStoryRouter(controller);
 
-    return router;
+    const worker = jobConsumer
+        ? startSceneIndexingWorker(jobConsumer, indexStoryScenesUseCase)
+        : undefined;
+
+    return {
+        router,
+        close: async () => {
+            await worker?.close();
+        },
+    };
 }

@@ -4,8 +4,8 @@ import { Prisma } from '@/lib/prisma/generated/client';
 import prisma from '@/lib/prisma/prisma';
 
 import { EmbeddingRespository } from '../../../application/ports/embedding-repository.port';
-import { SceneEmbedding } from '../../../application/use-cases/create-scene-embedding.use-case';
 import { Embedding } from '../../../domain/entities/embedding';
+import { SceneEmbedding } from '../../../domain/entities/scene-embedding';
 import { SceneSearchResult } from '../../../domain/entities/scene-search-result';
 
 export class PostgresEmbeddingRepository implements EmbeddingRespository {
@@ -18,11 +18,14 @@ export class PostgresEmbeddingRepository implements EmbeddingRespository {
 
         const values = sceneEmbeddings.map(
             ({ sceneId, embedding }) =>
-                Prisma.sql`(${randomUUID()}, ${sceneId}, ${`[${embedding.values.join(',')}]`}::vector, ${embeddingModel})`
+                Prisma.sql`(${randomUUID()}, ${sceneId}, ${`[${embedding.values.join(',')}]`}::vector, ${embeddingModel})`,
         );
 
         await prisma.$executeRaw`
-            INSERT INTO "SceneEmbedding" ("id", "sceneId", embedding, model) VALUES ${Prisma.join(values)};
+            INSERT INTO "SceneEmbedding" ("id", "sceneId", embedding, model) 
+            VALUES ${Prisma.join(values)}
+            ON CONFLICT ("sceneId", "model")
+            DO UPDATE SET embedding = EXCLUDED.embedding, "createdAt" = NOW();
         `;
     }
 
@@ -30,7 +33,7 @@ export class PostgresEmbeddingRepository implements EmbeddingRespository {
         storyId: string,
         queryEmbedding: Embedding,
         limit: number,
-        embeddingModel: string
+        embeddingModel: string,
     ): Promise<SceneSearchResult[]> {
         const vector = `[${queryEmbedding.values.join(',')}]`;
 
