@@ -1,6 +1,6 @@
 import { Embedding } from '../../domain/entities/embedding';
+import { SceneEmbedding } from '../../domain/entities/scene-embedding';
 import { SceneSearchResult } from '../../domain/entities/scene-search-result';
-import { SceneEmbedding } from '../use-cases/create-scene-embedding.use-case';
 
 export interface EmbeddingRespository {
     saveMany(sceneEmbeddings: SceneEmbedding[], embeddingModel: string): Promise<void>;
@@ -9,6 +9,6 @@ export interface EmbeddingRespository {
         storyId: string,
         queryEmbedding: Embedding,
         limit: number,
-        embeddingModel: string
+        embeddingModel: string,
     ): Promise<SceneSearchResult[]>;
 }

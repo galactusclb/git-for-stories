@@ -27,14 +27,14 @@ export class AnswerStoryQuestionUseCase {
     constructor(
         private readonly embeddingGenerator: EmbeddingGenerator,
         private readonly embeddingRespository: EmbeddingRespository,
-        private readonly sceneReasoner: SceneReasoner
+        private readonly sceneReasoner: SceneReasoner,
+        private readonly embeddingModel: string,
     ) {}
 
     async execute(
         storyId: string,
         question: string,
         limit: number,
-        embeddingModel: string
     ): Promise<AnswerStoryQuestionResult> {
         // TODO: Need to check story is available or not
 
@@ -48,7 +48,7 @@ export class AnswerStoryQuestionUseCase {
             storyId,
             queryEmbedding,
             limit,
-            embeddingModel
+            this.embeddingModel,
         );
 
         if (!scenes.length) {
@@ -72,7 +72,7 @@ export class AnswerStoryQuestionUseCase {
         try {
             const { answer, usedSceneIds } = await this.sceneReasoner.reason(
                 question,
-                relevantScenes
+                relevantScenes,
             );
 
             const shownIds = new Set(relevantScenes.map((s) => s.sceneId));
