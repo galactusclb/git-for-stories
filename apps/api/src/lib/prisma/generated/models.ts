@@ -9,6 +9,7 @@
  */
 export type * from './models/SceneEmbedding.ts';
 export type * from './models/Fact.ts';
+export type * from './models/Presupposition.ts';
 export type * from './models/Post.ts';
 export type * from './models/Branch.ts';
 export type * from './models/Commit.ts';

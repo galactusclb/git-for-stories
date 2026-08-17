@@ -187,6 +187,8 @@ export type EntityWhereInput = {
     objectOfEvents?: Prisma.EventListRelationFilter;
     factsAsSubject?: Prisma.FactListRelationFilter;
     factsAsObject?: Prisma.FactListRelationFilter;
+    presuppositionSubject?: Prisma.PresuppositionListRelationFilter;
+    presuppositionObject?: Prisma.PresuppositionListRelationFilter;
 };
 
 export type EntityOrderByWithRelationInput = {
@@ -201,6 +203,8 @@ export type EntityOrderByWithRelationInput = {
     objectOfEvents?: Prisma.EventOrderByRelationAggregateInput;
     factsAsSubject?: Prisma.FactOrderByRelationAggregateInput;
     factsAsObject?: Prisma.FactOrderByRelationAggregateInput;
+    presuppositionSubject?: Prisma.PresuppositionOrderByRelationAggregateInput;
+    presuppositionObject?: Prisma.PresuppositionOrderByRelationAggregateInput;
 };
 
 export type EntityWhereUniqueInput = Prisma.AtLeast<
@@ -219,6 +223,8 @@ export type EntityWhereUniqueInput = Prisma.AtLeast<
         objectOfEvents?: Prisma.EventListRelationFilter;
         factsAsSubject?: Prisma.FactListRelationFilter;
         factsAsObject?: Prisma.FactListRelationFilter;
+        presuppositionSubject?: Prisma.PresuppositionListRelationFilter;
+        presuppositionObject?: Prisma.PresuppositionListRelationFilter;
     },
     'id'
 >;
@@ -262,6 +268,8 @@ export type EntityCreateInput = {
     objectOfEvents?: Prisma.EventCreateNestedManyWithoutObjectInput;
     factsAsSubject?: Prisma.FactCreateNestedManyWithoutSubjectInput;
     factsAsObject?: Prisma.FactCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityUncheckedCreateInput = {
@@ -275,6 +283,8 @@ export type EntityUncheckedCreateInput = {
     objectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutObjectInput;
     factsAsSubject?: Prisma.FactUncheckedCreateNestedManyWithoutSubjectInput;
     factsAsObject?: Prisma.FactUncheckedCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityUpdateInput = {
@@ -288,6 +298,8 @@ export type EntityUpdateInput = {
     objectOfEvents?: Prisma.EventUpdateManyWithoutObjectNestedInput;
     factsAsSubject?: Prisma.FactUpdateManyWithoutSubjectNestedInput;
     factsAsObject?: Prisma.FactUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUncheckedUpdateInput = {
@@ -301,6 +313,8 @@ export type EntityUncheckedUpdateInput = {
     objectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutObjectNestedInput;
     factsAsSubject?: Prisma.FactUncheckedUpdateManyWithoutSubjectNestedInput;
     factsAsObject?: Prisma.FactUncheckedUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityCreateManyInput = {
@@ -425,6 +439,60 @@ export type EntityUpdateOneWithoutFactsAsObjectNestedInput = {
             Prisma.EntityUpdateWithoutFactsAsObjectInput
         >,
         Prisma.EntityUncheckedUpdateWithoutFactsAsObjectInput
+    >;
+};
+
+export type EntityCreateNestedOneWithoutPresuppositionSubjectInput = {
+    create?: Prisma.XOR<
+        Prisma.EntityCreateWithoutPresuppositionSubjectInput,
+        Prisma.EntityUncheckedCreateWithoutPresuppositionSubjectInput
+    >;
+    connectOrCreate?: Prisma.EntityCreateOrConnectWithoutPresuppositionSubjectInput;
+    connect?: Prisma.EntityWhereUniqueInput;
+};
+
+export type EntityCreateNestedOneWithoutPresuppositionObjectInput = {
+    create?: Prisma.XOR<
+        Prisma.EntityCreateWithoutPresuppositionObjectInput,
+        Prisma.EntityUncheckedCreateWithoutPresuppositionObjectInput
+    >;
+    connectOrCreate?: Prisma.EntityCreateOrConnectWithoutPresuppositionObjectInput;
+    connect?: Prisma.EntityWhereUniqueInput;
+};
+
+export type EntityUpdateOneRequiredWithoutPresuppositionSubjectNestedInput = {
+    create?: Prisma.XOR<
+        Prisma.EntityCreateWithoutPresuppositionSubjectInput,
+        Prisma.EntityUncheckedCreateWithoutPresuppositionSubjectInput
+    >;
+    connectOrCreate?: Prisma.EntityCreateOrConnectWithoutPresuppositionSubjectInput;
+    upsert?: Prisma.EntityUpsertWithoutPresuppositionSubjectInput;
+    connect?: Prisma.EntityWhereUniqueInput;
+    update?: Prisma.XOR<
+        Prisma.XOR<
+            Prisma.EntityUpdateToOneWithWhereWithoutPresuppositionSubjectInput,
+            Prisma.EntityUpdateWithoutPresuppositionSubjectInput
+        >,
+        Prisma.EntityUncheckedUpdateWithoutPresuppositionSubjectInput
+    >;
+};
+
+export type EntityUpdateOneWithoutPresuppositionObjectNestedInput = {
+    create?: Prisma.XOR<
+        Prisma.EntityCreateWithoutPresuppositionObjectInput,
+        Prisma.EntityUncheckedCreateWithoutPresuppositionObjectInput
+    >;
+    connectOrCreate?: Prisma.EntityCreateOrConnectWithoutPresuppositionObjectInput;
+    upsert?: Prisma.EntityUpsertWithoutPresuppositionObjectInput;
+    disconnect?: Prisma.EntityWhereInput | boolean;
+    delete?: Prisma.EntityWhereInput | boolean;
+    connect?: Prisma.EntityWhereUniqueInput;
+    update?: Prisma.XOR<
+        Prisma.XOR<
+            Prisma.EntityUpdateToOneWithWhereWithoutPresuppositionObjectInput,
+            Prisma.EntityUpdateWithoutPresuppositionObjectInput
+        >,
+        Prisma.EntityUncheckedUpdateWithoutPresuppositionObjectInput
     >;
 };
 
@@ -591,6 +659,8 @@ export type EntityCreateWithoutFactsAsSubjectInput = {
     subjectOfEvents?: Prisma.EventCreateNestedManyWithoutSubjectInput;
     objectOfEvents?: Prisma.EventCreateNestedManyWithoutObjectInput;
     factsAsObject?: Prisma.FactCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityUncheckedCreateWithoutFactsAsSubjectInput = {
@@ -603,6 +673,8 @@ export type EntityUncheckedCreateWithoutFactsAsSubjectInput = {
     subjectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutSubjectInput;
     objectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutObjectInput;
     factsAsObject?: Prisma.FactUncheckedCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityCreateOrConnectWithoutFactsAsSubjectInput = {
@@ -623,6 +695,8 @@ export type EntityCreateWithoutFactsAsObjectInput = {
     subjectOfEvents?: Prisma.EventCreateNestedManyWithoutSubjectInput;
     objectOfEvents?: Prisma.EventCreateNestedManyWithoutObjectInput;
     factsAsSubject?: Prisma.FactCreateNestedManyWithoutSubjectInput;
+    presuppositionSubject?: Prisma.PresuppositionCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityUncheckedCreateWithoutFactsAsObjectInput = {
@@ -635,6 +709,8 @@ export type EntityUncheckedCreateWithoutFactsAsObjectInput = {
     subjectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutSubjectInput;
     objectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutObjectInput;
     factsAsSubject?: Prisma.FactUncheckedCreateNestedManyWithoutSubjectInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityCreateOrConnectWithoutFactsAsObjectInput = {
@@ -675,6 +751,8 @@ export type EntityUpdateWithoutFactsAsSubjectInput = {
     subjectOfEvents?: Prisma.EventUpdateManyWithoutSubjectNestedInput;
     objectOfEvents?: Prisma.EventUpdateManyWithoutObjectNestedInput;
     factsAsObject?: Prisma.FactUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUncheckedUpdateWithoutFactsAsSubjectInput = {
@@ -687,6 +765,8 @@ export type EntityUncheckedUpdateWithoutFactsAsSubjectInput = {
     subjectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutSubjectNestedInput;
     objectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutObjectNestedInput;
     factsAsObject?: Prisma.FactUncheckedUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUpsertWithoutFactsAsObjectInput = {
@@ -719,6 +799,8 @@ export type EntityUpdateWithoutFactsAsObjectInput = {
     subjectOfEvents?: Prisma.EventUpdateManyWithoutSubjectNestedInput;
     objectOfEvents?: Prisma.EventUpdateManyWithoutObjectNestedInput;
     factsAsSubject?: Prisma.FactUpdateManyWithoutSubjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUncheckedUpdateWithoutFactsAsObjectInput = {
@@ -731,6 +813,176 @@ export type EntityUncheckedUpdateWithoutFactsAsObjectInput = {
     subjectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutSubjectNestedInput;
     objectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutObjectNestedInput;
     factsAsSubject?: Prisma.FactUncheckedUpdateManyWithoutSubjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedUpdateManyWithoutObjectNestedInput;
+};
+
+export type EntityCreateWithoutPresuppositionSubjectInput = {
+    id?: string;
+    kind: $Enums.EntityKind;
+    name: string;
+    aliases?: Prisma.EntityCreatealiasesInput | string[];
+    createdAt?: Date | string;
+    story: Prisma.StoryCreateNestedOneWithoutEntitiesInput;
+    subjectOfEvents?: Prisma.EventCreateNestedManyWithoutSubjectInput;
+    objectOfEvents?: Prisma.EventCreateNestedManyWithoutObjectInput;
+    factsAsSubject?: Prisma.FactCreateNestedManyWithoutSubjectInput;
+    factsAsObject?: Prisma.FactCreateNestedManyWithoutObjectInput;
+    presuppositionObject?: Prisma.PresuppositionCreateNestedManyWithoutObjectInput;
+};
+
+export type EntityUncheckedCreateWithoutPresuppositionSubjectInput = {
+    id?: string;
+    storyId: string;
+    kind: $Enums.EntityKind;
+    name: string;
+    aliases?: Prisma.EntityCreatealiasesInput | string[];
+    createdAt?: Date | string;
+    subjectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutSubjectInput;
+    objectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutObjectInput;
+    factsAsSubject?: Prisma.FactUncheckedCreateNestedManyWithoutSubjectInput;
+    factsAsObject?: Prisma.FactUncheckedCreateNestedManyWithoutObjectInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutObjectInput;
+};
+
+export type EntityCreateOrConnectWithoutPresuppositionSubjectInput = {
+    where: Prisma.EntityWhereUniqueInput;
+    create: Prisma.XOR<
+        Prisma.EntityCreateWithoutPresuppositionSubjectInput,
+        Prisma.EntityUncheckedCreateWithoutPresuppositionSubjectInput
+    >;
+};
+
+export type EntityCreateWithoutPresuppositionObjectInput = {
+    id?: string;
+    kind: $Enums.EntityKind;
+    name: string;
+    aliases?: Prisma.EntityCreatealiasesInput | string[];
+    createdAt?: Date | string;
+    story: Prisma.StoryCreateNestedOneWithoutEntitiesInput;
+    subjectOfEvents?: Prisma.EventCreateNestedManyWithoutSubjectInput;
+    objectOfEvents?: Prisma.EventCreateNestedManyWithoutObjectInput;
+    factsAsSubject?: Prisma.FactCreateNestedManyWithoutSubjectInput;
+    factsAsObject?: Prisma.FactCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionCreateNestedManyWithoutSubjectInput;
+};
+
+export type EntityUncheckedCreateWithoutPresuppositionObjectInput = {
+    id?: string;
+    storyId: string;
+    kind: $Enums.EntityKind;
+    name: string;
+    aliases?: Prisma.EntityCreatealiasesInput | string[];
+    createdAt?: Date | string;
+    subjectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutSubjectInput;
+    objectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutObjectInput;
+    factsAsSubject?: Prisma.FactUncheckedCreateNestedManyWithoutSubjectInput;
+    factsAsObject?: Prisma.FactUncheckedCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSubjectInput;
+};
+
+export type EntityCreateOrConnectWithoutPresuppositionObjectInput = {
+    where: Prisma.EntityWhereUniqueInput;
+    create: Prisma.XOR<
+        Prisma.EntityCreateWithoutPresuppositionObjectInput,
+        Prisma.EntityUncheckedCreateWithoutPresuppositionObjectInput
+    >;
+};
+
+export type EntityUpsertWithoutPresuppositionSubjectInput = {
+    update: Prisma.XOR<
+        Prisma.EntityUpdateWithoutPresuppositionSubjectInput,
+        Prisma.EntityUncheckedUpdateWithoutPresuppositionSubjectInput
+    >;
+    create: Prisma.XOR<
+        Prisma.EntityCreateWithoutPresuppositionSubjectInput,
+        Prisma.EntityUncheckedCreateWithoutPresuppositionSubjectInput
+    >;
+    where?: Prisma.EntityWhereInput;
+};
+
+export type EntityUpdateToOneWithWhereWithoutPresuppositionSubjectInput = {
+    where?: Prisma.EntityWhereInput;
+    data: Prisma.XOR<
+        Prisma.EntityUpdateWithoutPresuppositionSubjectInput,
+        Prisma.EntityUncheckedUpdateWithoutPresuppositionSubjectInput
+    >;
+};
+
+export type EntityUpdateWithoutPresuppositionSubjectInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    kind?: Prisma.EnumEntityKindFieldUpdateOperationsInput | $Enums.EntityKind;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    aliases?: Prisma.EntityUpdatealiasesInput | string[];
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    story?: Prisma.StoryUpdateOneRequiredWithoutEntitiesNestedInput;
+    subjectOfEvents?: Prisma.EventUpdateManyWithoutSubjectNestedInput;
+    objectOfEvents?: Prisma.EventUpdateManyWithoutObjectNestedInput;
+    factsAsSubject?: Prisma.FactUpdateManyWithoutSubjectNestedInput;
+    factsAsObject?: Prisma.FactUpdateManyWithoutObjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUpdateManyWithoutObjectNestedInput;
+};
+
+export type EntityUncheckedUpdateWithoutPresuppositionSubjectInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    storyId?: Prisma.StringFieldUpdateOperationsInput | string;
+    kind?: Prisma.EnumEntityKindFieldUpdateOperationsInput | $Enums.EntityKind;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    aliases?: Prisma.EntityUpdatealiasesInput | string[];
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    subjectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutSubjectNestedInput;
+    objectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutObjectNestedInput;
+    factsAsSubject?: Prisma.FactUncheckedUpdateManyWithoutSubjectNestedInput;
+    factsAsObject?: Prisma.FactUncheckedUpdateManyWithoutObjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedUpdateManyWithoutObjectNestedInput;
+};
+
+export type EntityUpsertWithoutPresuppositionObjectInput = {
+    update: Prisma.XOR<
+        Prisma.EntityUpdateWithoutPresuppositionObjectInput,
+        Prisma.EntityUncheckedUpdateWithoutPresuppositionObjectInput
+    >;
+    create: Prisma.XOR<
+        Prisma.EntityCreateWithoutPresuppositionObjectInput,
+        Prisma.EntityUncheckedCreateWithoutPresuppositionObjectInput
+    >;
+    where?: Prisma.EntityWhereInput;
+};
+
+export type EntityUpdateToOneWithWhereWithoutPresuppositionObjectInput = {
+    where?: Prisma.EntityWhereInput;
+    data: Prisma.XOR<
+        Prisma.EntityUpdateWithoutPresuppositionObjectInput,
+        Prisma.EntityUncheckedUpdateWithoutPresuppositionObjectInput
+    >;
+};
+
+export type EntityUpdateWithoutPresuppositionObjectInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    kind?: Prisma.EnumEntityKindFieldUpdateOperationsInput | $Enums.EntityKind;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    aliases?: Prisma.EntityUpdatealiasesInput | string[];
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    story?: Prisma.StoryUpdateOneRequiredWithoutEntitiesNestedInput;
+    subjectOfEvents?: Prisma.EventUpdateManyWithoutSubjectNestedInput;
+    objectOfEvents?: Prisma.EventUpdateManyWithoutObjectNestedInput;
+    factsAsSubject?: Prisma.FactUpdateManyWithoutSubjectNestedInput;
+    factsAsObject?: Prisma.FactUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUpdateManyWithoutSubjectNestedInput;
+};
+
+export type EntityUncheckedUpdateWithoutPresuppositionObjectInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    storyId?: Prisma.StringFieldUpdateOperationsInput | string;
+    kind?: Prisma.EnumEntityKindFieldUpdateOperationsInput | $Enums.EntityKind;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    aliases?: Prisma.EntityUpdatealiasesInput | string[];
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    subjectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutSubjectNestedInput;
+    objectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutObjectNestedInput;
+    factsAsSubject?: Prisma.FactUncheckedUpdateManyWithoutSubjectNestedInput;
+    factsAsObject?: Prisma.FactUncheckedUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedUpdateManyWithoutSubjectNestedInput;
 };
 
 export type EntityCreateWithoutStoryInput = {
@@ -743,6 +995,8 @@ export type EntityCreateWithoutStoryInput = {
     objectOfEvents?: Prisma.EventCreateNestedManyWithoutObjectInput;
     factsAsSubject?: Prisma.FactCreateNestedManyWithoutSubjectInput;
     factsAsObject?: Prisma.FactCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityUncheckedCreateWithoutStoryInput = {
@@ -755,6 +1009,8 @@ export type EntityUncheckedCreateWithoutStoryInput = {
     objectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutObjectInput;
     factsAsSubject?: Prisma.FactUncheckedCreateNestedManyWithoutSubjectInput;
     factsAsObject?: Prisma.FactUncheckedCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityCreateOrConnectWithoutStoryInput = {
@@ -820,6 +1076,8 @@ export type EntityCreateWithoutSubjectOfEventsInput = {
     objectOfEvents?: Prisma.EventCreateNestedManyWithoutObjectInput;
     factsAsSubject?: Prisma.FactCreateNestedManyWithoutSubjectInput;
     factsAsObject?: Prisma.FactCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityUncheckedCreateWithoutSubjectOfEventsInput = {
@@ -832,6 +1090,8 @@ export type EntityUncheckedCreateWithoutSubjectOfEventsInput = {
     objectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutObjectInput;
     factsAsSubject?: Prisma.FactUncheckedCreateNestedManyWithoutSubjectInput;
     factsAsObject?: Prisma.FactUncheckedCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityCreateOrConnectWithoutSubjectOfEventsInput = {
@@ -852,6 +1112,8 @@ export type EntityCreateWithoutObjectOfEventsInput = {
     subjectOfEvents?: Prisma.EventCreateNestedManyWithoutSubjectInput;
     factsAsSubject?: Prisma.FactCreateNestedManyWithoutSubjectInput;
     factsAsObject?: Prisma.FactCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityUncheckedCreateWithoutObjectOfEventsInput = {
@@ -864,6 +1126,8 @@ export type EntityUncheckedCreateWithoutObjectOfEventsInput = {
     subjectOfEvents?: Prisma.EventUncheckedCreateNestedManyWithoutSubjectInput;
     factsAsSubject?: Prisma.FactUncheckedCreateNestedManyWithoutSubjectInput;
     factsAsObject?: Prisma.FactUncheckedCreateNestedManyWithoutObjectInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSubjectInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutObjectInput;
 };
 
 export type EntityCreateOrConnectWithoutObjectOfEventsInput = {
@@ -904,6 +1168,8 @@ export type EntityUpdateWithoutSubjectOfEventsInput = {
     objectOfEvents?: Prisma.EventUpdateManyWithoutObjectNestedInput;
     factsAsSubject?: Prisma.FactUpdateManyWithoutSubjectNestedInput;
     factsAsObject?: Prisma.FactUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUncheckedUpdateWithoutSubjectOfEventsInput = {
@@ -916,6 +1182,8 @@ export type EntityUncheckedUpdateWithoutSubjectOfEventsInput = {
     objectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutObjectNestedInput;
     factsAsSubject?: Prisma.FactUncheckedUpdateManyWithoutSubjectNestedInput;
     factsAsObject?: Prisma.FactUncheckedUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUpsertWithoutObjectOfEventsInput = {
@@ -948,6 +1216,8 @@ export type EntityUpdateWithoutObjectOfEventsInput = {
     subjectOfEvents?: Prisma.EventUpdateManyWithoutSubjectNestedInput;
     factsAsSubject?: Prisma.FactUpdateManyWithoutSubjectNestedInput;
     factsAsObject?: Prisma.FactUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUncheckedUpdateWithoutObjectOfEventsInput = {
@@ -960,6 +1230,8 @@ export type EntityUncheckedUpdateWithoutObjectOfEventsInput = {
     subjectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutSubjectNestedInput;
     factsAsSubject?: Prisma.FactUncheckedUpdateManyWithoutSubjectNestedInput;
     factsAsObject?: Prisma.FactUncheckedUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityCreateManyStoryInput = {
@@ -980,6 +1252,8 @@ export type EntityUpdateWithoutStoryInput = {
     objectOfEvents?: Prisma.EventUpdateManyWithoutObjectNestedInput;
     factsAsSubject?: Prisma.FactUpdateManyWithoutSubjectNestedInput;
     factsAsObject?: Prisma.FactUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUncheckedUpdateWithoutStoryInput = {
@@ -992,6 +1266,8 @@ export type EntityUncheckedUpdateWithoutStoryInput = {
     objectOfEvents?: Prisma.EventUncheckedUpdateManyWithoutObjectNestedInput;
     factsAsSubject?: Prisma.FactUncheckedUpdateManyWithoutSubjectNestedInput;
     factsAsObject?: Prisma.FactUncheckedUpdateManyWithoutObjectNestedInput;
+    presuppositionSubject?: Prisma.PresuppositionUncheckedUpdateManyWithoutSubjectNestedInput;
+    presuppositionObject?: Prisma.PresuppositionUncheckedUpdateManyWithoutObjectNestedInput;
 };
 
 export type EntityUncheckedUpdateManyWithoutStoryInput = {
@@ -1011,6 +1287,8 @@ export type EntityCountOutputType = {
     objectOfEvents: number;
     factsAsSubject: number;
     factsAsObject: number;
+    presuppositionSubject: number;
+    presuppositionObject: number;
 };
 
 export type EntityCountOutputTypeSelect<
@@ -1020,6 +1298,8 @@ export type EntityCountOutputTypeSelect<
     objectOfEvents?: boolean | EntityCountOutputTypeCountObjectOfEventsArgs;
     factsAsSubject?: boolean | EntityCountOutputTypeCountFactsAsSubjectArgs;
     factsAsObject?: boolean | EntityCountOutputTypeCountFactsAsObjectArgs;
+    presuppositionSubject?: boolean | EntityCountOutputTypeCountPresuppositionSubjectArgs;
+    presuppositionObject?: boolean | EntityCountOutputTypeCountPresuppositionObjectArgs;
 };
 
 /**
@@ -1070,6 +1350,24 @@ export type EntityCountOutputTypeCountFactsAsObjectArgs<
     where?: Prisma.FactWhereInput;
 };
 
+/**
+ * EntityCountOutputType without action
+ */
+export type EntityCountOutputTypeCountPresuppositionSubjectArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    where?: Prisma.PresuppositionWhereInput;
+};
+
+/**
+ * EntityCountOutputType without action
+ */
+export type EntityCountOutputTypeCountPresuppositionObjectArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    where?: Prisma.PresuppositionWhereInput;
+};
+
 export type EntitySelect<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -1085,6 +1383,8 @@ export type EntitySelect<
         objectOfEvents?: boolean | Prisma.Entity$objectOfEventsArgs<ExtArgs>;
         factsAsSubject?: boolean | Prisma.Entity$factsAsSubjectArgs<ExtArgs>;
         factsAsObject?: boolean | Prisma.Entity$factsAsObjectArgs<ExtArgs>;
+        presuppositionSubject?: boolean | Prisma.Entity$presuppositionSubjectArgs<ExtArgs>;
+        presuppositionObject?: boolean | Prisma.Entity$presuppositionObjectArgs<ExtArgs>;
         _count?: boolean | Prisma.EntityCountOutputTypeDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['entity']
@@ -1143,6 +1443,8 @@ export type EntityInclude<
     objectOfEvents?: boolean | Prisma.Entity$objectOfEventsArgs<ExtArgs>;
     factsAsSubject?: boolean | Prisma.Entity$factsAsSubjectArgs<ExtArgs>;
     factsAsObject?: boolean | Prisma.Entity$factsAsObjectArgs<ExtArgs>;
+    presuppositionSubject?: boolean | Prisma.Entity$presuppositionSubjectArgs<ExtArgs>;
+    presuppositionObject?: boolean | Prisma.Entity$presuppositionObjectArgs<ExtArgs>;
     _count?: boolean | Prisma.EntityCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type EntityIncludeCreateManyAndReturn<
@@ -1166,6 +1468,8 @@ export type $EntityPayload<
         objectOfEvents: Prisma.$EventPayload<ExtArgs>[];
         factsAsSubject: Prisma.$FactPayload<ExtArgs>[];
         factsAsObject: Prisma.$FactPayload<ExtArgs>[];
+        presuppositionSubject: Prisma.$PresuppositionPayload<ExtArgs>[];
+        presuppositionObject: Prisma.$PresuppositionPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<
         {
@@ -1768,6 +2072,28 @@ export interface Prisma__EntityClient<
           >
         | Null
     >;
+    presuppositionSubject<T extends Prisma.Entity$presuppositionSubjectArgs<ExtArgs> = {}>(
+        args?: Prisma.Subset<T, Prisma.Entity$presuppositionSubjectArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+        | runtime.Types.Result.GetResult<
+              Prisma.$PresuppositionPayload<ExtArgs>,
+              T,
+              'findMany',
+              GlobalOmitOptions
+          >
+        | Null
+    >;
+    presuppositionObject<T extends Prisma.Entity$presuppositionObjectArgs<ExtArgs> = {}>(
+        args?: Prisma.Subset<T, Prisma.Entity$presuppositionObjectArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+        | runtime.Types.Result.GetResult<
+              Prisma.$PresuppositionPayload<ExtArgs>,
+              T,
+              'findMany',
+              GlobalOmitOptions
+          >
+        | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2334,6 +2660,62 @@ export type Entity$factsAsObjectArgs<
     take?: number;
     skip?: number;
     distinct?: Prisma.FactScalarFieldEnum | Prisma.FactScalarFieldEnum[];
+};
+
+/**
+ * Entity.presuppositionSubject
+ */
+export type Entity$presuppositionSubjectArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    /**
+     * Select specific fields to fetch from the Presupposition
+     */
+    select?: Prisma.PresuppositionSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Presupposition
+     */
+    omit?: Prisma.PresuppositionOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PresuppositionInclude<ExtArgs> | null;
+    where?: Prisma.PresuppositionWhereInput;
+    orderBy?:
+        | Prisma.PresuppositionOrderByWithRelationInput
+        | Prisma.PresuppositionOrderByWithRelationInput[];
+    cursor?: Prisma.PresuppositionWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.PresuppositionScalarFieldEnum | Prisma.PresuppositionScalarFieldEnum[];
+};
+
+/**
+ * Entity.presuppositionObject
+ */
+export type Entity$presuppositionObjectArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    /**
+     * Select specific fields to fetch from the Presupposition
+     */
+    select?: Prisma.PresuppositionSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Presupposition
+     */
+    omit?: Prisma.PresuppositionOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PresuppositionInclude<ExtArgs> | null;
+    where?: Prisma.PresuppositionWhereInput;
+    orderBy?:
+        | Prisma.PresuppositionOrderByWithRelationInput
+        | Prisma.PresuppositionOrderByWithRelationInput[];
+    cursor?: Prisma.PresuppositionWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.PresuppositionScalarFieldEnum | Prisma.PresuppositionScalarFieldEnum[];
 };
 
 /**

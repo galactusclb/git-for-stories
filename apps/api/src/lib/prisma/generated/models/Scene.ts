@@ -236,6 +236,7 @@ export type SceneWhereInput = {
     events?: Prisma.EventListRelationFilter;
     embeddings?: Prisma.SceneEmbeddingListRelationFilter;
     commits?: Prisma.CommitListRelationFilter;
+    presuppositions?: Prisma.PresuppositionListRelationFilter;
 };
 
 export type SceneOrderByWithRelationInput = {
@@ -251,6 +252,7 @@ export type SceneOrderByWithRelationInput = {
     events?: Prisma.EventOrderByRelationAggregateInput;
     embeddings?: Prisma.SceneEmbeddingOrderByRelationAggregateInput;
     commits?: Prisma.CommitOrderByRelationAggregateInput;
+    presuppositions?: Prisma.PresuppositionOrderByRelationAggregateInput;
 };
 
 export type SceneWhereUniqueInput = Prisma.AtLeast<
@@ -271,6 +273,7 @@ export type SceneWhereUniqueInput = Prisma.AtLeast<
         events?: Prisma.EventListRelationFilter;
         embeddings?: Prisma.SceneEmbeddingListRelationFilter;
         commits?: Prisma.CommitListRelationFilter;
+        presuppositions?: Prisma.PresuppositionListRelationFilter;
     },
     'id' | 'storyId_id'
 >;
@@ -317,6 +320,7 @@ export type SceneCreateInput = {
     events?: Prisma.EventCreateNestedManyWithoutSceneInput;
     embeddings?: Prisma.SceneEmbeddingCreateNestedManyWithoutScenesInput;
     commits?: Prisma.CommitCreateNestedManyWithoutSceneInput;
+    presuppositions?: Prisma.PresuppositionCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneUncheckedCreateInput = {
@@ -331,6 +335,7 @@ export type SceneUncheckedCreateInput = {
     events?: Prisma.EventUncheckedCreateNestedManyWithoutSceneInput;
     embeddings?: Prisma.SceneEmbeddingUncheckedCreateNestedManyWithoutScenesInput;
     commits?: Prisma.CommitUncheckedCreateNestedManyWithoutSceneInput;
+    presuppositions?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneUpdateInput = {
@@ -345,6 +350,7 @@ export type SceneUpdateInput = {
     events?: Prisma.EventUpdateManyWithoutSceneNestedInput;
     embeddings?: Prisma.SceneEmbeddingUpdateManyWithoutScenesNestedInput;
     commits?: Prisma.CommitUpdateManyWithoutSceneNestedInput;
+    presuppositions?: Prisma.PresuppositionUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneUncheckedUpdateInput = {
@@ -359,6 +365,7 @@ export type SceneUncheckedUpdateInput = {
     events?: Prisma.EventUncheckedUpdateManyWithoutSceneNestedInput;
     embeddings?: Prisma.SceneEmbeddingUncheckedUpdateManyWithoutScenesNestedInput;
     commits?: Prisma.CommitUncheckedUpdateManyWithoutSceneNestedInput;
+    presuppositions?: Prisma.PresuppositionUncheckedUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneCreateManyInput = {
@@ -479,6 +486,32 @@ export type SceneUpdateOneRequiredWithoutEmbeddingsNestedInput = {
             Prisma.SceneUpdateWithoutEmbeddingsInput
         >,
         Prisma.SceneUncheckedUpdateWithoutEmbeddingsInput
+    >;
+};
+
+export type SceneCreateNestedOneWithoutPresuppositionsInput = {
+    create?: Prisma.XOR<
+        Prisma.SceneCreateWithoutPresuppositionsInput,
+        Prisma.SceneUncheckedCreateWithoutPresuppositionsInput
+    >;
+    connectOrCreate?: Prisma.SceneCreateOrConnectWithoutPresuppositionsInput;
+    connect?: Prisma.SceneWhereUniqueInput;
+};
+
+export type SceneUpdateOneRequiredWithoutPresuppositionsNestedInput = {
+    create?: Prisma.XOR<
+        Prisma.SceneCreateWithoutPresuppositionsInput,
+        Prisma.SceneUncheckedCreateWithoutPresuppositionsInput
+    >;
+    connectOrCreate?: Prisma.SceneCreateOrConnectWithoutPresuppositionsInput;
+    upsert?: Prisma.SceneUpsertWithoutPresuppositionsInput;
+    connect?: Prisma.SceneWhereUniqueInput;
+    update?: Prisma.XOR<
+        Prisma.XOR<
+            Prisma.SceneUpdateToOneWithWhereWithoutPresuppositionsInput,
+            Prisma.SceneUpdateWithoutPresuppositionsInput
+        >,
+        Prisma.SceneUncheckedUpdateWithoutPresuppositionsInput
     >;
 };
 
@@ -642,6 +675,7 @@ export type SceneCreateWithoutEmbeddingsInput = {
     story: Prisma.StoryCreateNestedOneWithoutScenesInput;
     events?: Prisma.EventCreateNestedManyWithoutSceneInput;
     commits?: Prisma.CommitCreateNestedManyWithoutSceneInput;
+    presuppositions?: Prisma.PresuppositionCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneUncheckedCreateWithoutEmbeddingsInput = {
@@ -655,6 +689,7 @@ export type SceneUncheckedCreateWithoutEmbeddingsInput = {
     createdAt?: Date | string;
     events?: Prisma.EventUncheckedCreateNestedManyWithoutSceneInput;
     commits?: Prisma.CommitUncheckedCreateNestedManyWithoutSceneInput;
+    presuppositions?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneCreateOrConnectWithoutEmbeddingsInput = {
@@ -696,6 +731,7 @@ export type SceneUpdateWithoutEmbeddingsInput = {
     story?: Prisma.StoryUpdateOneRequiredWithoutScenesNestedInput;
     events?: Prisma.EventUpdateManyWithoutSceneNestedInput;
     commits?: Prisma.CommitUpdateManyWithoutSceneNestedInput;
+    presuppositions?: Prisma.PresuppositionUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneUncheckedUpdateWithoutEmbeddingsInput = {
@@ -708,6 +744,91 @@ export type SceneUncheckedUpdateWithoutEmbeddingsInput = {
     characters?: Prisma.SceneUpdatecharactersInput | string[];
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     events?: Prisma.EventUncheckedUpdateManyWithoutSceneNestedInput;
+    commits?: Prisma.CommitUncheckedUpdateManyWithoutSceneNestedInput;
+    presuppositions?: Prisma.PresuppositionUncheckedUpdateManyWithoutSceneNestedInput;
+};
+
+export type SceneCreateWithoutPresuppositionsInput = {
+    id?: string;
+    sequenceId: number;
+    title: string;
+    summary: string;
+    location?: string | null;
+    characters?: Prisma.SceneCreatecharactersInput | string[];
+    createdAt?: Date | string;
+    story: Prisma.StoryCreateNestedOneWithoutScenesInput;
+    events?: Prisma.EventCreateNestedManyWithoutSceneInput;
+    embeddings?: Prisma.SceneEmbeddingCreateNestedManyWithoutScenesInput;
+    commits?: Prisma.CommitCreateNestedManyWithoutSceneInput;
+};
+
+export type SceneUncheckedCreateWithoutPresuppositionsInput = {
+    id?: string;
+    storyId: string;
+    sequenceId: number;
+    title: string;
+    summary: string;
+    location?: string | null;
+    characters?: Prisma.SceneCreatecharactersInput | string[];
+    createdAt?: Date | string;
+    events?: Prisma.EventUncheckedCreateNestedManyWithoutSceneInput;
+    embeddings?: Prisma.SceneEmbeddingUncheckedCreateNestedManyWithoutScenesInput;
+    commits?: Prisma.CommitUncheckedCreateNestedManyWithoutSceneInput;
+};
+
+export type SceneCreateOrConnectWithoutPresuppositionsInput = {
+    where: Prisma.SceneWhereUniqueInput;
+    create: Prisma.XOR<
+        Prisma.SceneCreateWithoutPresuppositionsInput,
+        Prisma.SceneUncheckedCreateWithoutPresuppositionsInput
+    >;
+};
+
+export type SceneUpsertWithoutPresuppositionsInput = {
+    update: Prisma.XOR<
+        Prisma.SceneUpdateWithoutPresuppositionsInput,
+        Prisma.SceneUncheckedUpdateWithoutPresuppositionsInput
+    >;
+    create: Prisma.XOR<
+        Prisma.SceneCreateWithoutPresuppositionsInput,
+        Prisma.SceneUncheckedCreateWithoutPresuppositionsInput
+    >;
+    where?: Prisma.SceneWhereInput;
+};
+
+export type SceneUpdateToOneWithWhereWithoutPresuppositionsInput = {
+    where?: Prisma.SceneWhereInput;
+    data: Prisma.XOR<
+        Prisma.SceneUpdateWithoutPresuppositionsInput,
+        Prisma.SceneUncheckedUpdateWithoutPresuppositionsInput
+    >;
+};
+
+export type SceneUpdateWithoutPresuppositionsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
+    title?: Prisma.StringFieldUpdateOperationsInput | string;
+    summary?: Prisma.StringFieldUpdateOperationsInput | string;
+    location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    characters?: Prisma.SceneUpdatecharactersInput | string[];
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    story?: Prisma.StoryUpdateOneRequiredWithoutScenesNestedInput;
+    events?: Prisma.EventUpdateManyWithoutSceneNestedInput;
+    embeddings?: Prisma.SceneEmbeddingUpdateManyWithoutScenesNestedInput;
+    commits?: Prisma.CommitUpdateManyWithoutSceneNestedInput;
+};
+
+export type SceneUncheckedUpdateWithoutPresuppositionsInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    storyId?: Prisma.StringFieldUpdateOperationsInput | string;
+    sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
+    title?: Prisma.StringFieldUpdateOperationsInput | string;
+    summary?: Prisma.StringFieldUpdateOperationsInput | string;
+    location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    characters?: Prisma.SceneUpdatecharactersInput | string[];
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    events?: Prisma.EventUncheckedUpdateManyWithoutSceneNestedInput;
+    embeddings?: Prisma.SceneEmbeddingUncheckedUpdateManyWithoutScenesNestedInput;
     commits?: Prisma.CommitUncheckedUpdateManyWithoutSceneNestedInput;
 };
 
@@ -722,6 +843,7 @@ export type SceneCreateWithoutCommitsInput = {
     story: Prisma.StoryCreateNestedOneWithoutScenesInput;
     events?: Prisma.EventCreateNestedManyWithoutSceneInput;
     embeddings?: Prisma.SceneEmbeddingCreateNestedManyWithoutScenesInput;
+    presuppositions?: Prisma.PresuppositionCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneUncheckedCreateWithoutCommitsInput = {
@@ -735,6 +857,7 @@ export type SceneUncheckedCreateWithoutCommitsInput = {
     createdAt?: Date | string;
     events?: Prisma.EventUncheckedCreateNestedManyWithoutSceneInput;
     embeddings?: Prisma.SceneEmbeddingUncheckedCreateNestedManyWithoutScenesInput;
+    presuppositions?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneCreateOrConnectWithoutCommitsInput = {
@@ -776,6 +899,7 @@ export type SceneUpdateWithoutCommitsInput = {
     story?: Prisma.StoryUpdateOneRequiredWithoutScenesNestedInput;
     events?: Prisma.EventUpdateManyWithoutSceneNestedInput;
     embeddings?: Prisma.SceneEmbeddingUpdateManyWithoutScenesNestedInput;
+    presuppositions?: Prisma.PresuppositionUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneUncheckedUpdateWithoutCommitsInput = {
@@ -789,6 +913,7 @@ export type SceneUncheckedUpdateWithoutCommitsInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     events?: Prisma.EventUncheckedUpdateManyWithoutSceneNestedInput;
     embeddings?: Prisma.SceneEmbeddingUncheckedUpdateManyWithoutScenesNestedInput;
+    presuppositions?: Prisma.PresuppositionUncheckedUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneCreateWithoutStoryInput = {
@@ -802,6 +927,7 @@ export type SceneCreateWithoutStoryInput = {
     events?: Prisma.EventCreateNestedManyWithoutSceneInput;
     embeddings?: Prisma.SceneEmbeddingCreateNestedManyWithoutScenesInput;
     commits?: Prisma.CommitCreateNestedManyWithoutSceneInput;
+    presuppositions?: Prisma.PresuppositionCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneUncheckedCreateWithoutStoryInput = {
@@ -815,6 +941,7 @@ export type SceneUncheckedCreateWithoutStoryInput = {
     events?: Prisma.EventUncheckedCreateNestedManyWithoutSceneInput;
     embeddings?: Prisma.SceneEmbeddingUncheckedCreateNestedManyWithoutScenesInput;
     commits?: Prisma.CommitUncheckedCreateNestedManyWithoutSceneInput;
+    presuppositions?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneCreateOrConnectWithoutStoryInput = {
@@ -883,6 +1010,7 @@ export type SceneCreateWithoutEventsInput = {
     story: Prisma.StoryCreateNestedOneWithoutScenesInput;
     embeddings?: Prisma.SceneEmbeddingCreateNestedManyWithoutScenesInput;
     commits?: Prisma.CommitCreateNestedManyWithoutSceneInput;
+    presuppositions?: Prisma.PresuppositionCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneUncheckedCreateWithoutEventsInput = {
@@ -896,6 +1024,7 @@ export type SceneUncheckedCreateWithoutEventsInput = {
     createdAt?: Date | string;
     embeddings?: Prisma.SceneEmbeddingUncheckedCreateNestedManyWithoutScenesInput;
     commits?: Prisma.CommitUncheckedCreateNestedManyWithoutSceneInput;
+    presuppositions?: Prisma.PresuppositionUncheckedCreateNestedManyWithoutSceneInput;
 };
 
 export type SceneCreateOrConnectWithoutEventsInput = {
@@ -937,6 +1066,7 @@ export type SceneUpdateWithoutEventsInput = {
     story?: Prisma.StoryUpdateOneRequiredWithoutScenesNestedInput;
     embeddings?: Prisma.SceneEmbeddingUpdateManyWithoutScenesNestedInput;
     commits?: Prisma.CommitUpdateManyWithoutSceneNestedInput;
+    presuppositions?: Prisma.PresuppositionUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneUncheckedUpdateWithoutEventsInput = {
@@ -950,6 +1080,7 @@ export type SceneUncheckedUpdateWithoutEventsInput = {
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     embeddings?: Prisma.SceneEmbeddingUncheckedUpdateManyWithoutScenesNestedInput;
     commits?: Prisma.CommitUncheckedUpdateManyWithoutSceneNestedInput;
+    presuppositions?: Prisma.PresuppositionUncheckedUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneCreateManyStoryInput = {
@@ -973,6 +1104,7 @@ export type SceneUpdateWithoutStoryInput = {
     events?: Prisma.EventUpdateManyWithoutSceneNestedInput;
     embeddings?: Prisma.SceneEmbeddingUpdateManyWithoutScenesNestedInput;
     commits?: Prisma.CommitUpdateManyWithoutSceneNestedInput;
+    presuppositions?: Prisma.PresuppositionUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneUncheckedUpdateWithoutStoryInput = {
@@ -986,6 +1118,7 @@ export type SceneUncheckedUpdateWithoutStoryInput = {
     events?: Prisma.EventUncheckedUpdateManyWithoutSceneNestedInput;
     embeddings?: Prisma.SceneEmbeddingUncheckedUpdateManyWithoutScenesNestedInput;
     commits?: Prisma.CommitUncheckedUpdateManyWithoutSceneNestedInput;
+    presuppositions?: Prisma.PresuppositionUncheckedUpdateManyWithoutSceneNestedInput;
 };
 
 export type SceneUncheckedUpdateManyWithoutStoryInput = {
@@ -1006,6 +1139,7 @@ export type SceneCountOutputType = {
     events: number;
     embeddings: number;
     commits: number;
+    presuppositions: number;
 };
 
 export type SceneCountOutputTypeSelect<
@@ -1014,6 +1148,7 @@ export type SceneCountOutputTypeSelect<
     events?: boolean | SceneCountOutputTypeCountEventsArgs;
     embeddings?: boolean | SceneCountOutputTypeCountEmbeddingsArgs;
     commits?: boolean | SceneCountOutputTypeCountCommitsArgs;
+    presuppositions?: boolean | SceneCountOutputTypeCountPresuppositionsArgs;
 };
 
 /**
@@ -1055,6 +1190,15 @@ export type SceneCountOutputTypeCountCommitsArgs<
     where?: Prisma.CommitWhereInput;
 };
 
+/**
+ * SceneCountOutputType without action
+ */
+export type SceneCountOutputTypeCountPresuppositionsArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    where?: Prisma.PresuppositionWhereInput;
+};
+
 export type SceneSelect<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -1071,6 +1215,7 @@ export type SceneSelect<
         events?: boolean | Prisma.Scene$eventsArgs<ExtArgs>;
         embeddings?: boolean | Prisma.Scene$embeddingsArgs<ExtArgs>;
         commits?: boolean | Prisma.Scene$commitsArgs<ExtArgs>;
+        presuppositions?: boolean | Prisma.Scene$presuppositionsArgs<ExtArgs>;
         _count?: boolean | Prisma.SceneCountOutputTypeDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['scene']
@@ -1134,6 +1279,7 @@ export type SceneInclude<
     events?: boolean | Prisma.Scene$eventsArgs<ExtArgs>;
     embeddings?: boolean | Prisma.Scene$embeddingsArgs<ExtArgs>;
     commits?: boolean | Prisma.Scene$commitsArgs<ExtArgs>;
+    presuppositions?: boolean | Prisma.Scene$presuppositionsArgs<ExtArgs>;
     _count?: boolean | Prisma.SceneCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type SceneIncludeCreateManyAndReturn<
@@ -1156,6 +1302,7 @@ export type $ScenePayload<
         events: Prisma.$EventPayload<ExtArgs>[];
         embeddings: Prisma.$SceneEmbeddingPayload<ExtArgs>[];
         commits: Prisma.$CommitPayload<ExtArgs>[];
+        presuppositions: Prisma.$PresuppositionPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<
         {
@@ -1749,6 +1896,17 @@ export interface Prisma__SceneClient<
           >
         | Null
     >;
+    presuppositions<T extends Prisma.Scene$presuppositionsArgs<ExtArgs> = {}>(
+        args?: Prisma.Subset<T, Prisma.Scene$presuppositionsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+        | runtime.Types.Result.GetResult<
+              Prisma.$PresuppositionPayload<ExtArgs>,
+              T,
+              'findMany',
+              GlobalOmitOptions
+          >
+        | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2293,6 +2451,34 @@ export type Scene$commitsArgs<
     take?: number;
     skip?: number;
     distinct?: Prisma.CommitScalarFieldEnum | Prisma.CommitScalarFieldEnum[];
+};
+
+/**
+ * Scene.presuppositions
+ */
+export type Scene$presuppositionsArgs<
+    ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+    /**
+     * Select specific fields to fetch from the Presupposition
+     */
+    select?: Prisma.PresuppositionSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Presupposition
+     */
+    omit?: Prisma.PresuppositionOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.PresuppositionInclude<ExtArgs> | null;
+    where?: Prisma.PresuppositionWhereInput;
+    orderBy?:
+        | Prisma.PresuppositionOrderByWithRelationInput
+        | Prisma.PresuppositionOrderByWithRelationInput[];
+    cursor?: Prisma.PresuppositionWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: Prisma.PresuppositionScalarFieldEnum | Prisma.PresuppositionScalarFieldEnum[];
 };
 
 /**

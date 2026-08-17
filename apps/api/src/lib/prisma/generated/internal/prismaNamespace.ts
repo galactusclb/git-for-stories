@@ -393,6 +393,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
     SceneEmbedding: 'SceneEmbedding',
     Fact: 'Fact',
+    Presupposition: 'Presupposition',
     Post: 'Post',
     Branch: 'Branch',
     Commit: 'Commit',
@@ -423,6 +424,7 @@ export type TypeMap<
         modelProps:
             | 'sceneEmbedding'
             | 'fact'
+            | 'presupposition'
             | 'post'
             | 'branch'
             | 'commit'
@@ -566,6 +568,82 @@ export type TypeMap<
                     args: Prisma.FactCountArgs<ExtArgs>;
                     result:
                         | runtime.Types.Utils.Optional<Prisma.FactCountAggregateOutputType>
+                        | number;
+                };
+            };
+        };
+        Presupposition: {
+            payload: Prisma.$PresuppositionPayload<ExtArgs>;
+            fields: Prisma.PresuppositionFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.PresuppositionFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.PresuppositionFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>;
+                };
+                findFirst: {
+                    args: Prisma.PresuppositionFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.PresuppositionFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>;
+                };
+                findMany: {
+                    args: Prisma.PresuppositionFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>[];
+                };
+                create: {
+                    args: Prisma.PresuppositionCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>;
+                };
+                createMany: {
+                    args: Prisma.PresuppositionCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.PresuppositionCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>[];
+                };
+                delete: {
+                    args: Prisma.PresuppositionDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>;
+                };
+                update: {
+                    args: Prisma.PresuppositionUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.PresuppositionDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.PresuppositionUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.PresuppositionUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>[];
+                };
+                upsert: {
+                    args: Prisma.PresuppositionUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$PresuppositionPayload>;
+                };
+                aggregate: {
+                    args: Prisma.PresuppositionAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregatePresupposition>;
+                };
+                groupBy: {
+                    args: Prisma.PresuppositionGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.PresuppositionGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.PresuppositionCountArgs<ExtArgs>;
+                    result:
+                        | runtime.Types.Utils.Optional<Prisma.PresuppositionCountAggregateOutputType>
                         | number;
                 };
             };
@@ -1241,6 +1319,17 @@ export const FactScalarFieldEnum = {
 
 export type FactScalarFieldEnum = (typeof FactScalarFieldEnum)[keyof typeof FactScalarFieldEnum];
 
+export const PresuppositionScalarFieldEnum = {
+    id: 'id',
+    sceneId: 'sceneId',
+    subjectId: 'subjectId',
+    predicate: 'predicate',
+    objectId: 'objectId',
+} as const;
+
+export type PresuppositionScalarFieldEnum =
+    (typeof PresuppositionScalarFieldEnum)[keyof typeof PresuppositionScalarFieldEnum];
+
 export const PostScalarFieldEnum = {
     id: 'id',
     title: 'title',
@@ -1588,6 +1677,7 @@ export type PrismaClientOptions =
 export type GlobalOmitConfig = {
     sceneEmbedding?: Prisma.SceneEmbeddingOmit;
     fact?: Prisma.FactOmit;
+    presupposition?: Prisma.PresuppositionOmit;
     post?: Prisma.PostOmit;
     branch?: Prisma.BranchOmit;
     commit?: Prisma.CommitOmit;

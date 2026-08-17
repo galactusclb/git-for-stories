@@ -50,6 +50,7 @@ export const AnyNull = runtime.AnyNull;
 export const ModelName = {
     SceneEmbedding: 'SceneEmbedding',
     Fact: 'Fact',
+    Presupposition: 'Presupposition',
     Post: 'Post',
     Branch: 'Branch',
     Commit: 'Commit',
@@ -99,6 +100,17 @@ export const FactScalarFieldEnum = {
 } as const;
 
 export type FactScalarFieldEnum = (typeof FactScalarFieldEnum)[keyof typeof FactScalarFieldEnum];
+
+export const PresuppositionScalarFieldEnum = {
+    id: 'id',
+    sceneId: 'sceneId',
+    subjectId: 'subjectId',
+    predicate: 'predicate',
+    objectId: 'objectId',
+} as const;
+
+export type PresuppositionScalarFieldEnum =
+    (typeof PresuppositionScalarFieldEnum)[keyof typeof PresuppositionScalarFieldEnum];
 
 export const PostScalarFieldEnum = {
     id: 'id',

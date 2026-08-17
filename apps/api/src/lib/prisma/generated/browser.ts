@@ -27,6 +27,11 @@ export type SceneEmbedding = Prisma.SceneEmbeddingModel;
  */
 export type Fact = Prisma.FactModel;
 /**
+ * Model Presupposition
+ *
+ */
+export type Presupposition = Prisma.PresuppositionModel;
+/**
  * Model Post
  *
  */

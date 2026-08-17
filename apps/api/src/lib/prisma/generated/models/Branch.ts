@@ -178,7 +178,7 @@ export type BranchWhereInput = {
     name?: Prisma.StringFilter<'Branch'> | string;
     headCommitId?: Prisma.StringNullableFilter<'Branch'> | string | null;
     forkedFromCommitId?: Prisma.StringNullableFilter<'Branch'> | string | null;
-    Story?: Prisma.XOR<Prisma.StoryScalarRelationFilter, Prisma.StoryWhereInput>;
+    story?: Prisma.XOR<Prisma.StoryScalarRelationFilter, Prisma.StoryWhereInput>;
     headCommit?: Prisma.XOR<
         Prisma.CommitNullableScalarRelationFilter,
         Prisma.CommitWhereInput
@@ -196,7 +196,7 @@ export type BranchOrderByWithRelationInput = {
     name?: Prisma.SortOrder;
     headCommitId?: Prisma.SortOrderInput | Prisma.SortOrder;
     forkedFromCommitId?: Prisma.SortOrderInput | Prisma.SortOrder;
-    Story?: Prisma.StoryOrderByWithRelationInput;
+    story?: Prisma.StoryOrderByWithRelationInput;
     headCommit?: Prisma.CommitOrderByWithRelationInput;
     forkedFromCommit?: Prisma.CommitOrderByWithRelationInput;
     commits?: Prisma.CommitOrderByRelationAggregateInput;
@@ -212,7 +212,7 @@ export type BranchWhereUniqueInput = Prisma.AtLeast<
         name?: Prisma.StringFilter<'Branch'> | string;
         headCommitId?: Prisma.StringNullableFilter<'Branch'> | string | null;
         forkedFromCommitId?: Prisma.StringNullableFilter<'Branch'> | string | null;
-        Story?: Prisma.XOR<Prisma.StoryScalarRelationFilter, Prisma.StoryWhereInput>;
+        story?: Prisma.XOR<Prisma.StoryScalarRelationFilter, Prisma.StoryWhereInput>;
         headCommit?: Prisma.XOR<
             Prisma.CommitNullableScalarRelationFilter,
             Prisma.CommitWhereInput
@@ -255,7 +255,7 @@ export type BranchScalarWhereWithAggregatesInput = {
 export type BranchCreateInput = {
     id?: string;
     name: string;
-    Story: Prisma.StoryCreateNestedOneWithoutBranchInput;
+    story: Prisma.StoryCreateNestedOneWithoutBranchInput;
     headCommit?: Prisma.CommitCreateNestedOneWithoutHeadOfBranchInput;
     forkedFromCommit?: Prisma.CommitCreateNestedOneWithoutForkPointOfInput;
     commits?: Prisma.CommitCreateNestedManyWithoutBranchInput;
@@ -273,7 +273,7 @@ export type BranchUncheckedCreateInput = {
 export type BranchUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    Story?: Prisma.StoryUpdateOneRequiredWithoutBranchNestedInput;
+    story?: Prisma.StoryUpdateOneRequiredWithoutBranchNestedInput;
     headCommit?: Prisma.CommitUpdateOneWithoutHeadOfBranchNestedInput;
     forkedFromCommit?: Prisma.CommitUpdateOneWithoutForkPointOfNestedInput;
     commits?: Prisma.CommitUpdateManyWithoutBranchNestedInput;
@@ -635,7 +635,7 @@ export type BranchUncheckedUpdateManyWithoutStoryNestedInput = {
 export type BranchCreateWithoutCommitsInput = {
     id?: string;
     name: string;
-    Story: Prisma.StoryCreateNestedOneWithoutBranchInput;
+    story: Prisma.StoryCreateNestedOneWithoutBranchInput;
     headCommit?: Prisma.CommitCreateNestedOneWithoutHeadOfBranchInput;
     forkedFromCommit?: Prisma.CommitCreateNestedOneWithoutForkPointOfInput;
 };
@@ -659,7 +659,7 @@ export type BranchCreateOrConnectWithoutCommitsInput = {
 export type BranchCreateWithoutHeadCommitInput = {
     id?: string;
     name: string;
-    Story: Prisma.StoryCreateNestedOneWithoutBranchInput;
+    story: Prisma.StoryCreateNestedOneWithoutBranchInput;
     forkedFromCommit?: Prisma.CommitCreateNestedOneWithoutForkPointOfInput;
     commits?: Prisma.CommitCreateNestedManyWithoutBranchInput;
 };
@@ -688,7 +688,7 @@ export type BranchCreateManyHeadCommitInputEnvelope = {
 export type BranchCreateWithoutForkedFromCommitInput = {
     id?: string;
     name: string;
-    Story: Prisma.StoryCreateNestedOneWithoutBranchInput;
+    story: Prisma.StoryCreateNestedOneWithoutBranchInput;
     headCommit?: Prisma.CommitCreateNestedOneWithoutHeadOfBranchInput;
     commits?: Prisma.CommitCreateNestedManyWithoutBranchInput;
 };
@@ -739,7 +739,7 @@ export type BranchUpdateToOneWithWhereWithoutCommitsInput = {
 export type BranchUpdateWithoutCommitsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    Story?: Prisma.StoryUpdateOneRequiredWithoutBranchNestedInput;
+    story?: Prisma.StoryUpdateOneRequiredWithoutBranchNestedInput;
     headCommit?: Prisma.CommitUpdateOneWithoutHeadOfBranchNestedInput;
     forkedFromCommit?: Prisma.CommitUpdateOneWithoutForkPointOfNestedInput;
 };
@@ -893,7 +893,7 @@ export type BranchCreateManyForkedFromCommitInput = {
 export type BranchUpdateWithoutHeadCommitInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    Story?: Prisma.StoryUpdateOneRequiredWithoutBranchNestedInput;
+    story?: Prisma.StoryUpdateOneRequiredWithoutBranchNestedInput;
     forkedFromCommit?: Prisma.CommitUpdateOneWithoutForkPointOfNestedInput;
     commits?: Prisma.CommitUpdateManyWithoutBranchNestedInput;
 };
@@ -916,7 +916,7 @@ export type BranchUncheckedUpdateManyWithoutHeadCommitInput = {
 export type BranchUpdateWithoutForkedFromCommitInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    Story?: Prisma.StoryUpdateOneRequiredWithoutBranchNestedInput;
+    story?: Prisma.StoryUpdateOneRequiredWithoutBranchNestedInput;
     headCommit?: Prisma.CommitUpdateOneWithoutHeadOfBranchNestedInput;
     commits?: Prisma.CommitUpdateManyWithoutBranchNestedInput;
 };
@@ -1010,7 +1010,7 @@ export type BranchSelect<
         name?: boolean;
         headCommitId?: boolean;
         forkedFromCommitId?: boolean;
-        Story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
+        story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
         headCommit?: boolean | Prisma.Branch$headCommitArgs<ExtArgs>;
         forkedFromCommit?: boolean | Prisma.Branch$forkedFromCommitArgs<ExtArgs>;
         commits?: boolean | Prisma.Branch$commitsArgs<ExtArgs>;
@@ -1028,7 +1028,7 @@ export type BranchSelectCreateManyAndReturn<
         name?: boolean;
         headCommitId?: boolean;
         forkedFromCommitId?: boolean;
-        Story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
+        story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
         headCommit?: boolean | Prisma.Branch$headCommitArgs<ExtArgs>;
         forkedFromCommit?: boolean | Prisma.Branch$forkedFromCommitArgs<ExtArgs>;
     },
@@ -1044,7 +1044,7 @@ export type BranchSelectUpdateManyAndReturn<
         name?: boolean;
         headCommitId?: boolean;
         forkedFromCommitId?: boolean;
-        Story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
+        story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
         headCommit?: boolean | Prisma.Branch$headCommitArgs<ExtArgs>;
         forkedFromCommit?: boolean | Prisma.Branch$forkedFromCommitArgs<ExtArgs>;
     },
@@ -1068,7 +1068,7 @@ export type BranchOmit<
 export type BranchInclude<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-    Story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
+    story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
     headCommit?: boolean | Prisma.Branch$headCommitArgs<ExtArgs>;
     forkedFromCommit?: boolean | Prisma.Branch$forkedFromCommitArgs<ExtArgs>;
     commits?: boolean | Prisma.Branch$commitsArgs<ExtArgs>;
@@ -1077,14 +1077,14 @@ export type BranchInclude<
 export type BranchIncludeCreateManyAndReturn<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-    Story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
+    story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
     headCommit?: boolean | Prisma.Branch$headCommitArgs<ExtArgs>;
     forkedFromCommit?: boolean | Prisma.Branch$forkedFromCommitArgs<ExtArgs>;
 };
 export type BranchIncludeUpdateManyAndReturn<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-    Story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
+    story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>;
     headCommit?: boolean | Prisma.Branch$headCommitArgs<ExtArgs>;
     forkedFromCommit?: boolean | Prisma.Branch$forkedFromCommitArgs<ExtArgs>;
 };
@@ -1094,7 +1094,7 @@ export type $BranchPayload<
 > = {
     name: 'Branch';
     objects: {
-        Story: Prisma.$StoryPayload<ExtArgs>;
+        story: Prisma.$StoryPayload<ExtArgs>;
         headCommit: Prisma.$CommitPayload<ExtArgs> | null;
         forkedFromCommit: Prisma.$CommitPayload<ExtArgs> | null;
         commits: Prisma.$CommitPayload<ExtArgs>[];
@@ -1641,7 +1641,7 @@ export interface Prisma__BranchClient<
     GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
-    Story<T extends Prisma.StoryDefaultArgs<ExtArgs> = {}>(
+    story<T extends Prisma.StoryDefaultArgs<ExtArgs> = {}>(
         args?: Prisma.Subset<T, Prisma.StoryDefaultArgs<ExtArgs>>,
     ): Prisma.Prisma__StoryClient<
         | runtime.Types.Result.GetResult<
