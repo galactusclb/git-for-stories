@@ -25,6 +25,7 @@ export type AggregateCommit = {
 
 export type CommitMinAggregateOutputType = {
     id: string | null;
+    operation: $Enums.CommitOp | null;
     branchId: string | null;
     parentId: string | null;
     mergeParentId: string | null;
@@ -33,6 +34,7 @@ export type CommitMinAggregateOutputType = {
 
 export type CommitMaxAggregateOutputType = {
     id: string | null;
+    operation: $Enums.CommitOp | null;
     branchId: string | null;
     parentId: string | null;
     mergeParentId: string | null;
@@ -41,6 +43,7 @@ export type CommitMaxAggregateOutputType = {
 
 export type CommitCountAggregateOutputType = {
     id: number;
+    operation: number;
     branchId: number;
     parentId: number;
     mergeParentId: number;
@@ -50,6 +53,7 @@ export type CommitCountAggregateOutputType = {
 
 export type CommitMinAggregateInputType = {
     id?: true;
+    operation?: true;
     branchId?: true;
     parentId?: true;
     mergeParentId?: true;
@@ -58,6 +62,7 @@ export type CommitMinAggregateInputType = {
 
 export type CommitMaxAggregateInputType = {
     id?: true;
+    operation?: true;
     branchId?: true;
     parentId?: true;
     mergeParentId?: true;
@@ -66,6 +71,7 @@ export type CommitMaxAggregateInputType = {
 
 export type CommitCountAggregateInputType = {
     id?: true;
+    operation?: true;
     branchId?: true;
     parentId?: true;
     mergeParentId?: true;
@@ -148,6 +154,7 @@ export type CommitGroupByArgs<
 
 export type CommitGroupByOutputType = {
     id: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId: string | null;
     mergeParentId: string | null;
@@ -174,6 +181,7 @@ export type CommitWhereInput = {
     OR?: Prisma.CommitWhereInput[];
     NOT?: Prisma.CommitWhereInput | Prisma.CommitWhereInput[];
     id?: Prisma.StringFilter<'Commit'> | string;
+    operation?: Prisma.EnumCommitOpFilter<'Commit'> | $Enums.CommitOp;
     branchId?: Prisma.StringFilter<'Commit'> | string;
     parentId?: Prisma.StringNullableFilter<'Commit'> | string | null;
     mergeParentId?: Prisma.StringNullableFilter<'Commit'> | string | null;
@@ -194,6 +202,7 @@ export type CommitWhereInput = {
 
 export type CommitOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
+    operation?: Prisma.SortOrder;
     branchId?: Prisma.SortOrder;
     parentId?: Prisma.SortOrderInput | Prisma.SortOrder;
     mergeParentId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -215,6 +224,7 @@ export type CommitWhereUniqueInput = Prisma.AtLeast<
         AND?: Prisma.CommitWhereInput | Prisma.CommitWhereInput[];
         OR?: Prisma.CommitWhereInput[];
         NOT?: Prisma.CommitWhereInput | Prisma.CommitWhereInput[];
+        operation?: Prisma.EnumCommitOpFilter<'Commit'> | $Enums.CommitOp;
         branchId?: Prisma.StringFilter<'Commit'> | string;
         parentId?: Prisma.StringNullableFilter<'Commit'> | string | null;
         mergeParentId?: Prisma.StringNullableFilter<'Commit'> | string | null;
@@ -240,6 +250,7 @@ export type CommitWhereUniqueInput = Prisma.AtLeast<
 
 export type CommitOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
+    operation?: Prisma.SortOrder;
     branchId?: Prisma.SortOrder;
     parentId?: Prisma.SortOrderInput | Prisma.SortOrder;
     mergeParentId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -258,6 +269,7 @@ export type CommitScalarWhereWithAggregatesInput = {
         | Prisma.CommitScalarWhereWithAggregatesInput
         | Prisma.CommitScalarWhereWithAggregatesInput[];
     id?: Prisma.StringWithAggregatesFilter<'Commit'> | string;
+    operation?: Prisma.EnumCommitOpWithAggregatesFilter<'Commit'> | $Enums.CommitOp;
     branchId?: Prisma.StringWithAggregatesFilter<'Commit'> | string;
     parentId?: Prisma.StringNullableWithAggregatesFilter<'Commit'> | string | null;
     mergeParentId?: Prisma.StringNullableWithAggregatesFilter<'Commit'> | string | null;
@@ -266,6 +278,7 @@ export type CommitScalarWhereWithAggregatesInput = {
 
 export type CommitCreateInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
@@ -279,6 +292,7 @@ export type CommitCreateInput = {
 
 export type CommitUncheckedCreateInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -292,6 +306,7 @@ export type CommitUncheckedCreateInput = {
 
 export type CommitUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
@@ -305,6 +320,7 @@ export type CommitUpdateInput = {
 
 export type CommitUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -318,6 +334,7 @@ export type CommitUncheckedUpdateInput = {
 
 export type CommitCreateManyInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -326,10 +343,12 @@ export type CommitCreateManyInput = {
 
 export type CommitUpdateManyMutationInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
 };
 
 export type CommitUncheckedUpdateManyInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -358,6 +377,7 @@ export type CommitOrderByRelationAggregateInput = {
 
 export type CommitCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
+    operation?: Prisma.SortOrder;
     branchId?: Prisma.SortOrder;
     parentId?: Prisma.SortOrder;
     mergeParentId?: Prisma.SortOrder;
@@ -366,6 +386,7 @@ export type CommitCountOrderByAggregateInput = {
 
 export type CommitMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
+    operation?: Prisma.SortOrder;
     branchId?: Prisma.SortOrder;
     parentId?: Prisma.SortOrder;
     mergeParentId?: Prisma.SortOrder;
@@ -374,6 +395,7 @@ export type CommitMaxOrderByAggregateInput = {
 
 export type CommitMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
+    operation?: Prisma.SortOrder;
     branchId?: Prisma.SortOrder;
     parentId?: Prisma.SortOrder;
     mergeParentId?: Prisma.SortOrder;
@@ -626,6 +648,10 @@ export type CommitUncheckedCreateNestedManyWithoutMergeParentInput = {
     connect?: Prisma.CommitWhereUniqueInput | Prisma.CommitWhereUniqueInput[];
 };
 
+export type EnumCommitOpFieldUpdateOperationsInput = {
+    set?: $Enums.CommitOp;
+};
+
 export type CommitUpdateOneWithoutChildrenNestedInput = {
     create?: Prisma.XOR<
         Prisma.CommitCreateWithoutChildrenInput,
@@ -864,6 +890,7 @@ export type CommitUncheckedUpdateManyWithoutSceneNestedInput = {
 
 export type CommitCreateWithoutFactsInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
@@ -876,6 +903,7 @@ export type CommitCreateWithoutFactsInput = {
 
 export type CommitUncheckedCreateWithoutFactsInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -916,6 +944,7 @@ export type CommitUpdateToOneWithWhereWithoutFactsInput = {
 
 export type CommitUpdateWithoutFactsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
@@ -928,6 +957,7 @@ export type CommitUpdateWithoutFactsInput = {
 
 export type CommitUncheckedUpdateWithoutFactsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -940,6 +970,7 @@ export type CommitUncheckedUpdateWithoutFactsInput = {
 
 export type CommitCreateWithoutHeadOfBranchInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
@@ -952,6 +983,7 @@ export type CommitCreateWithoutHeadOfBranchInput = {
 
 export type CommitUncheckedCreateWithoutHeadOfBranchInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -972,6 +1004,7 @@ export type CommitCreateOrConnectWithoutHeadOfBranchInput = {
 
 export type CommitCreateWithoutForkPointOfInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
@@ -984,6 +1017,7 @@ export type CommitCreateWithoutForkPointOfInput = {
 
 export type CommitUncheckedCreateWithoutForkPointOfInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -1004,6 +1038,7 @@ export type CommitCreateOrConnectWithoutForkPointOfInput = {
 
 export type CommitCreateWithoutBranchInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
     children?: Prisma.CommitCreateNestedManyWithoutParentInput;
@@ -1016,6 +1051,7 @@ export type CommitCreateWithoutBranchInput = {
 
 export type CommitUncheckedCreateWithoutBranchInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     parentId?: string | null;
     mergeParentId?: string | null;
     sceneId?: string | null;
@@ -1061,6 +1097,7 @@ export type CommitUpdateToOneWithWhereWithoutHeadOfBranchInput = {
 
 export type CommitUpdateWithoutHeadOfBranchInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
@@ -1073,6 +1110,7 @@ export type CommitUpdateWithoutHeadOfBranchInput = {
 
 export type CommitUncheckedUpdateWithoutHeadOfBranchInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1105,6 +1143,7 @@ export type CommitUpdateToOneWithWhereWithoutForkPointOfInput = {
 
 export type CommitUpdateWithoutForkPointOfInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
@@ -1117,6 +1156,7 @@ export type CommitUpdateWithoutForkPointOfInput = {
 
 export type CommitUncheckedUpdateWithoutForkPointOfInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1160,6 +1200,7 @@ export type CommitScalarWhereInput = {
     OR?: Prisma.CommitScalarWhereInput[];
     NOT?: Prisma.CommitScalarWhereInput | Prisma.CommitScalarWhereInput[];
     id?: Prisma.StringFilter<'Commit'> | string;
+    operation?: Prisma.EnumCommitOpFilter<'Commit'> | $Enums.CommitOp;
     branchId?: Prisma.StringFilter<'Commit'> | string;
     parentId?: Prisma.StringNullableFilter<'Commit'> | string | null;
     mergeParentId?: Prisma.StringNullableFilter<'Commit'> | string | null;
@@ -1168,6 +1209,7 @@ export type CommitScalarWhereInput = {
 
 export type CommitCreateWithoutChildrenInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
@@ -1180,6 +1222,7 @@ export type CommitCreateWithoutChildrenInput = {
 
 export type CommitUncheckedCreateWithoutChildrenInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -1200,6 +1243,7 @@ export type CommitCreateOrConnectWithoutChildrenInput = {
 
 export type CommitCreateWithoutParentInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     children?: Prisma.CommitCreateNestedManyWithoutParentInput;
@@ -1212,6 +1256,7 @@ export type CommitCreateWithoutParentInput = {
 
 export type CommitUncheckedCreateWithoutParentInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     mergeParentId?: string | null;
     sceneId?: string | null;
@@ -1237,6 +1282,7 @@ export type CommitCreateManyParentInputEnvelope = {
 
 export type CommitCreateWithoutMergeChildrenInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
@@ -1249,6 +1295,7 @@ export type CommitCreateWithoutMergeChildrenInput = {
 
 export type CommitUncheckedCreateWithoutMergeChildrenInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -1269,6 +1316,7 @@ export type CommitCreateOrConnectWithoutMergeChildrenInput = {
 
 export type CommitCreateWithoutMergeParentInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     scene?: Prisma.SceneCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
@@ -1281,6 +1329,7 @@ export type CommitCreateWithoutMergeParentInput = {
 
 export type CommitUncheckedCreateWithoutMergeParentInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     sceneId?: string | null;
@@ -1326,6 +1375,7 @@ export type CommitUpdateToOneWithWhereWithoutChildrenInput = {
 
 export type CommitUpdateWithoutChildrenInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
@@ -1338,6 +1388,7 @@ export type CommitUpdateWithoutChildrenInput = {
 
 export type CommitUncheckedUpdateWithoutChildrenInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1398,6 +1449,7 @@ export type CommitUpdateToOneWithWhereWithoutMergeChildrenInput = {
 
 export type CommitUpdateWithoutMergeChildrenInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
@@ -1410,6 +1462,7 @@ export type CommitUpdateWithoutMergeChildrenInput = {
 
 export type CommitUncheckedUpdateWithoutMergeChildrenInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1450,6 +1503,7 @@ export type CommitUpdateManyWithWhereWithoutMergeParentInput = {
 
 export type CommitCreateWithoutSceneInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branch: Prisma.BranchCreateNestedOneWithoutCommitsInput;
     parent?: Prisma.CommitCreateNestedOneWithoutChildrenInput;
     children?: Prisma.CommitCreateNestedManyWithoutParentInput;
@@ -1462,6 +1516,7 @@ export type CommitCreateWithoutSceneInput = {
 
 export type CommitUncheckedCreateWithoutSceneInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -1515,6 +1570,7 @@ export type CommitUpdateManyWithWhereWithoutSceneInput = {
 
 export type CommitCreateManyBranchInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     parentId?: string | null;
     mergeParentId?: string | null;
     sceneId?: string | null;
@@ -1522,6 +1578,7 @@ export type CommitCreateManyBranchInput = {
 
 export type CommitUpdateWithoutBranchInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
     children?: Prisma.CommitUpdateManyWithoutParentNestedInput;
@@ -1534,6 +1591,7 @@ export type CommitUpdateWithoutBranchInput = {
 
 export type CommitUncheckedUpdateWithoutBranchInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     sceneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1546,6 +1604,7 @@ export type CommitUncheckedUpdateWithoutBranchInput = {
 
 export type CommitUncheckedUpdateManyWithoutBranchInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     sceneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1553,6 +1612,7 @@ export type CommitUncheckedUpdateManyWithoutBranchInput = {
 
 export type CommitCreateManyParentInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     mergeParentId?: string | null;
     sceneId?: string | null;
@@ -1560,6 +1620,7 @@ export type CommitCreateManyParentInput = {
 
 export type CommitCreateManyMergeParentInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     sceneId?: string | null;
@@ -1567,6 +1628,7 @@ export type CommitCreateManyMergeParentInput = {
 
 export type CommitUpdateWithoutParentInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     children?: Prisma.CommitUpdateManyWithoutParentNestedInput;
@@ -1579,6 +1641,7 @@ export type CommitUpdateWithoutParentInput = {
 
 export type CommitUncheckedUpdateWithoutParentInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     sceneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1591,6 +1654,7 @@ export type CommitUncheckedUpdateWithoutParentInput = {
 
 export type CommitUncheckedUpdateManyWithoutParentInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     sceneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1598,6 +1662,7 @@ export type CommitUncheckedUpdateManyWithoutParentInput = {
 
 export type CommitUpdateWithoutMergeParentInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     scene?: Prisma.SceneUpdateOneWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
@@ -1610,6 +1675,7 @@ export type CommitUpdateWithoutMergeParentInput = {
 
 export type CommitUncheckedUpdateWithoutMergeParentInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     sceneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1622,6 +1688,7 @@ export type CommitUncheckedUpdateWithoutMergeParentInput = {
 
 export type CommitUncheckedUpdateManyWithoutMergeParentInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     sceneId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1629,6 +1696,7 @@ export type CommitUncheckedUpdateManyWithoutMergeParentInput = {
 
 export type CommitCreateManySceneInput = {
     id?: string;
+    operation: $Enums.CommitOp;
     branchId: string;
     parentId?: string | null;
     mergeParentId?: string | null;
@@ -1636,6 +1704,7 @@ export type CommitCreateManySceneInput = {
 
 export type CommitUpdateWithoutSceneInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branch?: Prisma.BranchUpdateOneRequiredWithoutCommitsNestedInput;
     parent?: Prisma.CommitUpdateOneWithoutChildrenNestedInput;
     children?: Prisma.CommitUpdateManyWithoutParentNestedInput;
@@ -1648,6 +1717,7 @@ export type CommitUpdateWithoutSceneInput = {
 
 export type CommitUncheckedUpdateWithoutSceneInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1660,6 +1730,7 @@ export type CommitUncheckedUpdateWithoutSceneInput = {
 
 export type CommitUncheckedUpdateManyWithoutSceneInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    operation?: Prisma.EnumCommitOpFieldUpdateOperationsInput | $Enums.CommitOp;
     branchId?: Prisma.StringFieldUpdateOperationsInput | string;
     parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     mergeParentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1749,6 +1820,7 @@ export type CommitSelect<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
+        operation?: boolean;
         branchId?: boolean;
         parentId?: boolean;
         mergeParentId?: boolean;
@@ -1772,6 +1844,7 @@ export type CommitSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
+        operation?: boolean;
         branchId?: boolean;
         parentId?: boolean;
         mergeParentId?: boolean;
@@ -1789,6 +1862,7 @@ export type CommitSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
+        operation?: boolean;
         branchId?: boolean;
         parentId?: boolean;
         mergeParentId?: boolean;
@@ -1803,6 +1877,7 @@ export type CommitSelectUpdateManyAndReturn<
 
 export type CommitSelectScalar = {
     id?: boolean;
+    operation?: boolean;
     branchId?: boolean;
     parentId?: boolean;
     mergeParentId?: boolean;
@@ -1812,7 +1887,7 @@ export type CommitSelectScalar = {
 export type CommitOmit<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-    'id' | 'branchId' | 'parentId' | 'mergeParentId' | 'sceneId',
+    'id' | 'operation' | 'branchId' | 'parentId' | 'mergeParentId' | 'sceneId',
     ExtArgs['result']['commit']
 >;
 export type CommitInclude<
@@ -1864,6 +1939,7 @@ export type $CommitPayload<
     scalars: runtime.Types.Extensions.GetPayloadResult<
         {
             id: string;
+            operation: $Enums.CommitOp;
             branchId: string;
             parentId: string | null;
             mergeParentId: string | null;
@@ -2543,6 +2619,7 @@ export interface Prisma__CommitClient<
  */
 export interface CommitFieldRefs {
     readonly id: Prisma.FieldRef<'Commit', 'String'>;
+    readonly operation: Prisma.FieldRef<'Commit', 'CommitOp'>;
     readonly branchId: Prisma.FieldRef<'Commit', 'String'>;
     readonly parentId: Prisma.FieldRef<'Commit', 'String'>;
     readonly mergeParentId: Prisma.FieldRef<'Commit', 'String'>;

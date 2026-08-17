@@ -13,8 +13,17 @@ model Branch {
   @@index([storyId])
 }
 
+enum CommitOp {
+  INIT
+  ADD
+  EDIT
+  DELETE
+  MERGE
+}
+
 model Commit {
-  id            String  @id @default(uuid())
+  id            String   @id @default(uuid())
+  operation     CommitOp
   branchId      String
   parentId      String?
   mergeParentId String?

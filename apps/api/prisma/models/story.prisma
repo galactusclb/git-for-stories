@@ -10,6 +10,7 @@ model Story {
 
 model Scene {
   id         String   @id @default(uuid())
+  lineageId  String
   storyId    String
   sequenceId Int
   title      String
@@ -25,6 +26,7 @@ model Scene {
   presuppositions Presupposition[]
 
   @@unique([storyId, id])
+  @@index([lineageId])
 }
 
 model Event {

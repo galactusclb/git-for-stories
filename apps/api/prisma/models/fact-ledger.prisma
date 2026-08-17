@@ -22,11 +22,12 @@ model Fact {
 }
 
 model Presupposition {
-  id        String  @id @default(uuid())
-  sceneId   String
-  subjectId String
-  predicate String
-  objectId  String?
+  id            String  @id @default(uuid())
+  sceneId       String
+  subjectId     String
+  predicate     String
+  objectId      String?
+  expectedValue Boolean @default(true)
 
   scene   Scene   @relation(fields: [sceneId], references: [id], onDelete: Restrict)
   subject Entity  @relation("PresuppositionSubject", fields: [subjectId], references: [id], onDelete: Restrict)

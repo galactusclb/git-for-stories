@@ -148,6 +148,23 @@ export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     _max?: Prisma.NestedBoolFilter<$PrismaModel>;
 };
 
+export type EnumCommitOpFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommitOp | Prisma.EnumCommitOpFieldRefInput<$PrismaModel>;
+    in?: $Enums.CommitOp[] | Prisma.ListEnumCommitOpFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.CommitOp[] | Prisma.ListEnumCommitOpFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumCommitOpFilter<$PrismaModel> | $Enums.CommitOp;
+};
+
+export type EnumCommitOpWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommitOp | Prisma.EnumCommitOpFieldRefInput<$PrismaModel>;
+    in?: $Enums.CommitOp[] | Prisma.ListEnumCommitOpFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.CommitOp[] | Prisma.ListEnumCommitOpFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumCommitOpWithAggregatesFilter<$PrismaModel> | $Enums.CommitOp;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumCommitOpFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumCommitOpFilter<$PrismaModel>;
+};
+
 export type EnumEntityKindFilter<$PrismaModel = never> = {
     equals?: $Enums.EntityKind | Prisma.EnumEntityKindFieldRefInput<$PrismaModel>;
     in?: $Enums.EntityKind[] | Prisma.ListEnumEntityKindFieldRefInput<$PrismaModel>;
@@ -329,6 +346,23 @@ export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     _count?: Prisma.NestedIntFilter<$PrismaModel>;
     _min?: Prisma.NestedBoolFilter<$PrismaModel>;
     _max?: Prisma.NestedBoolFilter<$PrismaModel>;
+};
+
+export type NestedEnumCommitOpFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommitOp | Prisma.EnumCommitOpFieldRefInput<$PrismaModel>;
+    in?: $Enums.CommitOp[] | Prisma.ListEnumCommitOpFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.CommitOp[] | Prisma.ListEnumCommitOpFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumCommitOpFilter<$PrismaModel> | $Enums.CommitOp;
+};
+
+export type NestedEnumCommitOpWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommitOp | Prisma.EnumCommitOpFieldRefInput<$PrismaModel>;
+    in?: $Enums.CommitOp[] | Prisma.ListEnumCommitOpFieldRefInput<$PrismaModel>;
+    notIn?: $Enums.CommitOp[] | Prisma.ListEnumCommitOpFieldRefInput<$PrismaModel>;
+    not?: Prisma.NestedEnumCommitOpWithAggregatesFilter<$PrismaModel> | $Enums.CommitOp;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumCommitOpFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumCommitOpFilter<$PrismaModel>;
 };
 
 export type NestedEnumEntityKindFilter<$PrismaModel = never> = {

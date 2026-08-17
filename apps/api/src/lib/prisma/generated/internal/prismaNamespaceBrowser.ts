@@ -107,6 +107,7 @@ export const PresuppositionScalarFieldEnum = {
     subjectId: 'subjectId',
     predicate: 'predicate',
     objectId: 'objectId',
+    expectedValue: 'expectedValue',
 } as const;
 
 export type PresuppositionScalarFieldEnum =
@@ -138,6 +139,7 @@ export type BranchScalarFieldEnum =
 
 export const CommitScalarFieldEnum = {
     id: 'id',
+    operation: 'operation',
     branchId: 'branchId',
     parentId: 'parentId',
     mergeParentId: 'mergeParentId',
@@ -157,6 +159,7 @@ export type StoryScalarFieldEnum = (typeof StoryScalarFieldEnum)[keyof typeof St
 
 export const SceneScalarFieldEnum = {
     id: 'id',
+    lineageId: 'lineageId',
     storyId: 'storyId',
     sequenceId: 'sequenceId',
     title: 'title',

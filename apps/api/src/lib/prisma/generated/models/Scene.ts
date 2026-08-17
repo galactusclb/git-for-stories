@@ -35,6 +35,7 @@ export type SceneSumAggregateOutputType = {
 
 export type SceneMinAggregateOutputType = {
     id: string | null;
+    lineageId: string | null;
     storyId: string | null;
     sequenceId: number | null;
     title: string | null;
@@ -45,6 +46,7 @@ export type SceneMinAggregateOutputType = {
 
 export type SceneMaxAggregateOutputType = {
     id: string | null;
+    lineageId: string | null;
     storyId: string | null;
     sequenceId: number | null;
     title: string | null;
@@ -55,6 +57,7 @@ export type SceneMaxAggregateOutputType = {
 
 export type SceneCountAggregateOutputType = {
     id: number;
+    lineageId: number;
     storyId: number;
     sequenceId: number;
     title: number;
@@ -75,6 +78,7 @@ export type SceneSumAggregateInputType = {
 
 export type SceneMinAggregateInputType = {
     id?: true;
+    lineageId?: true;
     storyId?: true;
     sequenceId?: true;
     title?: true;
@@ -85,6 +89,7 @@ export type SceneMinAggregateInputType = {
 
 export type SceneMaxAggregateInputType = {
     id?: true;
+    lineageId?: true;
     storyId?: true;
     sequenceId?: true;
     title?: true;
@@ -95,6 +100,7 @@ export type SceneMaxAggregateInputType = {
 
 export type SceneCountAggregateInputType = {
     id?: true;
+    lineageId?: true;
     storyId?: true;
     sequenceId?: true;
     title?: true;
@@ -194,6 +200,7 @@ export type SceneGroupByArgs<
 
 export type SceneGroupByOutputType = {
     id: string;
+    lineageId: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -225,6 +232,7 @@ export type SceneWhereInput = {
     OR?: Prisma.SceneWhereInput[];
     NOT?: Prisma.SceneWhereInput | Prisma.SceneWhereInput[];
     id?: Prisma.StringFilter<'Scene'> | string;
+    lineageId?: Prisma.StringFilter<'Scene'> | string;
     storyId?: Prisma.StringFilter<'Scene'> | string;
     sequenceId?: Prisma.IntFilter<'Scene'> | number;
     title?: Prisma.StringFilter<'Scene'> | string;
@@ -241,6 +249,7 @@ export type SceneWhereInput = {
 
 export type SceneOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
+    lineageId?: Prisma.SortOrder;
     storyId?: Prisma.SortOrder;
     sequenceId?: Prisma.SortOrder;
     title?: Prisma.SortOrder;
@@ -262,6 +271,7 @@ export type SceneWhereUniqueInput = Prisma.AtLeast<
         AND?: Prisma.SceneWhereInput | Prisma.SceneWhereInput[];
         OR?: Prisma.SceneWhereInput[];
         NOT?: Prisma.SceneWhereInput | Prisma.SceneWhereInput[];
+        lineageId?: Prisma.StringFilter<'Scene'> | string;
         storyId?: Prisma.StringFilter<'Scene'> | string;
         sequenceId?: Prisma.IntFilter<'Scene'> | number;
         title?: Prisma.StringFilter<'Scene'> | string;
@@ -280,6 +290,7 @@ export type SceneWhereUniqueInput = Prisma.AtLeast<
 
 export type SceneOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
+    lineageId?: Prisma.SortOrder;
     storyId?: Prisma.SortOrder;
     sequenceId?: Prisma.SortOrder;
     title?: Prisma.SortOrder;
@@ -299,6 +310,7 @@ export type SceneScalarWhereWithAggregatesInput = {
     OR?: Prisma.SceneScalarWhereWithAggregatesInput[];
     NOT?: Prisma.SceneScalarWhereWithAggregatesInput | Prisma.SceneScalarWhereWithAggregatesInput[];
     id?: Prisma.StringWithAggregatesFilter<'Scene'> | string;
+    lineageId?: Prisma.StringWithAggregatesFilter<'Scene'> | string;
     storyId?: Prisma.StringWithAggregatesFilter<'Scene'> | string;
     sequenceId?: Prisma.IntWithAggregatesFilter<'Scene'> | number;
     title?: Prisma.StringWithAggregatesFilter<'Scene'> | string;
@@ -310,6 +322,7 @@ export type SceneScalarWhereWithAggregatesInput = {
 
 export type SceneCreateInput = {
     id?: string;
+    lineageId: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -325,6 +338,7 @@ export type SceneCreateInput = {
 
 export type SceneUncheckedCreateInput = {
     id?: string;
+    lineageId: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -340,6 +354,7 @@ export type SceneUncheckedCreateInput = {
 
 export type SceneUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -355,6 +370,7 @@ export type SceneUpdateInput = {
 
 export type SceneUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     storyId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -370,6 +386,7 @@ export type SceneUncheckedUpdateInput = {
 
 export type SceneCreateManyInput = {
     id?: string;
+    lineageId: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -381,6 +398,7 @@ export type SceneCreateManyInput = {
 
 export type SceneUpdateManyMutationInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -391,6 +409,7 @@ export type SceneUpdateManyMutationInput = {
 
 export type SceneUncheckedUpdateManyInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     storyId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -435,6 +454,7 @@ export type SceneStoryIdIdCompoundUniqueInput = {
 
 export type SceneCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
+    lineageId?: Prisma.SortOrder;
     storyId?: Prisma.SortOrder;
     sequenceId?: Prisma.SortOrder;
     title?: Prisma.SortOrder;
@@ -450,6 +470,7 @@ export type SceneAvgOrderByAggregateInput = {
 
 export type SceneMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
+    lineageId?: Prisma.SortOrder;
     storyId?: Prisma.SortOrder;
     sequenceId?: Prisma.SortOrder;
     title?: Prisma.SortOrder;
@@ -460,6 +481,7 @@ export type SceneMaxOrderByAggregateInput = {
 
 export type SceneMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
+    lineageId?: Prisma.SortOrder;
     storyId?: Prisma.SortOrder;
     sequenceId?: Prisma.SortOrder;
     title?: Prisma.SortOrder;
@@ -666,6 +688,7 @@ export type SceneUpdateOneRequiredWithoutEventsNestedInput = {
 
 export type SceneCreateWithoutEmbeddingsInput = {
     id?: string;
+    lineageId: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -680,6 +703,7 @@ export type SceneCreateWithoutEmbeddingsInput = {
 
 export type SceneUncheckedCreateWithoutEmbeddingsInput = {
     id?: string;
+    lineageId: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -722,6 +746,7 @@ export type SceneUpdateToOneWithWhereWithoutEmbeddingsInput = {
 
 export type SceneUpdateWithoutEmbeddingsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -736,6 +761,7 @@ export type SceneUpdateWithoutEmbeddingsInput = {
 
 export type SceneUncheckedUpdateWithoutEmbeddingsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     storyId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -750,6 +776,7 @@ export type SceneUncheckedUpdateWithoutEmbeddingsInput = {
 
 export type SceneCreateWithoutPresuppositionsInput = {
     id?: string;
+    lineageId: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -764,6 +791,7 @@ export type SceneCreateWithoutPresuppositionsInput = {
 
 export type SceneUncheckedCreateWithoutPresuppositionsInput = {
     id?: string;
+    lineageId: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -806,6 +834,7 @@ export type SceneUpdateToOneWithWhereWithoutPresuppositionsInput = {
 
 export type SceneUpdateWithoutPresuppositionsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -820,6 +849,7 @@ export type SceneUpdateWithoutPresuppositionsInput = {
 
 export type SceneUncheckedUpdateWithoutPresuppositionsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     storyId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -834,6 +864,7 @@ export type SceneUncheckedUpdateWithoutPresuppositionsInput = {
 
 export type SceneCreateWithoutCommitsInput = {
     id?: string;
+    lineageId: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -848,6 +879,7 @@ export type SceneCreateWithoutCommitsInput = {
 
 export type SceneUncheckedCreateWithoutCommitsInput = {
     id?: string;
+    lineageId: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -890,6 +922,7 @@ export type SceneUpdateToOneWithWhereWithoutCommitsInput = {
 
 export type SceneUpdateWithoutCommitsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -904,6 +937,7 @@ export type SceneUpdateWithoutCommitsInput = {
 
 export type SceneUncheckedUpdateWithoutCommitsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     storyId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -918,6 +952,7 @@ export type SceneUncheckedUpdateWithoutCommitsInput = {
 
 export type SceneCreateWithoutStoryInput = {
     id?: string;
+    lineageId: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -932,6 +967,7 @@ export type SceneCreateWithoutStoryInput = {
 
 export type SceneUncheckedCreateWithoutStoryInput = {
     id?: string;
+    lineageId: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -990,6 +1026,7 @@ export type SceneScalarWhereInput = {
     OR?: Prisma.SceneScalarWhereInput[];
     NOT?: Prisma.SceneScalarWhereInput | Prisma.SceneScalarWhereInput[];
     id?: Prisma.StringFilter<'Scene'> | string;
+    lineageId?: Prisma.StringFilter<'Scene'> | string;
     storyId?: Prisma.StringFilter<'Scene'> | string;
     sequenceId?: Prisma.IntFilter<'Scene'> | number;
     title?: Prisma.StringFilter<'Scene'> | string;
@@ -1001,6 +1038,7 @@ export type SceneScalarWhereInput = {
 
 export type SceneCreateWithoutEventsInput = {
     id?: string;
+    lineageId: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -1015,6 +1053,7 @@ export type SceneCreateWithoutEventsInput = {
 
 export type SceneUncheckedCreateWithoutEventsInput = {
     id?: string;
+    lineageId: string;
     storyId: string;
     sequenceId: number;
     title: string;
@@ -1057,6 +1096,7 @@ export type SceneUpdateToOneWithWhereWithoutEventsInput = {
 
 export type SceneUpdateWithoutEventsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1071,6 +1111,7 @@ export type SceneUpdateWithoutEventsInput = {
 
 export type SceneUncheckedUpdateWithoutEventsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     storyId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1085,6 +1126,7 @@ export type SceneUncheckedUpdateWithoutEventsInput = {
 
 export type SceneCreateManyStoryInput = {
     id?: string;
+    lineageId: string;
     sequenceId: number;
     title: string;
     summary: string;
@@ -1095,6 +1137,7 @@ export type SceneCreateManyStoryInput = {
 
 export type SceneUpdateWithoutStoryInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1109,6 +1152,7 @@ export type SceneUpdateWithoutStoryInput = {
 
 export type SceneUncheckedUpdateWithoutStoryInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1123,6 +1167,7 @@ export type SceneUncheckedUpdateWithoutStoryInput = {
 
 export type SceneUncheckedUpdateManyWithoutStoryInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
+    lineageId?: Prisma.StringFieldUpdateOperationsInput | string;
     sequenceId?: Prisma.IntFieldUpdateOperationsInput | number;
     title?: Prisma.StringFieldUpdateOperationsInput | string;
     summary?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1204,6 +1249,7 @@ export type SceneSelect<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
+        lineageId?: boolean;
         storyId?: boolean;
         sequenceId?: boolean;
         title?: boolean;
@@ -1226,6 +1272,7 @@ export type SceneSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
+        lineageId?: boolean;
         storyId?: boolean;
         sequenceId?: boolean;
         title?: boolean;
@@ -1243,6 +1290,7 @@ export type SceneSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
     {
         id?: boolean;
+        lineageId?: boolean;
         storyId?: boolean;
         sequenceId?: boolean;
         title?: boolean;
@@ -1257,6 +1305,7 @@ export type SceneSelectUpdateManyAndReturn<
 
 export type SceneSelectScalar = {
     id?: boolean;
+    lineageId?: boolean;
     storyId?: boolean;
     sequenceId?: boolean;
     title?: boolean;
@@ -1269,7 +1318,15 @@ export type SceneSelectScalar = {
 export type SceneOmit<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-    'id' | 'storyId' | 'sequenceId' | 'title' | 'summary' | 'location' | 'characters' | 'createdAt',
+    | 'id'
+    | 'lineageId'
+    | 'storyId'
+    | 'sequenceId'
+    | 'title'
+    | 'summary'
+    | 'location'
+    | 'characters'
+    | 'createdAt',
     ExtArgs['result']['scene']
 >;
 export type SceneInclude<
@@ -1307,6 +1364,7 @@ export type $ScenePayload<
     scalars: runtime.Types.Extensions.GetPayloadResult<
         {
             id: string;
+            lineageId: string;
             storyId: string;
             sequenceId: number;
             title: string;
@@ -1939,6 +1997,7 @@ export interface Prisma__SceneClient<
  */
 export interface SceneFieldRefs {
     readonly id: Prisma.FieldRef<'Scene', 'String'>;
+    readonly lineageId: Prisma.FieldRef<'Scene', 'String'>;
     readonly storyId: Prisma.FieldRef<'Scene', 'String'>;
     readonly sequenceId: Prisma.FieldRef<'Scene', 'Int'>;
     readonly title: Prisma.FieldRef<'Scene', 'String'>;

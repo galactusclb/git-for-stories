@@ -30,6 +30,7 @@ export type PresuppositionMinAggregateOutputType = {
     subjectId: string | null;
     predicate: string | null;
     objectId: string | null;
+    expectedValue: boolean | null;
 };
 
 export type PresuppositionMaxAggregateOutputType = {
@@ -38,6 +39,7 @@ export type PresuppositionMaxAggregateOutputType = {
     subjectId: string | null;
     predicate: string | null;
     objectId: string | null;
+    expectedValue: boolean | null;
 };
 
 export type PresuppositionCountAggregateOutputType = {
@@ -46,6 +48,7 @@ export type PresuppositionCountAggregateOutputType = {
     subjectId: number;
     predicate: number;
     objectId: number;
+    expectedValue: number;
     _all: number;
 };
 
@@ -55,6 +58,7 @@ export type PresuppositionMinAggregateInputType = {
     subjectId?: true;
     predicate?: true;
     objectId?: true;
+    expectedValue?: true;
 };
 
 export type PresuppositionMaxAggregateInputType = {
@@ -63,6 +67,7 @@ export type PresuppositionMaxAggregateInputType = {
     subjectId?: true;
     predicate?: true;
     objectId?: true;
+    expectedValue?: true;
 };
 
 export type PresuppositionCountAggregateInputType = {
@@ -71,6 +76,7 @@ export type PresuppositionCountAggregateInputType = {
     subjectId?: true;
     predicate?: true;
     objectId?: true;
+    expectedValue?: true;
     _all?: true;
 };
 
@@ -157,6 +163,7 @@ export type PresuppositionGroupByOutputType = {
     subjectId: string;
     predicate: string;
     objectId: string | null;
+    expectedValue: boolean;
     _count: PresuppositionCountAggregateOutputType | null;
     _min: PresuppositionMinAggregateOutputType | null;
     _max: PresuppositionMaxAggregateOutputType | null;
@@ -184,6 +191,7 @@ export type PresuppositionWhereInput = {
     subjectId?: Prisma.StringFilter<'Presupposition'> | string;
     predicate?: Prisma.StringFilter<'Presupposition'> | string;
     objectId?: Prisma.StringNullableFilter<'Presupposition'> | string | null;
+    expectedValue?: Prisma.BoolFilter<'Presupposition'> | boolean;
     scene?: Prisma.XOR<Prisma.SceneScalarRelationFilter, Prisma.SceneWhereInput>;
     subject?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>;
     object?: Prisma.XOR<Prisma.EntityNullableScalarRelationFilter, Prisma.EntityWhereInput> | null;
@@ -195,6 +203,7 @@ export type PresuppositionOrderByWithRelationInput = {
     subjectId?: Prisma.SortOrder;
     predicate?: Prisma.SortOrder;
     objectId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    expectedValue?: Prisma.SortOrder;
     scene?: Prisma.SceneOrderByWithRelationInput;
     subject?: Prisma.EntityOrderByWithRelationInput;
     object?: Prisma.EntityOrderByWithRelationInput;
@@ -210,6 +219,7 @@ export type PresuppositionWhereUniqueInput = Prisma.AtLeast<
         subjectId?: Prisma.StringFilter<'Presupposition'> | string;
         predicate?: Prisma.StringFilter<'Presupposition'> | string;
         objectId?: Prisma.StringNullableFilter<'Presupposition'> | string | null;
+        expectedValue?: Prisma.BoolFilter<'Presupposition'> | boolean;
         scene?: Prisma.XOR<Prisma.SceneScalarRelationFilter, Prisma.SceneWhereInput>;
         subject?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>;
         object?: Prisma.XOR<
@@ -226,6 +236,7 @@ export type PresuppositionOrderByWithAggregationInput = {
     subjectId?: Prisma.SortOrder;
     predicate?: Prisma.SortOrder;
     objectId?: Prisma.SortOrderInput | Prisma.SortOrder;
+    expectedValue?: Prisma.SortOrder;
     _count?: Prisma.PresuppositionCountOrderByAggregateInput;
     _max?: Prisma.PresuppositionMaxOrderByAggregateInput;
     _min?: Prisma.PresuppositionMinOrderByAggregateInput;
@@ -244,11 +255,13 @@ export type PresuppositionScalarWhereWithAggregatesInput = {
     subjectId?: Prisma.StringWithAggregatesFilter<'Presupposition'> | string;
     predicate?: Prisma.StringWithAggregatesFilter<'Presupposition'> | string;
     objectId?: Prisma.StringNullableWithAggregatesFilter<'Presupposition'> | string | null;
+    expectedValue?: Prisma.BoolWithAggregatesFilter<'Presupposition'> | boolean;
 };
 
 export type PresuppositionCreateInput = {
     id?: string;
     predicate: string;
+    expectedValue?: boolean;
     scene: Prisma.SceneCreateNestedOneWithoutPresuppositionsInput;
     subject: Prisma.EntityCreateNestedOneWithoutPresuppositionSubjectInput;
     object?: Prisma.EntityCreateNestedOneWithoutPresuppositionObjectInput;
@@ -260,11 +273,13 @@ export type PresuppositionUncheckedCreateInput = {
     subjectId: string;
     predicate: string;
     objectId?: string | null;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     scene?: Prisma.SceneUpdateOneRequiredWithoutPresuppositionsNestedInput;
     subject?: Prisma.EntityUpdateOneRequiredWithoutPresuppositionSubjectNestedInput;
     object?: Prisma.EntityUpdateOneWithoutPresuppositionObjectNestedInput;
@@ -276,6 +291,7 @@ export type PresuppositionUncheckedUpdateInput = {
     subjectId?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
     objectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionCreateManyInput = {
@@ -284,11 +300,13 @@ export type PresuppositionCreateManyInput = {
     subjectId: string;
     predicate: string;
     objectId?: string | null;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionUpdateManyMutationInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionUncheckedUpdateManyInput = {
@@ -297,6 +315,7 @@ export type PresuppositionUncheckedUpdateManyInput = {
     subjectId?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
     objectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionCountOrderByAggregateInput = {
@@ -305,6 +324,7 @@ export type PresuppositionCountOrderByAggregateInput = {
     subjectId?: Prisma.SortOrder;
     predicate?: Prisma.SortOrder;
     objectId?: Prisma.SortOrder;
+    expectedValue?: Prisma.SortOrder;
 };
 
 export type PresuppositionMaxOrderByAggregateInput = {
@@ -313,6 +333,7 @@ export type PresuppositionMaxOrderByAggregateInput = {
     subjectId?: Prisma.SortOrder;
     predicate?: Prisma.SortOrder;
     objectId?: Prisma.SortOrder;
+    expectedValue?: Prisma.SortOrder;
 };
 
 export type PresuppositionMinOrderByAggregateInput = {
@@ -321,6 +342,7 @@ export type PresuppositionMinOrderByAggregateInput = {
     subjectId?: Prisma.SortOrder;
     predicate?: Prisma.SortOrder;
     objectId?: Prisma.SortOrder;
+    expectedValue?: Prisma.SortOrder;
 };
 
 export type PresuppositionListRelationFilter = {
@@ -594,6 +616,7 @@ export type PresuppositionUncheckedUpdateManyWithoutObjectNestedInput = {
 export type PresuppositionCreateWithoutSceneInput = {
     id?: string;
     predicate: string;
+    expectedValue?: boolean;
     subject: Prisma.EntityCreateNestedOneWithoutPresuppositionSubjectInput;
     object?: Prisma.EntityCreateNestedOneWithoutPresuppositionObjectInput;
 };
@@ -603,6 +626,7 @@ export type PresuppositionUncheckedCreateWithoutSceneInput = {
     subjectId: string;
     predicate: string;
     objectId?: string | null;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionCreateOrConnectWithoutSceneInput = {
@@ -655,11 +679,13 @@ export type PresuppositionScalarWhereInput = {
     subjectId?: Prisma.StringFilter<'Presupposition'> | string;
     predicate?: Prisma.StringFilter<'Presupposition'> | string;
     objectId?: Prisma.StringNullableFilter<'Presupposition'> | string | null;
+    expectedValue?: Prisma.BoolFilter<'Presupposition'> | boolean;
 };
 
 export type PresuppositionCreateWithoutSubjectInput = {
     id?: string;
     predicate: string;
+    expectedValue?: boolean;
     scene: Prisma.SceneCreateNestedOneWithoutPresuppositionsInput;
     object?: Prisma.EntityCreateNestedOneWithoutPresuppositionObjectInput;
 };
@@ -669,6 +695,7 @@ export type PresuppositionUncheckedCreateWithoutSubjectInput = {
     sceneId: string;
     predicate: string;
     objectId?: string | null;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionCreateOrConnectWithoutSubjectInput = {
@@ -689,6 +716,7 @@ export type PresuppositionCreateManySubjectInputEnvelope = {
 export type PresuppositionCreateWithoutObjectInput = {
     id?: string;
     predicate: string;
+    expectedValue?: boolean;
     scene: Prisma.SceneCreateNestedOneWithoutPresuppositionsInput;
     subject: Prisma.EntityCreateNestedOneWithoutPresuppositionSubjectInput;
 };
@@ -698,6 +726,7 @@ export type PresuppositionUncheckedCreateWithoutObjectInput = {
     sceneId: string;
     subjectId: string;
     predicate: string;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionCreateOrConnectWithoutObjectInput = {
@@ -774,11 +803,13 @@ export type PresuppositionCreateManySceneInput = {
     subjectId: string;
     predicate: string;
     objectId?: string | null;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionUpdateWithoutSceneInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     subject?: Prisma.EntityUpdateOneRequiredWithoutPresuppositionSubjectNestedInput;
     object?: Prisma.EntityUpdateOneWithoutPresuppositionObjectNestedInput;
 };
@@ -788,6 +819,7 @@ export type PresuppositionUncheckedUpdateWithoutSceneInput = {
     subjectId?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
     objectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionUncheckedUpdateManyWithoutSceneInput = {
@@ -795,6 +827,7 @@ export type PresuppositionUncheckedUpdateManyWithoutSceneInput = {
     subjectId?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
     objectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionCreateManySubjectInput = {
@@ -802,6 +835,7 @@ export type PresuppositionCreateManySubjectInput = {
     sceneId: string;
     predicate: string;
     objectId?: string | null;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionCreateManyObjectInput = {
@@ -809,11 +843,13 @@ export type PresuppositionCreateManyObjectInput = {
     sceneId: string;
     subjectId: string;
     predicate: string;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionUpdateWithoutSubjectInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     scene?: Prisma.SceneUpdateOneRequiredWithoutPresuppositionsNestedInput;
     object?: Prisma.EntityUpdateOneWithoutPresuppositionObjectNestedInput;
 };
@@ -823,6 +859,7 @@ export type PresuppositionUncheckedUpdateWithoutSubjectInput = {
     sceneId?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
     objectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionUncheckedUpdateManyWithoutSubjectInput = {
@@ -830,11 +867,13 @@ export type PresuppositionUncheckedUpdateManyWithoutSubjectInput = {
     sceneId?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
     objectId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionUpdateWithoutObjectInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     scene?: Prisma.SceneUpdateOneRequiredWithoutPresuppositionsNestedInput;
     subject?: Prisma.EntityUpdateOneRequiredWithoutPresuppositionSubjectNestedInput;
 };
@@ -844,6 +883,7 @@ export type PresuppositionUncheckedUpdateWithoutObjectInput = {
     sceneId?: Prisma.StringFieldUpdateOperationsInput | string;
     subjectId?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionUncheckedUpdateManyWithoutObjectInput = {
@@ -851,6 +891,7 @@ export type PresuppositionUncheckedUpdateManyWithoutObjectInput = {
     sceneId?: Prisma.StringFieldUpdateOperationsInput | string;
     subjectId?: Prisma.StringFieldUpdateOperationsInput | string;
     predicate?: Prisma.StringFieldUpdateOperationsInput | string;
+    expectedValue?: Prisma.BoolFieldUpdateOperationsInput | boolean;
 };
 
 export type PresuppositionSelect<
@@ -862,6 +903,7 @@ export type PresuppositionSelect<
         subjectId?: boolean;
         predicate?: boolean;
         objectId?: boolean;
+        expectedValue?: boolean;
         scene?: boolean | Prisma.SceneDefaultArgs<ExtArgs>;
         subject?: boolean | Prisma.EntityDefaultArgs<ExtArgs>;
         object?: boolean | Prisma.Presupposition$objectArgs<ExtArgs>;
@@ -878,6 +920,7 @@ export type PresuppositionSelectCreateManyAndReturn<
         subjectId?: boolean;
         predicate?: boolean;
         objectId?: boolean;
+        expectedValue?: boolean;
         scene?: boolean | Prisma.SceneDefaultArgs<ExtArgs>;
         subject?: boolean | Prisma.EntityDefaultArgs<ExtArgs>;
         object?: boolean | Prisma.Presupposition$objectArgs<ExtArgs>;
@@ -894,6 +937,7 @@ export type PresuppositionSelectUpdateManyAndReturn<
         subjectId?: boolean;
         predicate?: boolean;
         objectId?: boolean;
+        expectedValue?: boolean;
         scene?: boolean | Prisma.SceneDefaultArgs<ExtArgs>;
         subject?: boolean | Prisma.EntityDefaultArgs<ExtArgs>;
         object?: boolean | Prisma.Presupposition$objectArgs<ExtArgs>;
@@ -907,12 +951,13 @@ export type PresuppositionSelectScalar = {
     subjectId?: boolean;
     predicate?: boolean;
     objectId?: boolean;
+    expectedValue?: boolean;
 };
 
 export type PresuppositionOmit<
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-    'id' | 'sceneId' | 'subjectId' | 'predicate' | 'objectId',
+    'id' | 'sceneId' | 'subjectId' | 'predicate' | 'objectId' | 'expectedValue',
     ExtArgs['result']['presupposition']
 >;
 export type PresuppositionInclude<
@@ -953,6 +998,7 @@ export type $PresuppositionPayload<
             subjectId: string;
             predicate: string;
             objectId: string | null;
+            expectedValue: boolean;
         },
         ExtArgs['result']['presupposition']
     >;
@@ -1571,6 +1617,7 @@ export interface PresuppositionFieldRefs {
     readonly subjectId: Prisma.FieldRef<'Presupposition', 'String'>;
     readonly predicate: Prisma.FieldRef<'Presupposition', 'String'>;
     readonly objectId: Prisma.FieldRef<'Presupposition', 'String'>;
+    readonly expectedValue: Prisma.FieldRef<'Presupposition', 'Boolean'>;
 }
 
 // Custom InputTypes

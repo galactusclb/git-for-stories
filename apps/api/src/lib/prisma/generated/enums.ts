@@ -8,6 +8,16 @@
  * 🟢 You can import this file directly.
  */
 
+export const CommitOp = {
+    INIT: 'INIT',
+    ADD: 'ADD',
+    EDIT: 'EDIT',
+    DELETE: 'DELETE',
+    MERGE: 'MERGE',
+} as const;
+
+export type CommitOp = (typeof CommitOp)[keyof typeof CommitOp];
+
 export const EntityKind = {
     CHARACTER: 'CHARACTER',
     OBJECT: 'OBJECT',
