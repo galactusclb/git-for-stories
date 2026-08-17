@@ -1,48 +1,48 @@
 model Story {
-    id String @id @unique @default(uuid())
-    title String
-    createdAt DateTime @default(now())
+  id        String   @id @unique @default(uuid())
+  title     String
+  createdAt DateTime @default(now())
 
-  scenes    Scene[]
-  entities  Entity[]
-  Branch    Branch[]
+  scenes   Scene[]
+  entities Entity[]
+  Branch   Branch[]
 }
 
 model Scene {
-    id String @id @default(uuid())
-    storyId     String
-    sequenceId  Int
-    title       String
-    summary     String
-    location    String?
-    characters  String[]
-    createdAt DateTime @default(now())
+  id         String   @id @default(uuid())
+  storyId    String
+  sequenceId Int
+  title      String
+  summary    String
+  location   String?
+  characters String[]
+  createdAt  DateTime @default(now())
 
-    story       Story   @relation(fields: [storyId], references: [id])
-    events      Event[]
-    embeddings  SceneEmbedding[]
-  commits    Commit[]
+  story           Story            @relation(fields: [storyId], references: [id])
+  events          Event[]
+  embeddings      SceneEmbedding[]
+  commits         Commit[]
   presuppositions Presupposition[]
 
   @@unique([storyId, id])
 }
 
 model Event {
-    id          String @id @default(uuid())
-    sceneId     String
-    type        String
-    description String
-    subjectId   String
-    objectId    String?
-    createdAt DateTime @default(now())
+  id          String   @id @default(uuid())
+  sceneId     String
+  type        String
+  description String
+  subjectId   String
+  objectId    String?
+  createdAt   DateTime @default(now())
 
-    scene       Scene @relation(fields: [sceneId], references: [id])
-    subject Entity  @relation("EventSubject", fields: [subjectId], references: [id])
-    object  Entity? @relation("EventObject", fields: [objectId], references: [id])
+  scene   Scene   @relation(fields: [sceneId], references: [id])
+  subject Entity  @relation("EventSubject", fields: [subjectId], references: [id])
+  object  Entity? @relation("EventObject", fields: [objectId], references: [id])
 
-    facts Fact[]
+  facts Fact[]
 
-    @@unique([sceneId, id])
+  @@unique([sceneId, id])
 }
 
 model Entity {
@@ -61,7 +61,7 @@ model Entity {
   factsAsObject  Fact[] @relation("FactObject")
 
   presuppositionSubject Presupposition[] @relation("PresuppositionSubject")
-  presuppositionObject Presupposition[] @relation("PresuppositionObject")
+  presuppositionObject  Presupposition[] @relation("PresuppositionObject")
 }
 
 enum EntityKind {

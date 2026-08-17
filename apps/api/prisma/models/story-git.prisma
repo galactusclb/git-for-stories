@@ -5,7 +5,7 @@ model Branch {
   headCommitId       String?
   forkedFromCommitId String?
 
-  story Story @relation(fields: [storyId], references: [id], onDelete: Restrict)
+  story            Story    @relation(fields: [storyId], references: [id], onDelete: Restrict)
   headCommit       Commit?  @relation("BranchHead", fields: [headCommitId], references: [id], onDelete: Restrict)
   forkedFromCommit Commit?  @relation("BranchFork", fields: [forkedFromCommitId], references: [id], onDelete: Restrict)
   commits          Commit[] @relation("CommitBranch")
@@ -21,7 +21,7 @@ model Commit {
   sceneId       String?
 
   branch Branch @relation("CommitBranch", fields: [branchId], references: [id], onDelete: Restrict)
-  scene  Scene?  @relation(fields: [sceneId], references: [id], onDelete: Restrict)
+  scene  Scene? @relation(fields: [sceneId], references: [id], onDelete: Restrict)
 
   parent   Commit?  @relation("CommitParent", fields: [parentId], references: [id], onDelete: Restrict)
   children Commit[] @relation("CommitParent")

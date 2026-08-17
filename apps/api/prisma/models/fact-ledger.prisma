@@ -28,9 +28,9 @@ model Presupposition {
   predicate String
   objectId  String?
 
-  scene Scene @relation(fields: [sceneId], references: [id], onDelete: Restrict)
-  subject Entity @relation("PresuppositionSubject", fields: [subjectId], references: [id], onDelete: Restrict)
-  object Entity? @relation("PresuppositionObject", fields: [objectId], references: [id], onDelete: Restrict)
+  scene   Scene   @relation(fields: [sceneId], references: [id], onDelete: Restrict)
+  subject Entity  @relation("PresuppositionSubject", fields: [subjectId], references: [id], onDelete: Restrict)
+  object  Entity? @relation("PresuppositionObject", fields: [objectId], references: [id], onDelete: Restrict)
 
   @@index([subjectId, predicate, objectId])
   @@index([sceneId])

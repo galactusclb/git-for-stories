@@ -1,12 +1,12 @@
 model SceneEmbedding {
-    id          String   @id @default(uuid())
-    sceneId     String
-    embedding   Unsupported("vector(1536)")
-    model       String
-    createdAt   DateTime @default(now())
+  id        String                      @id @default(uuid())
+  sceneId   String
+  embedding Unsupported("vector(1536)")
+  model     String
+  createdAt DateTime                    @default(now())
 
-    scenes      Scene @relation(fields: [sceneId], references: [id])
+  scenes Scene @relation(fields: [sceneId], references: [id])
 
-    @@unique([sceneId, model])
-    @@index([sceneId])
+  @@unique([sceneId, model])
+  @@index([sceneId])
 }
