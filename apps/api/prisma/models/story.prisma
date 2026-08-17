@@ -22,6 +22,7 @@ model Scene {
     events      Event[]
     embeddings  SceneEmbedding[]
   commits    Commit[]
+  presuppositions Presupposition[]
 
   @@unique([storyId, id])
 }
@@ -58,6 +59,9 @@ model Entity {
 
   factsAsSubject Fact[] @relation("FactSubject")
   factsAsObject  Fact[] @relation("FactObject")
+
+  presuppositionSubject Presupposition[] @relation("PresuppositionSubject")
+  presuppositionObject Presupposition[] @relation("PresuppositionObject")
 }
 
 enum EntityKind {

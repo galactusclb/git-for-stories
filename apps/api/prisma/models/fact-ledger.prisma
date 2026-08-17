@@ -20,3 +20,18 @@ model Fact {
   @@index([sourceEventId])
   @@index([subjectId, predicate, objectId])
 }
+
+model Presupposition {
+  id        String  @id @default(uuid())
+  sceneId   String
+  subjectId String
+  predicate String
+  objectId  String?
+
+  scene Scene @relation(fields: [sceneId], references: [id], onDelete: Restrict)
+  subject Entity @relation("PresuppositionSubject", fields: [subjectId], references: [id], onDelete: Restrict)
+  object Entity? @relation("PresuppositionObject", fields: [objectId], references: [id], onDelete: Restrict)
+
+  @@index([subjectId, predicate, objectId])
+  @@index([sceneId])
+}

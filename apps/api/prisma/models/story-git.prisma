@@ -5,7 +5,7 @@ model Branch {
   headCommitId       String?
   forkedFromCommitId String?
 
-  Story Story @relation(fields: [storyId], references: [id], onDelete: Restrict)
+  story Story @relation(fields: [storyId], references: [id], onDelete: Restrict)
   headCommit       Commit?  @relation("BranchHead", fields: [headCommitId], references: [id], onDelete: Restrict)
   forkedFromCommit Commit?  @relation("BranchFork", fields: [forkedFromCommitId], references: [id], onDelete: Restrict)
   commits          Commit[] @relation("CommitBranch")
