@@ -1,5 +1,4 @@
-import { Scene } from '../../domain/entities/scene';
-
+import { ExtractedScene } from '../../domain/entities/extracted-scene';
 export interface SceneExtractor {
-    extract(story: string): Promise<Scene[]>;
+    extract(story: string): Promise<ExtractedScene[]>;
 }

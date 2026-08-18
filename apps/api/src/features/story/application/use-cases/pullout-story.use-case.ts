@@ -2,8 +2,10 @@ import { randomUUID } from 'node:crypto';
 
 import { BadRequestError } from '@/utils/errors/http-error';
 
+import { ExtractedScene } from '../../domain/entities/extracted-scene';
 import { Scene } from '../../domain/entities/scene';
 import { Story } from '../../domain/entities/story';
+import { collectMentions } from '../../domain/services/resolve-scenes';
 import { SceneExtractor } from '../ports/scene-extractor.port';
 import { SceneIndexingQueue } from '../ports/scene-indexing-queue.port';
 import { StoryRepository } from '../ports/story-repository.port';
@@ -26,25 +28,20 @@ export class PullOutStoryUseCase {
     }> {
         const storyId = randomUUID();
 
-        console.log('extracting story....');
+        const extracted = await this.sceneExtractorFunc(story);
 
-        const scenes = await this.sceneExtractorFunc(story);
-
-        console.log('extracted story: Done ✅');
-        console.log('saving Story...');
+        const {} = await this.entityResolver.resolve(collectMentions(extracted));
 
         await this.saveStory({ id: storyId, title, scenes });
-        console.log('saving Story: Done ✅');
         await this.sceneIndexingQueue.requestIndexing({
             storyId,
             embeddingModel: this.embeddingModel,
         });
 
-        console.log('send response ✅');
         return { storyId, title, scenes };
     }
 
-    private async sceneExtractorFunc(story: string): Promise<Scene[]> {
+    private async sceneExtractorFunc(story: string): Promise<ExtractedScene[]> {
         if (!story.trim()) {
             throw new BadRequestError('Story cannot be empty');
         }
