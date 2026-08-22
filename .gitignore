@@ -7,3 +7,6 @@ dist/
 .DS_Store
 
 .pnpm-store
+
+neo4j/
+!apps/api/src/lib/neo4j

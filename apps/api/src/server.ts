@@ -1,11 +1,14 @@
 import { logger } from '@/lib/logger';
+import { applyNeo4jSchema, closeNeo4jDriver } from '@/lib/neo4j/neo4j-client.ts';
 import prisma from '@/lib/prisma/prisma';
 import { redisClient } from '@/lib/redis/redis-client.ts';
 
-import app, { closeInfrastructure } from './app.ts';
-
 const PORT = process.env.PORT || 4000;
 const SHUTDOWN_TIMEOUT_MS = 15_000;
+
+await applyNeo4jSchema();
+
+import app, { closeInfrastructure } from './app.ts';
 
 // async function bootstrap() {
 //     getRedisClient(
@@ -44,6 +47,7 @@ async function shutdown(signal: string): Promise<void> {
 
         await prisma.$disconnect();
         await redisClient?.quit();
+        await closeNeo4jDriver();
 
         logger.info('shutdown complete');
         process.exit(0);

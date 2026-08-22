@@ -1,11 +1,13 @@
 import { logger } from '@/lib/logger';
 import { LLMProviderError } from '@/utils/errors/http-error';
 
+import { Scene } from '../../domain/entities/scene';
 import { SceneEmbedding } from '../../domain/entities/scene-embedding';
 import { toEmbeddingInput } from '../../domain/services/scene-embedding-input';
 import { EmbeddingGenerator } from '../ports/embedding-generator.port';
 import { EmbeddingRespository } from '../ports/embedding-repository.port';
 import { SceneIndexingRequest } from '../ports/scene-indexing-queue.port';
+import { StoryGraphRepository } from '../ports/story-graph-repository.port';
 import { StoryRepository } from '../ports/story-repository.port';
 
 export class IndexStoryScenesUseCase {
@@ -13,6 +15,7 @@ export class IndexStoryScenesUseCase {
         private readonly storyRepository: StoryRepository,
         private readonly embeddingGenerator: EmbeddingGenerator,
         private readonly embeddingRepository: EmbeddingRespository,
+        private readonly storyGraphRepository: StoryGraphRepository
     ) {}
 
     async execute({ storyId, embeddingModel }: SceneIndexingRequest): Promise<void> {
@@ -25,12 +28,24 @@ export class IndexStoryScenesUseCase {
             return;
         }
 
-        console.log('Running story background queue;');
+        await Promise.all([
+            this.indexSceneEmbeddings(storyId, embeddingModel, scenes),
+            this.indexSceneGraph(storyId, scenes),
+        ]);
+
+        console.log('[background queue] done ✅');
+    }
+
+    private async indexSceneEmbeddings(
+        storyId: SceneIndexingRequest['storyId'],
+        embeddingModel: SceneIndexingRequest['embeddingModel'],
+        scenes: Scene[]
+    ) {
         const embeddings = await this.embeddingGenerator.generate(scenes.map(toEmbeddingInput));
 
         if (embeddings.length !== scenes.length) {
             throw new LLMProviderError(
-                `Embedding count mismatch: expected ${scenes.length}, received ${embeddings.length}`,
+                `Embedding count mismatch: expected ${scenes.length}, received ${embeddings.length}`
             );
         }
 
@@ -44,6 +59,10 @@ export class IndexStoryScenesUseCase {
         console.log('[background queue] save in db ✅');
 
         logger.info('story scenes indexed', { storyId, count: sceneEmbeddings.length });
-        console.log('[background queue] done ✅');
+    }
+
+    private async indexSceneGraph(storyId: SceneIndexingRequest['storyId'], scenes: Scene[]) {
+        await this.storyGraphRepository.upsertStoryGraph(storyId, scenes);
+        console.log('story graph indexed', { storyId, count: scenes.length });
     }
 }

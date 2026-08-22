@@ -8,6 +8,7 @@ import { PullOutStoryUseCase } from './application/use-cases/pullout-story.use-c
 import { LLMEmbeddingGenerator } from './infrastructure/llm/embedding-generator';
 import { LLMSceneExtractor } from './infrastructure/llm/scene-extractor';
 import { LLMSceneReasoner } from './infrastructure/llm/scene-reasoner';
+import { Neo4jStoryGraphRepository } from './infrastructure/persistence/neo4j/story-graph.repository';
 import { PostgresEmbeddingRepository } from './infrastructure/persistence/postgres/embedding.repository';
 import { PostgresStoryRepository } from './infrastructure/persistence/postgres/story.repository';
 import { QueuedSceneIndexing } from './infrastructure/queue/scene-indexing.queue';
@@ -37,26 +38,28 @@ export function createStoryModule({
     const storyRepository = new PostgresStoryRepository();
     const embeddingRepository = new PostgresEmbeddingRepository();
     const sceneIndexingQueue = new QueuedSceneIndexing(jobProducer);
+    const storyGraphRepository = new Neo4jStoryGraphRepository();
 
     //use cases
     const pullOutStoryUseCase = new PullOutStoryUseCase(
         sceneExtractor,
         storyRepository,
         sceneIndexingQueue,
-        embeddingModel,
+        embeddingModel
     );
 
     const answerStoryQuestionUseCase = new AnswerStoryQuestionUseCase(
         embeddingGenerator,
         embeddingRepository,
         sceneReasoner,
-        embeddingModel,
+        embeddingModel
     );
 
     const indexStoryScenesUseCase = new IndexStoryScenesUseCase(
         storyRepository,
         embeddingGenerator,
         embeddingRepository,
+        storyGraphRepository
     );
 
     // driving adapters
