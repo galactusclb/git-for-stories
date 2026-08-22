@@ -29,14 +29,14 @@ export class IndexStoryScenesUseCase {
         }
 
         await Promise.all([
-            this.indexSceneEmbeddings(storyId, embeddingModel, scenes),
-            this.indexSceneGraph(storyId, scenes),
+            this.buildSceneEmbeddings(storyId, embeddingModel, scenes),
+            this.buildSceneGraph(storyId, scenes),
         ]);
 
         console.log('[background queue] done ✅');
     }
 
-    private async indexSceneEmbeddings(
+    private async buildSceneEmbeddings(
         storyId: SceneIndexingRequest['storyId'],
         embeddingModel: SceneIndexingRequest['embeddingModel'],
         scenes: Scene[]
@@ -61,7 +61,7 @@ export class IndexStoryScenesUseCase {
         logger.info('story scenes indexed', { storyId, count: sceneEmbeddings.length });
     }
 
-    private async indexSceneGraph(storyId: SceneIndexingRequest['storyId'], scenes: Scene[]) {
+    private async buildSceneGraph(storyId: SceneIndexingRequest['storyId'], scenes: Scene[]) {
         await this.storyGraphRepository.upsertStoryGraph(storyId, scenes);
         console.log('story graph indexed', { storyId, count: scenes.length });
     }
